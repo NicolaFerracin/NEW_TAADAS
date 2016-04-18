@@ -10,7 +10,7 @@ site.init({
   sessionSecret: 'apostrophe sandbox demo party',
   adminPassword: 'demo',
   address: '0.0.0.0',
-  port: process.env.PORT || 3000,
+  port: 3000,
 
   // Force a2 to prefix all of its URLs. It still
   // listens on its own port, but you can configure
