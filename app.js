@@ -61,8 +61,8 @@ site.init({
   // The scripts array contains the names of JS files in /public/js,
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
-    stylesheets: ['site', 'bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min'],
-    scripts: ['_site-compiled']
+    stylesheets: ['bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min', 'custom-styles'],
+    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation']
   },
 
   afterInit: function(callback) {
