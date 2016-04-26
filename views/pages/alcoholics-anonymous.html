@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% include "pageMacros.html" %}
+
+{# the bodyClass block allows us to attach a classname to the body tag for easy style-scoping. #}
+{# be sure to call super() so that any pages inheriting this one will be appending classes, not overriding them. #}
+{% block bodyClass %}{{ super() }} default-page{% endblock %}
+
+{% block main %}
+{{ super() }}
+  <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Alcoholics Anonymous
+                    <small>Subheading</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="portfolio-item.html">
+                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Project One</h3>
+                <h4>Subheading</h4>
+              <p>
+		  	  </p>	
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+	</div>
+{% endblock %}
+
+{% block footer %}
+	{{ super() }}
+{% endblock %}
+

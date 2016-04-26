@@ -43,7 +43,12 @@ site.init({
   pages: {
     types: [
       { name: 'default', label: 'Default' },
-      { name: 'home', label: 'Home Page'}
+      { name: 'home', label: 'Home Page'},
+      { name: 'literature', label: 'Free Literature'},
+      { name: 'dvds', label: 'Free DVD Library'},
+      { name: 'alcoholics-anoymous', label: 'Alcoholics Anonymous'},
+      { name: 'gamblers-anonymous', label: 'Gamblers Anonymous'},
+      { name: 'other-resources', label: 'Other Resources'}
     ]
   },
 
