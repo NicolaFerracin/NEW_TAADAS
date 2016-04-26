@@ -48,7 +48,11 @@ site.init({
       { name: 'dvds', label: 'Free DVD Library'},
       { name: 'alcoholics-anoymous', label: 'Alcoholics Anonymous'},
       { name: 'gamblers-anonymous', label: 'Gamblers Anonymous'},
-      { name: 'other-resources', label: 'Other Resources'}
+      { name: 'other-resources', label: 'Other Resources'},
+	  { name: 'contact', label: 'About Us'},
+	  { name: 'donate', label: 'Donate'},
+	  { name: 'materials', label: 'Training Materials'},
+	  { name: 'membership-info', label: 'Membership Info'}
     ]
   },
 
