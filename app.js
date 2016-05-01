@@ -63,7 +63,30 @@ site.init({
     'apostrophe-ui-2': {},
     'apostrophe-browserify': {
       files: ['./public/js/modules/_site.js']
-    }
+    },
+    'apostrophe-people': {
+      addFields: [
+        {
+          name: '_blogPosts',
+          type: 'joinByOneReverse',
+          withType: 'blogPost',
+          idField: 'authorId',
+          label: 'Author',
+          withJoins: [ '_editor' ]
+        },
+        {
+          name: 'thumbnail',
+          type: 'singleton',
+          widgetType: 'slideshow',
+          label: 'Picture',
+          options: {
+            aspectRatio: [100,100]
+          }
+        }
+      ]
+    },
+    'apostrophe-groups': {},
+    'apostrophe-search': {}
   },
 
   // These are assets we want to push to the browser.

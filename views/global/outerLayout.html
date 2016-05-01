@@ -31,7 +31,10 @@
           <!-- {% if user %} -->
             <ul class="apos-admin-bar-item apos-accordion-menu apos-my-account">
               <li class="apos-accordion-title"><i class="person"></i> My Account</li>
+             
+
               <li class="apos-accordion-items">
+               
                 <ul class="apos-page-bar">
                   <!-- {# Doesn't appear for hardcoded accounts that cannot be edited #} -->
                   <!-- {% if user._mongodb and permissions.guest %} -->
@@ -40,6 +43,26 @@
                   <!-- {% endif %} -->
                   <li href="#" class="apos-control apos-accordion-item apos-button"><a href="/logout">Log Out</a></li>
                 </ul>
+              </li>
+            </ul>
+            <ul class="apos-admin-bar-item apos-accordion-menu apos-people">
+               <li class="apos-accordion-title"><i class="person"></i>People</li>
+               <li class="apos-accordion-items">
+                   <ul class="apos-page-bar">
+                    <li class="apos-control apos-accordion-item apos-button" data-new-person>New Person</li>
+                    <li class="apos-control apos-accordion-item apos-button" data-manage-person>Manage People</li>
+                    <li class="apos-control apos-accordion-item apos-button" data-import-person>Import People</li>
+                  </ul>
+              </li>
+            </ul>
+            <ul class="apos-admin-bar-item apos-accordion-menu apos-groups">
+               <li class="apos-accordion-title"><i class="person"></i>Groups</li>
+               <li class="apos-accordion-items">
+                   <ul class="apos-page-bar">
+                    <li class="apos-control apos-accordion-item apos-button" data-new-group>New Groups</li>
+                    <li class="apos-control apos-accordion-item apos-button" data-manage-group>Manage Groups</li>
+                    <li class="apos-control apos-accordion-item apos-button" data-import-group>Import Groups<li>
+                  </ul>
               </li>
             </ul>
           <!-- {% else %} -->

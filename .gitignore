@@ -1,4 +1,4 @@
-	locales
+locales
 npm-debug.log
 public/uploads
 public/apos-minified
@@ -11,3 +11,4 @@ public/modules
 public/css/master-*.less
 .jshintrc
 public/js/_site-compiled.js
+data/
