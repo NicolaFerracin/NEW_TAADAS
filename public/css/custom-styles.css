@@ -1,3 +1,30 @@
 .apos-admin-bar {
 	top: 55px !important;
 }
+.navbar {
+	background-color:  rgb(85, 41, 136);
+}
+
+.navbar-inverse .navbar-brand  {
+	color: rgb(255, 255, 255);
+}
+
+.navbar-inverse .navbar-brand:hover {
+	color: rgb(155, 155, 155);
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: rgb(255, 255, 255);
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: rgb(155, 155, 155);
+}
+
+.panel-default > .panel-heading:nth-of-type(odd) {
+	background-color: rgb(85, 41, 136);
+}
+
+.panel-heading h4 {
+	color: rgb(255, 255, 255);
+}
