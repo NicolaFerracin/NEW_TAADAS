@@ -44,15 +44,12 @@ site.init({
     types: [
       { name: 'default', label: 'Default' },
       { name: 'home', label: 'Home Page'},
-      { name: 'literature', label: 'Free Literature'},
       { name: 'dvds', label: 'Free DVD Library'},
-      { name: 'alcoholics-anoymous', label: 'Alcoholics Anonymous'},
-      { name: 'gamblers-anonymous', label: 'Gamblers Anonymous'},
-      { name: 'other-resources', label: 'Other Resources'},
-	  { name: 'contact', label: 'About Us'},
-	  { name: 'donate', label: 'Donate'},
-	  { name: 'materials', label: 'Training Materials'},
-	  { name: 'membership-info', label: 'Membership Info'}
+      { name: 'resources', label: 'Resources'},
+  	  { name: 'contact', label: 'About Us'},
+  	  { name: 'donate', label: 'Donate'},
+  	  { name: 'materials', label: 'Training Materials'},
+  	  { name: 'membership-info', label: 'Membership Info'}
     ]
   },
 

@@ -7,15 +7,16 @@
 
 {% block main %}
 {{ super() }}
-  <!-- Page Content -->
+<!-- Page Content -->
     <div class="container">
 
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Other Resources
-                    <small>Subheading</small>
-                </h1>
+                {{ aposArea(page, 'resources1', {
+                                textOnly: true,
+                                styles: [ { value: 'h1', label: 'heading'}, { value: 'small', label: 'subheading' } ]
+                })}}
                 <ol class="breadcrumb">
                     <li><a href="index.html">Home</a>
                     </li>
@@ -26,22 +27,20 @@
 
         <!-- Project One -->
         <div class="row">
-            <div class="col-md-7">
-                <a href="portfolio-item.html">
-                    <img class="img-responsive img-hover" src="http://placehold.it/700x300" alt="">
-                </a>
+            <div class="col-md-6">
+                <img class="img-responsive" src="http://placehold.it/750x450" alt="">
             </div>
-            <div class="col-md-5">
-                <h3>Project One</h3>
-                <h4>Subheading</h4>
-              <p>
+            <div class="col-md-6">
+                <p>
+                {{ aposArea(page, 'resources2', { textOnly: false}) }}
+             
 		  	  </p>	
             </div>
         </div>
         <!-- /.row -->
 
         <hr>
-	</div>
+</div>
 {% endblock %}
 
 {% block footer %}

@@ -232,5 +232,7 @@
 	"Date": "Date",
 	"Browse %s": "Browse %s",
 	"My Profile": "My Profile",
-	"Save": "Save"
+	"Save": "Save",
+	"Resources": "Resources",
+	"To see your raw HTML code in action you must save your work and refresh the page. If the page becomes unreadable, add ?safe_mode to the end of the URL and load the page again.": "To see your raw HTML code in action you must save your work and refresh the page. If the page becomes unreadable, add ?safe_mode to the end of the URL and load the page again."
 }
