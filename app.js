@@ -64,6 +64,20 @@ site.init({
     'apostrophe-browserify': {
       files: ['./public/js/modules/_site.js']
     },
+    'apostrophe-blog-2': {
+      perPage: 5,
+      pieces: {
+        addFields: [
+          {
+            name: '_author',
+            type: 'joinByOne',
+            withType: 'person',
+            idField: 'authorId',
+            label: 'Author'
+          }
+        ]
+      }
+    },
     'apostrophe-people': {
       addFields: [
         {
