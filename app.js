@@ -97,7 +97,45 @@ site.init({
       ]
     },
     'apostrophe-groups': {},
-    'apostrophe-search': {}
+    'apostrophe-search': {},
+      
+    'dvds': {
+      extend: 'apostrophe-snippets',
+      name: 'dvds',
+      label: 'DVDs',
+      instance: 'dvd',
+      instanceLabel: 'Dvd',
+      addFields: [
+        {
+          name: 'title',
+          type: 'string',
+          label: 'Title',
+        },
+        {
+          name: 'body',
+          type: 'string',
+          label: 'Description'
+        },
+        {
+          name: 'information',
+          type: 'string',
+          label: 'Information',
+        },
+        {
+          name: 'identifiers',
+          type: 'array',
+          label: 'Identifiers',
+          schema: [
+            {
+              name: 'identifier',
+              type: 'integer',
+              label: 'Identifier'
+
+            }
+          ]
+        }
+      ]
+    },
   },
 
   // These are assets we want to push to the browser.

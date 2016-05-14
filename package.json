@@ -21,6 +21,7 @@
     "apostrophe-people": "^0.5.60",
     "apostrophe-search": "^0.5.6",
     "apostrophe-site": "0.5.x",
+    "apostrophe-snippets": "^0.5.89",
     "apostrophe-ui-2": "0.5.x"
   }
 }
