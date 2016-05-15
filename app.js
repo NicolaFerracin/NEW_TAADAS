@@ -143,7 +143,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min', 'custom-styles'],
-    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation']
+    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'testing']
   },
 
   afterInit: function(callback) {
