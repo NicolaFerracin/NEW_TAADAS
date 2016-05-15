@@ -1,11 +1,11 @@
-{% extends "pageLayout.html" %}
+{% extends "layout.html" %}
 
 {% include "snippetMacros.html" %}
 
 {% block bodyClass %}{{ super() }} blog-post-page{% endblock %}
 
 {% block extraBreadcrumbs %}
-<li><a href="{{ page.url }}">{{ page.title | e }}</a></li>
+<li><a href="{{ page.url }}">{{ page.title | e }} this is the show.html</a></li>
 <li>{{ item.title | e }}</li>
 {% endblock %}
 
