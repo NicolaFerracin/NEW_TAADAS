@@ -50,8 +50,7 @@ site.init({
   	  { name: 'donate', label: 'Donate'},
   	  { name: 'materials', label: 'Training Materials'},
   	  { name: 'membership-info', label: 'Membership Info'},
-      { name: 'publications', label: 'Publications'},
-      { name: 'free-dvds', label: 'test'}
+      { name: 'publications', label: 'Publications'}
     ]
   },
 
@@ -181,6 +180,16 @@ site.init({
   afterInit: function(callback) {
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
+
+    
+    site.apos.pages.find({"type" : "dvd"}).toArray(function(err, searchdvd) {
+             if (err) {
+               return callback(err);
+             }
+             site.apos.pushGlobalData({
+    dvdData: searchdvd
+    });
+       });
     var locals = require('./data/local');
     if(locals.development || !locals.minify) {
       console.error('Apostrophe Sandbox is running in development.');
