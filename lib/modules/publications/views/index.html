@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% include "publicationMacros.html" %}
+
+{% block bodyClass %}{{ super() }} apos-snippet-page{% endblock %}
+
+{# Output the current content of the page, with buttons to edit it #}
+
+{% block subnav %}
+    <ol class="children">
+    {% for relative in page.children %}
+      <li><a href="{{ relative.url }}">{{ relative.title | e }}</a></li>
+    {% endfor %}
+    </ol>
+  {{ snippetFilters() }}
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h4>Free Publications</h4>
+      </div>
+    </div>
+    <div class="row">
+    {{ aposArea(page, 'beforeContent') }}
+    <div class="col-lg-12">
+      <div class="apos-snippets">
+        {{ renderSnippets(items, page.url) }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+      </div>
+      <div class="col-lg-4">
+        <table>
+          <thead>
+            <th>My Requests</th>
+          </thead>
+          <tbody id="my-requests">
+            <tr>
+              <th>Title</th>
+              <th>Qty</th>
+            </tr>
+          </tbody>
+        </table>
+        <button>Submit Requests</button>
+      </div>
+    </div>
+    {{ renderPager(pager, page.url) }}
+  </div>
+</div><!--container-->
+{% endblock %}
+
+{% block sidebar %}
+
+  {# A regular free-form area follows, but with a restricted set of allowed types #}
+  {{ aposArea(page, 'sidebar', { controls: [ 'style', 'bold', 'italic', 'createLink', 'image', 'video' ] }) }}
+
+{% endblock %}

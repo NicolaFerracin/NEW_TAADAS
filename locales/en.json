@@ -269,5 +269,16 @@
 	"Admin: Snippets": "Admin: Snippets",
 	"Edit: Snippets": "Edit: Snippets",
 	"Submit: Snippets": "Submit: Snippets",
-	"Identifier": "Identifier"
+	"Identifier": "Identifier",
+	"Publications": "Publications",
+	"Max Publications Shown": "Max Publications Shown",
+	"Admin: Publications": "Admin: Publications",
+	"Edit: Publications": "Edit: Publications",
+	"Submit: Publications": "Submit: Publications",
+	"Show Publications With These Tags": "Show Publications With These Tags",
+	"Publication": "Publication",
+	"By Publication title": "By Publication title",
+	"Type Publication titles here": "Type Publication titles here",
+	"Download": "Download",
+	"physical": "physical"
 }

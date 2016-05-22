@@ -49,7 +49,8 @@ site.init({
   	  { name: 'contact', label: 'About Us'},
   	  { name: 'donate', label: 'Donate'},
   	  { name: 'materials', label: 'Training Materials'},
-  	  { name: 'membership-info', label: 'Membership Info'}
+  	  { name: 'membership-info', label: 'Membership Info'},
+      { name: 'publications', label: 'Publications'}
     ]
   },
 
@@ -136,6 +137,36 @@ site.init({
         }
       ]
     },
+
+    'publications': {
+      extend: 'apostrophe-snippets',
+      name: 'publications',
+      label: 'Publications',
+      instance: 'publication',
+      instanceLabel: 'Publication',
+      addFields: [
+        {
+          name: 'title',
+          type: 'string',
+          label: 'Title'
+        },
+        {
+          name: 'description',
+          type: 'string',
+          label: 'Description'
+        },
+        {
+          name: 'identifier',
+          type: 'integer',
+          label: 'Identifier',
+        },
+        { 
+          name: 'physical',
+          type: 'boolean',
+          label: 'physical'
+        }
+      ]   
+    }
   },
 
   // These are assets we want to push to the browser.
@@ -143,7 +174,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min', 'custom-styles'],
-    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'testing']
+    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'publications_requests']
   },
 
   afterInit: function(callback) {
