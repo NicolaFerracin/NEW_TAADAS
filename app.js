@@ -44,13 +44,14 @@ site.init({
     types: [
       { name: 'default', label: 'Default' },
       { name: 'home', label: 'Home Page'},
-      { name: 'free-dvds', label: 'Free DVD Library'},
+      { name: 'dvds', label: 'Free DVD Library'},
       { name: 'resources', label: 'Resources'},
   	  { name: 'contact', label: 'About Us'},
   	  { name: 'donate', label: 'Donate'},
   	  { name: 'materials', label: 'Training Materials'},
   	  { name: 'membership-info', label: 'Membership Info'},
-      { name: 'publications', label: 'Publications'}
+      { name: 'publications', label: 'Publications'},
+      { name: 'free-dvds', label: 'test'}
     ]
   },
 
