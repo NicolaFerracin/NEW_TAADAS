@@ -186,7 +186,19 @@ site.init({
     } else {
       console.error('Apostrophe Sandbox is running in production.');
     }
-
+	
+	
+	 //Testing to give DVD data to the browser
+  site.apos.pages.find({"type" : "dvd"}).toArray(function(err, searchdvd) {
+          if (err) {
+            return callback(err);
+          }
+          site.apos.pushGlobalData({
+				dvdData: searchdvd
+			});
+        });
+		
+		
     callback(null);
   }
 
