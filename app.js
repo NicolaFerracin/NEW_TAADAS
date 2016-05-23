@@ -158,7 +158,7 @@ site.init({
         {
           name: 'identifier',
           type: 'integer',
-          label: 'Identifier',
+          label: 'Publication number',
         },
         { 
           name: 'physical',
@@ -166,6 +166,13 @@ site.init({
           label: 'physical'
         }
       ]   
+    },
+    uploadfs: {
+      backend: 's3',
+      secret: process.env.AMAZON_SECRET,
+      key: process.env.AMAZON_KEY,
+      bucket: 'taadas-files',
+      region: 'us-west-2'
     }
   },
 
@@ -181,7 +188,7 @@ site.init({
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
 
-    
+
     site.apos.pages.find({"type" : "dvd"}).toArray(function(err, searchdvd) {
              if (err) {
                return callback(err);
