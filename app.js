@@ -158,7 +158,7 @@ site.init({
         {
           name: 'identifier',
           type: 'integer',
-          label: 'Identifier',
+          label: 'Publication number',
         },
         { 
           name: 'physical',
@@ -168,6 +168,14 @@ site.init({
       ]   
     }
   },
+
+    uploadfs: {
+      backend: 's3',
+      secret: process.env.AMAZON_SECRET,
+      key: process.env.AMAZON_KEY,
+      bucket: 'taadas-files',
+      region: 'us-west-1'
+    },
 
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
@@ -180,6 +188,16 @@ site.init({
   afterInit: function(callback) {
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
+
+
+    site.apos.pages.find({"type" : "dvd"}).toArray(function(err, searchdvd) {
+             if (err) {
+               return callback(err);
+             }
+             site.apos.pushGlobalData({
+    dvdData: searchdvd
+    });
+       });
     var locals = require('./data/local');
     if(locals.development || !locals.minify) {
       console.error('Apostrophe Sandbox is running in development.');
