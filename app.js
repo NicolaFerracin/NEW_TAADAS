@@ -174,7 +174,7 @@ site.init({
       secret: process.env.AMAZON_SECRET,
       key: process.env.AMAZON_KEY,
       bucket: 'taadas-files',
-      region: 'us-west-2'
+      region: 'us-west-1'
     },
 
   // These are assets we want to push to the browser.
