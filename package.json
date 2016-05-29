@@ -23,6 +23,8 @@
     "apostrophe-site": "0.5.x",
     "apostrophe-snippets": "^0.5.89",
     "apostrophe-ui-2": "0.5.x",
+    "babel": "^6.5.2",
+    "react": "^15.1.0",
     "uploadfs": "^1.3.1"
   }
 }

@@ -1,21 +1,60 @@
-'use strict';
-$(function() {
-	console.log("publications request js loaded");
-	$('button').on('click', function(e) {
-		if ( !document.getElementById(e.target.title) ) {
+$(function() {										
+	var RequestsTable = React.createClass({
+		getInitialState: function() {
+			return {rows: []}
+		},
+		componentDidMount: function() {
+			var that = this;
+			 $('.request').on('click', function(e) {
+				console.log('button clicked');
 
-			var qty = 1;
-			var newrow = $('<tr><td class="title">' + e.target.title + '</td><td class="qty">' + qty + '</td></tr>');
-			newrow.attr('id', e.target.title);
-			$('#my-requests').append(newrow);
+				var RequestRow = React.createClass({
 
-	} else {
-		
-		var qty = $('#' + e.target.title).find('.qty').text();
-		console.log(qty);
-	}
+					render: function() {
+						return (<tr id={this.props.identifier}><td>{this.props.title}</td><td>1</td></tr>)
+					}
+			});
+			var identifier = e.target.attributes.identifier.value;
 
-	})
+			console.log('identifier: ', identifier);
+			console.log(document.getElementById(identifier));
 
+			if ( 	document.getElementById(identifier) ) {
+				return;
+			} 
+
+			var rows = that.state.rows;
+			rows.push(<RequestRow title={e.target.title} identifier={identifier}/>);
+			that.setState({ rows: rows });
+
+
+	 	});
+
+		},
+
+		className: 'requests-table',
+	
+		render: function() {
+			return (<div><table>
+						<thead>
+						<tr>	
+		            	<th>My Requests</th>
+		            	</tr>
+			          </thead>
+			          <tbody>
+			            <tr>
+			              <th>Title</th>
+			              <th>Qty</th>
+			            </tr>
+			            { this.state.rows }
+			          </tbody>
+			        </table>
+	        <a href="/publications-test/requests-form"><button id="submit-requests">Submit Requests</button></a></div>)
+	          
+		}
+
+	});
+
+	ReactDOM.render(<RequestsTable />, document.getElementById('my-requests'));
 
 });
