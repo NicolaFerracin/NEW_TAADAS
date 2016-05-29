@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block bodyClass %}{{ super() }} home-page{% endblock %}
+
+{# breadcrumbs are excluded from the homepage #}
+{% block breadcrumbs %}
+{% endblock %}
+{% block main %}
+
+
+
+    
+
+    <!-- Page Content -->
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+		<b>Your Current Order:</b><br /><br />
+		<div id="orderlist">
+		</div>
+		</div>
+		<div id="page-content-wrapper">
+			<div class="page-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<h1 class="page-header">Free DVD Library
+							</h1>
+							<ol class="breadcrumb">
+								<li><a href="/">Home</a>
+								</li>
+								<li class="active">Free DVD Library</li>
+							</ol>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="text" onkeyup="searchChanged()" class="search-query form-control" placeholder="Search" id="searchform" />
+							<div id="pagearea">
+							</div>
+							<div id="pagination-demo"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var currentOrder = new Map();
+		var dvdlist;
+		function addOrder(indid) {
+			var ind;
+			for (var i = 0; i < dvdlist.length; i++){
+				if(dvdlist[i]._id == indid){
+					ind = i;
+					break;
+				}
+			}
+			if (typeof currentOrder.get(ind) !== "undefined") {
+				var currentnum = currentOrder.get(ind) + 1;
+				currentOrder.set(ind, currentnum);
+			}
+			else {
+				currentOrder.set(ind, 1);
+			}
+			orderUpdate();
+		}
+		function orderUpdate(){
+			var htmltxt = "";
+			currentOrder.forEach(function (mapamount, mapid) {
+				htmltxt += dvdlist[mapid].title + "&nbsp&nbsp&nbsp&nbsp&nbsp" + '<input id="numinput' + mapid + '" onchange="orderChanged(' + mapid + ')" style="width: 50px" min="1" type="number" value="' + mapamount + '"/>&nbsp&nbsp<i onclick="orderDelete(' + mapid + ')" style="color:red" class="fa fa-trash-o"></i><br />';
+			});
+			if (currentOrder.size !== 0){
+				htmltxt += '<br /><br /><button type="button" class="btn btn-secondary">Submit Order</button>';
+			}
+			$('#orderlist').html(htmltxt);
+		}
+		function orderChanged(ind) {
+			currentOrder.set(ind, Number($('#numinput' + ind).val()));
+		}
+		function orderDelete(ind) {
+			currentOrder.delete(ind);
+			orderUpdate();
+		}
+		function searchChanged(){
+			var searchquery = $('#searchform').val();
+			var files = apos.data.fileData;
+			var filepath = apos.filePath(files[0]);
+			var pagehtml = "";
+			dvdlist = apos.data.dvdData;
+			var filteredsearch = dvdlist.filter(function (element){
+				return element.highSearchText.indexOf(searchquery) !== -1;
+			});
+			console.log(filteredsearch);
+			var len = filteredsearch.length;
+			var pagesnum = Math.ceil(len / 18);
+			$('#pagination-demo').pagination({
+				dataSource: [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,7,8],
+				pageRize: 7,
+				className: 'paginationjs-theme-blue',
+				activeClassName: 'activepag',
+				disabledClassName: 'disabledpag',
+				ulClassName: 'ulpag',
+				callback: function (event, page) {
+					var htmltext = "";
+					htmltext += '<div class="row">';
+					for(var i = ((page.pageNumber-1) * 18) + 1; i < len && i < (page.pageNumber * 18) + 1; i++){
+						var filtered = [];
+						filtered = files.filter(function (element) {
+							return element._id == filteredsearch[i].thumbnail.items[0].ids[0];
+						});
+						filepath = apos.filePath(filtered[0]);
+						htmltext += '<div class="col-md-4 img-portfolio"><div onclick="addOrder(\'' + filteredsearch[i]._id + '\')"><img height="700" width="400" class="img-responsive img-hover" src="' + filepath + '" alt=""><h3>';
+						htmltext += filteredsearch[i].title + '</h3><p>' + filteredsearch[i].body + '</div></p></div>'
+					}
+					htmltext += '</div>';
+					$('#pagearea').html(htmltext);
+				}
+			});
+		}
+		$(document).ready(function() {
+			searchChanged();	
+			
+		});
+	</script>
+{% endblock %}
