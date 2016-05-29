@@ -51,7 +51,8 @@ site.init({
   	  { name: 'materials', label: 'Training Materials'},
   	  { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
-	  { name: 'dvd-orders', label: 'DVD Orders'}
+	  { name: 'dvd-orders', label: 'DVD Orders'},
+      { name: 'requests-form', label: 'Requests Form'}
     ]
   },
 
@@ -170,20 +171,21 @@ site.init({
     }
   },
 
-    //uploadfs: {
-    //  backend: 's3',
-    //  secret: process.env.AMAZON_SECRET,
-    //  key: process.env.AMAZON_KEY,
-    //  bucket: 'taadas-files',
-    //  region: 'us-west-1'
-    //},
+
+    // uploadfs: {
+    //   backend: 's3',
+    //   secret: process.env.AMAZON_SECRET,
+    //   key: process.env.AMAZON_KEY,
+    //   bucket: 'taadas-files',
+    //   region: 'us-west-1'
+    // },
 
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min', 'custom-styles', 'pagination'],
-    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'publications_requests', 'pagination']
+    scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'pagination']
   },
 
   afterInit: function(callback) {

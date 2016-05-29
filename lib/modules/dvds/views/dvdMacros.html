@@ -23,13 +23,7 @@
         {{ item.title | e }}
       </h4>
     {%- endif -%}
-    <p> {{ item.description  }}</p>
     {{ aposArea(item, 'body') }}
-
-  {%- if item.physical -%}
-    <button class="request" title="{{ item.title }}" identifier="{{ 'id' + item.identifier }}">Request this item</button>
-
-  {%- endif -%}
 
 
   </div>
