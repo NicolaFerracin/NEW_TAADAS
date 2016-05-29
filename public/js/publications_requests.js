@@ -49,7 +49,7 @@ $(function() {
 			            { this.state.rows }
 			          </tbody>
 			        </table>
-	        <a href="/publications-test/requests-form"><button id="submit-requests">Submit Requests</button></a></div>)
+	        <a href="requests-form"><button id="submit-requests">Submit Requests</button></a></div>)
 	          
 		}
 
