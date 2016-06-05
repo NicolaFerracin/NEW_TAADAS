@@ -10,7 +10,7 @@ $(function() {
 	});
 
 	$('.delete').on('click', function(e) {
-		e.target.parentElement.remove();
+		e.target.parentElement.parentElement.remove();
 	})
 
 });

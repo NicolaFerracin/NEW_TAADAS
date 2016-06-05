@@ -51,7 +51,7 @@ site.init({
   	  { name: 'materials', label: 'Training Materials'},
   	  { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
-	  { name: 'dvd-orders', label: 'DVD Orders'},
+      { name: 'dvd-orders', label: 'DVD Orders'},
       { name: 'requests-form', label: 'Requests Form'}
     ]
   },
@@ -86,9 +86,9 @@ site.init({
           withType: 'blogPost',
           idField: 'authorId',
           label: 'Author',
-          withJoins: [ '_editor' ]
-        },
-        {
+          withJoins: [ '_editor' ]                                                                                                                                                    
+        },                                                                                                                                                                                                                                                                        
+        {                                                                                                                                                                                   
           name: 'thumbnail',
           type: 'singleton',
           widgetType: 'slideshow',
@@ -201,7 +201,9 @@ site.init({
     dvdData: searchdvd
     });
        });
+
     var locals = require('./data/local');
+
     if(locals.development || !locals.minify) {
       console.error('Apostrophe Sandbox is running in development.');
     } else {
