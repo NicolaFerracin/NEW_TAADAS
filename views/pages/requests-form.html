@@ -7,46 +7,133 @@
 {% block main %}
   {{ aposArea(page, 'body') }}
 
-  <div class="container" id="unas-test">
+  <div class="container">
   	<div class="row">
-  		<div class="col-lg-12">
-  <form>
-  	<h3>Mailing Address</h3>
+  		<div class="col-lg-12 col-lg-offset-1">
+        <div class="block">
+          <h4>Requested Items</h4>
+          <table id="requests-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th class="quantity">Quantity</th>
+              </tr>
+            </thead>
+            <tbody id="requested-items">
+            </tbody>
+          </table>
+        </div>
+  <!-- add MAIILING ADDRESS and your address labels make this page look reall pretty -->
+  <div class="requests-form block">
+  <form action="MAILTO:umgauper@gmail.com" method="post" enctype="text/plain">
+    <h4>Mailing Address</h4>
   	<p>
-  	<label>First Name:</label>
-  	<input type="text"></input>
-  </p>
+      <label>Company/Agency Name:</label>
+      <input type="text"></input>
+    </p>
+    <p>
+      <label>Email:</label>
+      <input type="text" required></input>
+    </p>
   <p>
   	<label>First Name:</label>
-  	<input type="text"></input>
+  	<input type="text" required></input>
   </p>
   <p>
   	<label>Last Name:</label>
-  	<input type="text"></input>
+  	<input type="text" required></input>
   </p>	
   <p>
   	<label>Address:</label>
-  	<input type="text"></input>
+  	<input type="text" required></input>
    </p>
    <p>	
   	<label>City:</label>
-  	<input type="text"></input>
+  	<input type="text" required></input>
   </p>
   <p>
-  	<label>State:</label>
-  	<input type="text"></input>
+  	<label>State:
+    <input list="states" id="stateslist" required></input></label>
+  <datalist id="states">
+    <option value="Alabama">Alabama</option>
+    <option value="Alaska">Alaska</option>
+    <option value="Arizona">Arizona</option>
+    <option value="Arkansas">Arkansas</option>
+    <option value="Colorado">Colorado</option>
+    <option value="Connecticut">Connecticut</option>
+    <option value="Delaware">Delaware</option>
+    <option value="District Of Columbia">District Of Columbia</option>
+    <option value="Fdr. States Of Micronesia">Fdr. States Of Micronesia</option>
+    <option value="Georgia">Georgia</option>
+    <option value="Hawaii">Hawaii</option>
+    <option value="Idaho">Idaho</option>
+    <option value="Illinois">Illinois</option>
+    <option value="Indiana">Indiana</option>
+    <option value="Iowa">Iowa</option>
+    <option value="Kansas">Kansas</option>
+    <option value="Kentucky">Kentucky</option>
+    <option value="Louisiana">Louisiana</option>
+    <option value="Maine">Maine</option>
+    <option value="Maryland">Maryland</option>
+    <option value="Massachusetts">Massachusetts</option>
+    <option value="Michigan">Michigan</option>
+    <option value="Minnesota">Minnesota</option>
+    <option value="Mississippi">Mississippi</option>
+    <option value="Missouri">Missouri</option>
+    <option value="Montana">Montana</option>
+    <option value="Nebraska">Nebraska</option>
+    <option value="Nevada">Nevada</option>
+    <option value="New Hampshire">New Hampshire</option>
+    <option value="New Jersey">New Jersey</option>
+    <option value="New Mexico">New Mexico</option>
+    <option value="New York">New York</option>
+    <option value="North Carolina">North Carolina</option>
+    <option value="North Dakota">North Dakota</option>
+    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+    <option value="Ohio">Ohio</option>
+    <option value="Oklahoma">Oklahoma</option>
+    <option value="Oregon">Oregon</option>
+    <option value="Palau">Palau</option>
+    <option value="Pennsylvania">Pennsylvania</option>
+    <option value="Rhode Island">Rhode Island</option>
+    <option value="South Carolina">South Carolina</option>
+    <option value="South Dakota">South Dakota</option>
+    <option value="Tennessee">Tennessee</option>
+    <option value="Texas">Texas</option>
+    <option value="Utah">Utah</option>
+    <option value="Vermont">Vermont</option>
+    <option value="Virginia">Virginia</option>
+    <option value="Washington">Washington</option>
+    <option value="West Virginia">West Virginia</option>
+    <option value="Wisconsin">Wisconsin</option>
+    <option value="Wyoming">Wyoming</option>
+  </datalist>
+</p>
+  <p>
+    <label>Zip:</label>
+    <input type="text" required></input>
   </p>
-  	<input type="submit"></input>
+  <p>
+    <label>Phone:</label>
+    <input type="text" required></input>
+  </p>  
+  </p>
+  <p>
+    <label>Please click here if your shipping destination is a commercial location.</label>
+  	<input type="checkbox"</input>
+  </p>
+  <p>  
+    <label>
+    Allow Promotional Emails (We will never divulge your email to a 3rd party)</label>
+    <input type="checkbox" checked="true"></input>
+  </p>
+  <p id="submit-form">
+    <input type="submit" value="Submit" class="btn btn-success"></input>
+  </p>
   </form>
 </div>
 </div>
-
-  <div>
-  	</div>
-
-  <script src="https://fb.me/react-15.0.1.js"></script>
-  <script src="https://fb.me/react-dom-15.0.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>	
-  <script type="text/babel" src="js/requests-form.js"></script>
-  </div>
+<script type="text/javascript" src="js/requests_form.js"></script>
+</div>
+</div>
 {% endblock %}
