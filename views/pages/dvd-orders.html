@@ -90,25 +90,30 @@
 			var filteredsearch = dvdlist.filter(function (element){
 				return element.highSearchText.indexOf(searchquery) !== -1;
 			});
-			console.log(filteredsearch);
 			var len = filteredsearch.length;
 			var pagesnum = Math.ceil(len / 18);
 			$('#pagination-demo').pagination({
-				dataSource: [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,7,8],
-				pageRize: 7,
-				className: 'paginationjs-theme-blue',
-				activeClassName: 'activepag',
-				disabledClassName: 'disabledpag',
-				ulClassName: 'ulpag',
+				dataSource: filteredsearch,
+				pageSize: 18,
 				callback: function (event, page) {
 					var htmltext = "";
 					htmltext += '<div class="row">';
 					for(var i = ((page.pageNumber-1) * 18) + 1; i < len && i < (page.pageNumber * 18) + 1; i++){
 						var filtered = [];
 						filtered = files.filter(function (element) {
-							return element._id == filteredsearch[i].thumbnail.items[0].ids[0];
+							try {
+								return element._id == filteredsearch[i].thumbnail.items[0].ids[0];
+							}
+							catch(err) {
+								return false;
+							}
 						});
-						filepath = apos.filePath(filtered[0]);
+						try {
+							filepath = apos.filePath(filtered[0]);
+						}
+						catch(err){
+							filepath = 'http://placehold.it/700x500';
+						}
 						htmltext += '<div class="col-md-4 img-portfolio"><div onclick="addOrder(\'' + filteredsearch[i]._id + '\')"><img height="700" width="400" class="img-responsive img-hover" src="' + filepath + '" alt=""><h3>';
 						htmltext += filteredsearch[i].title + '</h3><p>' + filteredsearch[i].body + '</div></p></div>'
 					}
