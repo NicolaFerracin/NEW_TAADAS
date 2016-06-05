@@ -44,7 +44,6 @@ site.init({
     types: [
       { name: 'default', label: 'Default' },
       { name: 'home', label: 'Home Page'},
-      { name: 'dvds', label: 'Free DVD Library'},
       { name: 'resources', label: 'Resources'},
   	  { name: 'contact', label: 'About Us'},
   	  { name: 'donate', label: 'Donate'},
