@@ -175,7 +175,7 @@ site.init({
       backend: 's3',
       secret: process.env.AMAZON_SECRET,
       key: process.env.AMAZON_KEY,
-      bucket: 'taadas-files',
+      bucket: 'taadas',
       region: 'us-west-1'
     },
 
