@@ -48,14 +48,13 @@ site.init({
     types: [
       { name: 'default', label: 'Default' },
       { name: 'home', label: 'Home Page'},
-      { name: 'dvds', label: 'Free DVD Library'},
       { name: 'resources', label: 'Resources'},
   	  { name: 'contact', label: 'About Us'},
   	  { name: 'donate', label: 'Donate'},
   	  { name: 'materials', label: 'Training Materials'},
   	  { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
-	  { name: 'dvd-orders', label: 'DVD Orders'},
+      { name: 'dvd-orders', label: 'DVD Orders'},
       { name: 'requests-form', label: 'Requests Form'}
     ]
   },
@@ -90,9 +89,9 @@ site.init({
           withType: 'blogPost',
           idField: 'authorId',
           label: 'Author',
-          withJoins: [ '_editor' ]
-        },
-        {
+          withJoins: [ '_editor' ]                                                                                                                                                    
+        },                                                                                                                                                                                                                                                                        
+        {                                                                                                                                                                                   
           name: 'thumbnail',
           type: 'singleton',
           widgetType: 'slideshow',
@@ -176,13 +175,13 @@ site.init({
   },
 
 
-    // uploadfs: {
-    //   backend: 's3',
-    //   secret: process.env.AMAZON_SECRET,
-    //   key: process.env.AMAZON_KEY,
-    //   bucket: 'taadas-files',
-    //   region: 'us-west-1'
-    // },
+    uploadfs: {
+      backend: 's3',
+      secret: process.env.AMAZON_SECRET,
+      key: process.env.AMAZON_KEY,
+      bucket: 'taadas',
+      region: 'us-west-1'
+    },
 
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
@@ -231,6 +230,7 @@ site.init({
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
     var locals = require('./data/local');
+
     if(locals.development || !locals.minify) {
       console.error('Apostrophe Sandbox is running in development.');
     } else {

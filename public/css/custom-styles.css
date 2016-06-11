@@ -95,3 +95,93 @@ footer img {
 .search-query {
 	margin-bottom: 20px;
 }
+
+.requests-form input {
+  display: inline-block;
+}
+
+.requests-form label {
+  display: inline-block;
+  width: 200px;
+  margin: 0 10px 0 0;
+}
+
+#stateslist {
+  display: inline-block;
+  margin: 0 0 0 214px;
+  width: 175px;
+}
+
+
+#requests-table tr {
+  padding: 20px 0;
+}
+
+.quantity {
+  padding: 0 20px 0 20px;
+}
+
+.block {
+  border: 0.1px solid rgb(150, 150, 150);
+  padding: 25px;
+  margin: 25px 0 25px 0;
+  width: 80%;
+}
+
+#submit-form {
+  display: inline-block;
+  margin: 0 0 0 800px;
+}
+
+/* publications */
+.request-block input {
+  width: 25px;
+  height: 25px;
+}
+
+.apos-area {
+  min-height: 0px !important;
+}
+
+.publications {
+  min-height: 500px;
+}
+
+#requests-table input {
+  width: 25px;
+  height: 25px;
+}
+
+#my-requests table {
+  font-family: 'Arial';
+  margin: 25px auto;
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 2px solid rgb(85, 41, 136);
+  width: 100%;
+}
+
+#my-requests th, td {
+    color: #999;
+    border: 1px solid #eee;
+    padding: 12px 35px;
+    border-collapse: collapse;
+  }
+
+#my-requests th {
+    background: rgb(85, 41, 136);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+.form-link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+#submit-form input {
+  display: block;
+  /*margin: 0 0 0 600px;*/
+}
+

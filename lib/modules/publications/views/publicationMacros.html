@@ -26,12 +26,15 @@
     <p> {{ item.description  }}</p>
     {{ aposArea(item, 'body') }}
 
-  {%- if item.physical -%}
-    <button class="request" title="{{ item.title }}" identifier="{{ 'id' + item.identifier }}">Request this item</button>
 
+  {%- if item.physical -%}
+  <div class="request-block">
+    <input type="text" value="1" class="{{ 'class_' + item.identifier }}" maxlength="3"></input>
+    <button class="request btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+  </div>
   {%- endif -%}
 
-
+  <hr></hr>
   </div>
 {%- endmacro -%}
 
