@@ -1,7 +1,7 @@
 var site = require('apostrophe-site')();
 
 site.init({
-
+	
   // This line is required and allows apostrophe-site to use require() and manage our NPM modules for us.
   root: module,
   shortName: 'NEW_TAADAS',
@@ -30,6 +30,10 @@ site.init({
   secondChanceLogin: true,
 
   locals:  require('./lib/locals.js'),
+  
+
+  
+  
 
   // you can define lockups for areas here
 
@@ -187,20 +191,45 @@ site.init({
     stylesheets: ['bootstrap.min', 'modern-business', 'font-awesome', 'font-awesome.min', 'custom-styles', 'pagination'],
     scripts: ['_site-compiled', 'bootstrap.min', 'contact_me', 'jqBootstrapValidation', 'pagination']
   },
+  
+  setRoutes: function(callback) {
+	  var nodemailer = require('nodemailer');
+		site.app.post('/order', function(req, res) {
+			var mailOpts, smtpTrans;
+			  //Setup Nodemailer transport, create an application-specific password to avoid problems.
+				var transporter = nodemailer.createTransport({
+					service: 'Gmail',
+					auth: {
+						user: 'safehandstest@gmail.com',
+						pass: 'safehandstest123'
+					}
+				});
+			  //Mail options
+			  mailOpts = {
+				  from: req.body.email,
+				  to: 'safehandstest@gmail.com',
+				  subject: 'Website contact form',
+				  text: req.body.message
+			  };
+			  transporter.sendMail(mailOpts, function (error, response) {
+				  //Email not sent
+				  if (error) {
+					  res.json(error);
+					  console.log(error);
+				  }
+				  //Email sent
+				  else {
+					  res.json(response);
+					  console.log(response);
+				  }
+			  });
+		});
+		return callback(null);
+	},
 
   afterInit: function(callback) {
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
-
-
-    site.apos.pages.find({"type" : "dvd"}).toArray(function(err, searchdvd) {
-             if (err) {
-               return callback(err);
-             }
-             site.apos.pushGlobalData({
-    dvdData: searchdvd
-    });
-       });
     var locals = require('./data/local');
     if(locals.development || !locals.minify) {
       console.error('Apostrophe Sandbox is running in development.');
