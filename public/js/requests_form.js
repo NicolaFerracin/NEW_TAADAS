@@ -1,5 +1,5 @@
 $(function() {
-	/*
+	
 	var items = JSON.parse(sessionStorage.getItem('requestedItems'));
 	console.log('session storage returns: ', items, 'type: ', typeof(items));
 
@@ -12,22 +12,22 @@ $(function() {
 
 	$('.delete').on('click', function(e) {
 		e.target.parentElement.parentElement.remove();
-	})
+	});
 	
-*/	
+	
 	
 $('#submititems').on('click', function(e){	
+
+	var data = $('#publications-order').serialize();
+	data = data.replace(/\+/g, ' ').replace(/\=/g, ': ').replace(/&/g, '\r\n');
+
 	$.ajax({
                 url: "../order",
                 type: "POST",
-                data: {
-                    name: 'test',
-                    phone: '2222222',
-                    email: 'test@test.com',
-                    message: 'test message'
-                },
+                data: data,
                 cache: false,
                 success: function() {
+                	// change to redirect to a success message
 					console.log("success");
                 },
                 error: function() {
