@@ -56,3 +56,19 @@ db.aposPages.find({title:"Le Petit Ane Blanc"}).pretty()
 	"lowSearchText" : "le petit ane blanc undefined le petit ane blanc le petit ane blanc the little white donkey",
 	"searchSummary" : ""
 }
+
+
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "intelligence-brief" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "information-bulletin" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "intelligence-bulletin" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "information-brief" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "alcohol-alert" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "samhsa-news-preventing-suicide-on-college-campuses" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "medication-assisted-treatment-for-opioid-addiction" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "intelligence-brief" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "information-bulletin" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "intelligence-bulletin" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "information-brief" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "alcohol-alert" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "samhsa-news-preventing-suicide-on-college-campuses" }
+  // - E11000 duplicate key error index: heroku_0nqgs5jf.aposPages.$slug_1 dup key: { : "medication-assisted-treatment-for-opioid-addiction" }

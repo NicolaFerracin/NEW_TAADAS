@@ -29,7 +29,6 @@
 
   {%- if item.physical -%}
   <div class="request-block">
-    <input type="text" value="1" class="{{ 'class_' + item.identifier }}" maxlength="3"></input>
     <button class="request btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
   </div>
   {%- endif -%}

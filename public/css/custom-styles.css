@@ -1,3 +1,8 @@
+#wrapper {
+  min-height: 300px;
+  margin: 0 0 50px 0;
+}
+
 .apos-admin-bar {
 	top: 55px !important;
 }
@@ -46,50 +51,6 @@ footer {
 footer img {
 	width: 200px;
 	height: 50px;
-}
-
-#sidebar-wrapper {
-  margin-left: -250px;
-  left: 250px;
-  width: 250px;
-  background: #FFF;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  transition: all 0.4s ease 0s;
-}
-
-#page-content-wrapper {
-  width: 100%;
-}
-
-#wrapper {
-  padding-left: 250px;
-  transition: all 0.4s ease 0s;
-}
-
-@media (max-width:767px) {
-
-    #wrapper {
-      padding-left: 0;
-    }
-
-    #sidebar-wrapper {
-      left: 0;
-    }
-
-    #wrapper.active {
-      position: relative;
-      left: 250px;
-    }
-
-    #wrapper.active #sidebar-wrapper {
-      left: 250px;
-      width: 250px;
-      transition: all 0.4s ease 0s;
-    }
-
 }
 
 .search-query {
@@ -147,12 +108,15 @@ footer img {
   min-height: 500px;
 }
 
-#requests-table input {
+
+/* Order Tables */
+
+table.orders input {
   width: 25px;
   height: 25px;
 }
 
-#my-requests table {
+table.orders {
   font-family: 'Arial';
   margin: 25px auto;
   border-collapse: collapse;
@@ -161,19 +125,25 @@ footer img {
   width: 100%;
 }
 
-#my-requests th, td {
+table.orders th, td {
     color: #999;
     border: 1px solid #eee;
     padding: 12px 35px;
     border-collapse: collapse;
   }
 
-#my-requests th {
+table.orders th {
     background: rgb(85, 41, 136);
     color: #fff;
     text-transform: uppercase;
     font-size: 12px;
 }
+
+.fa-trash-o {
+    color: rgb(214, 48, 36);
+}
+
+/**/
 
 .form-link {
   text-decoration: none;

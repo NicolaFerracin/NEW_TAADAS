@@ -9,9 +9,6 @@
     <!-- Page Content -->
 	<div id="wrapper">
 		<div id="sidebar-wrapper">
-		<b>Your Current Order:</b><br /><br />
-		<div id="orderlist">
-		</div>
 		</div>
 		<div id="page-content-wrapper">
 			<div class="page-content">
@@ -28,7 +25,22 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-4">
+							<table id="dvdorders" class="orders">
+								<thead>
+									<tr>
+										<th colspan="3">Your DVD Orders</th>
+									</tr>
+									<tr>
+										<th>Title</th>
+										<th>Qty</th>
+										<th>X</th>
+									</tr>
+								</thead>
+								<tbody id="orderlist"></tbody>
+							</table>
+						</div>
+						<div class="col-lg-8">
 							<input type="text" onkeyup="searchChanged()" class="search-query form-control" placeholder="Search" id="searchform" />
 							<div id="pagearea">
 							</div>
@@ -60,21 +72,29 @@
 			orderUpdate();
 		}
 		function orderUpdate(){
-			var htmltxt = "";
 			currentOrder.forEach(function (mapamount, mapid) {
-				htmltxt += dvdlist[mapid].title + "&nbsp&nbsp&nbsp&nbsp&nbsp" + '<input id="numinput' + mapid + '" onchange="orderChanged(' + mapid + ')" style="width: 50px" min="1" type="number" value="' + mapamount + '"/>&nbsp&nbsp<i onclick="orderDelete(' + mapid + ')" style="color:red" class="fa fa-trash-o"></i><br />';
+				var row = '<tr id="rowid' + mapid + '"><td>' + dvdlist[mapid].title + '</td><td><input id="numinput' + mapid + '" onchange="orderChanged(' + mapid + ')" min="1" type="number" value="' + mapamount + '"/></td><td><i onclick="orderDelete(' + mapid + ')" class="fa fa-trash-o"></i></td></tr>'
+
+					if ( document.getElementById('rowid' + mapid) ) {
+						console.log('order exists ...');
+						$('#rowid' + mapid).remove();
+						$('#orderlist').append(row);
+					} else {
+						$('#orderlist').append(row);
+					}
 			});
-			if (currentOrder.size !== 0){
-				htmltxt += '<br /><br /><button type="button" class="btn btn-secondary">Submit Order</button>';
-			}
-			$('#orderlist').html(htmltxt);
+			if ( currentOrder.size > 0 && document.getElementById('submitDvdOrder') === null ){
+				$('#dvdorders').after('<button id="submitDvdOrder" type="button" class="btn btn-success">Submit Order</button>');
+			}					
+			
+			
 		}
 		function orderChanged(ind) {
 			currentOrder.set(ind, Number($('#numinput' + ind).val()));
 		}
 		function orderDelete(ind) {
 			currentOrder.delete(ind);
-			orderUpdate();
+			$('#rowid' + ind).remove();
 		}
 		function searchChanged(){
 			var searchquery = $('#searchform').val();

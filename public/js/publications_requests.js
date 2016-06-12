@@ -1,20 +1,31 @@
-$(function() {										
+$(function() {						
+
+
 	var RequestsTable = React.createClass({
 		getInitialState: function() {
-			return {rows: []}
+			return { rows: [] }
 		},
 
 		componentDidMount: function() {
 
+			this.setState( { rows: [], quantities: [] });
+
+
 			var requestedItems = [];
-			var quantities = {};
+			// var quantities = {};
 			sessionStorage.setItem("requestedItems", JSON.stringify(requestedItems));
-			sessionStorage.setItem("quantities", JSON.stringify(quantities));
+			// sessionStorage.setItem("quantities", JSON.stringify(quantities));
 
-			var that = this;
 
-			/* attach click handler to request buttons that adds row to requests table and saves requested item to sessionStorage */
+			/* attach click handler to request buttons that adds row to requests table */
 			 $('.request').on('click', function(e) {
+			 		console.log(this);
+
+
+					var newRowsArray = this.state.rows;
+					var quantitiesArray = this.state.quantities;
+
+			 		var index = this.state.rows.length;
 
 			 		var title = e.target.attributes.pubtitle.value;
 
@@ -22,60 +33,77 @@ $(function() {
 
 			 		var inputClass = '.class_' + identifier;
 
-			 		var qty = $(inputClass).val();
+			 		// var qty = $(inputClass).val();
 			 		console.log('title: ', title);
 
-					var RequestRow = React.createClass({
+			 		
+
+			 		var RequestRow = React.createClass({
+			 			getInitialState: function() {
+			 				return { quantity: 1 }
+			 			},
 						render: function() {
-							return (<tr id={'id_' + this.props.identifier}><td>{title}</td><td className="qty">{qty}</td></tr>)
+							var changeHandler = function(e) {
+			 					this.setState({ quantities: e.target.value || this.state.quantities + 1 });
+			 				}
+
+							return (<tr id={'id_' + this.props.identifier}><td>{title}</td><td><input id={'input' + this.props.identifier} type="number" min="1" value={this.state.quantity} onChange={changeHandler}/></td>
+									<td><i class="fa fa-trash-o"></i></td>
+								</tr>)
 						}
 					});
 
 					
 
-					if ( document.getElementById('id_' + identifier) ) {
-						var selector = '#id_' + identifier + ' > td.qty'
-						var oldqty = Number($(selector).text());	
-						var newqty = Number(qty) + oldqty;
-						$(selector).text(newqty);
+					var insertNewRow = true;
 
-						var quantities = JSON.parse(sessionStorage.getItem('quantities'));
-						quantities[identifier] = newqty;
-						sessionStorage.setItem('quantities', JSON.stringify(quantities));
+					newRowsArray.forEach(function(rowObject, index) {
+						if( rowObject.props.identifier == identifier) {
+							console.log('identifier already exists!')
+							insertNewRow = false;
+						} 
+					});
+
+					if (!insertNewRow) {
+						// quantitiesArray[index] += qty;
+						// this.setState({ quantities: quantitiesArray });
+						// this.setState({ rows: newRowsArray });
+						$('#input' + identifier).trigger('change');
 
 						return;
 					}
 
-					var requestedItem = {
-						identifier: identifier,
-						title: title
-					};
+					// quantitiesArray[index] = qty;
+					// this.setState({quantities: quantitiesArray});
+					newRowsArray.push(<RequestRow identifier={identifier} title={title}/>)
 
-					var items = JSON.parse(sessionStorage.getItem('requestedItems'));
-					items.push(requestedItem);
-					sessionStorage.setItem('requestedItems', JSON.stringify(items) );
+					this.setState({ rows: newRowsArray });
 
-					var quantities = JSON.parse(sessionStorage.getItem('quantities'));
-					quantities[identifier] = qty;
-					sessionStorage.setItem('quantities', JSON.stringify(quantities));
+	 		}.bind(this));
 
-					var rows = that.state.rows;
-					rows.push(<RequestRow title={e.target.title} identifier={identifier} key={identifier}/>);
-					that.setState({ rows: rows });
-	 		});
 
 		},
 
 		className: 'requests-table',
 	
 		render: function() {
-			return (<div><table>
+			// var rows = [];
+
+			// this.state.row.forEach(function(row) {
+		 //        	rows.push(<tr><td> blah blah blah </td></tr>)
+   //          });	
+
+			return (<div><table className="orders">
 						<thead>
+							<tr>
+								<th colSpan="3">Your Publication Orders</th>
+							</tr>
 			          </thead>
 			          <tbody>
 			            <tr>
 			              <th>Title</th>
 			              <th>Qty</th>
+			              <th>X</th>
 			            </tr>
 			            { this.state.rows }
 			          </tbody>

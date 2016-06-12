@@ -24,15 +24,15 @@
     </div>
     <div class="row">
     {{ aposArea(page, 'beforeContent') }}
+       <div class="col-lg-4">
+        <div id="my-requests">
+        </div>
+        <a href="requests-form" class="form-link"><button id="submit-requests" class="btn btn-success">Submit Order</button></a>
+      </div>
       <div class="col-lg-8">
         <div class="apos-snippets publications">
           {{ renderSnippets(items, page.url) }}
         </div>
-      </div>
-      <div class="col-lg-4">
-        <div id="my-requests">
-        </div>
-        <a href="requests-form" class="form-link"><button id="submit-requests" class="btn btn-success">Confirm Requests</button></a>
       </div>
       <div>
          <script src="https://fb.me/react-15.0.1.js"></script>
