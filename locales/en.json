@@ -248,5 +248,10 @@
 	"Files": "Files",
 	"Embed": "Embed",
 	"Pullquote": "Pullquote",
-	"HTML": "HTML"
+	"HTML": "HTML",
+	"LOGIN": "LOGIN",
+	"Username or Email": "Username or Email",
+	"Log In": "Log In",
+	"Reset My Password": "Reset My Password",
+	"Download": "Download"
 }
