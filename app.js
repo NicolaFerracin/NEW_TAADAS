@@ -174,14 +174,13 @@ site.init({
     }
   },
 
-
-    // uploadfs: {
-    //   backend: 's3',
-    //   secret: process.env.AMAZON_SECRET,
-    //   key: process.env.AMAZON_KEY,
-    //   bucket: 'taadas',
-    //   region: 'us-west-1'
-    // },
+    uploadfs: {
+      backend: 's3',
+      secret: process.env.AMAZON_SECRET,
+      key: process.env.AMAZON_KEY,
+      bucket: 'taadas',
+      region: 'us-west-1'
+    },
 
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
