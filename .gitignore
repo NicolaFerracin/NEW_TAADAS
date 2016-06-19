@@ -12,3 +12,4 @@ public/css/master-*.less
 .jshintrc
 public/js/_site-compiled.js
 data/
+config/

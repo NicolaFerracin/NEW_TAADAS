@@ -139,6 +139,10 @@ table.orders th {
     font-size: 12px;
 }
 
+table.orders input[type="number"] {
+    width: 45px;
+}
+
 .fa-trash-o {
     color: rgb(214, 48, 36);
 }
