@@ -14,28 +14,37 @@
 {%- endmacro -%}
 
 {%- macro renderSnippet(item, pageUrl, options) -%}
-  <div class="apos-snippet">
-    {%- if options.edit and item._edit -%}
-      <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
-    {%- endif -%}
-    {%- if not item.hideTitle -%}
-      <h4>
-        {{ item.title | e }}
-      </h4>
-    {%- endif -%}
-    <p> {{ item.description  }}</p>
-    {{ aposArea(item, 'thumbnail')}}
-    {{ aposArea(item, 'body') }}
-
-
-  {%- if item.physical -%}
-  <div class="order-block">
-    <button class="order btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+  <div class="col-lg-12">
+  <div class="apos-edit-snippet-button">
+      {%- if options.edit and item._edit -%}
+        <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
+      {%- endif -%}
+      {%- if not item.hideTitle -%}
+        <h4>
+          {{ item.title | e }}
+        </h4>
+      {%- endif -%}
+      <p> {{ item.description  }}</p>
   </div>
-  {%- endif -%}
-
-  <hr></hr>
   </div>
+  <div class="col-lg-3">
+      {{ aposArea(item, 'thumbnail')}}
+    </div>
+    <div class="col-lg-9">
+      {{ aposArea(item, 'body') }}
+    </div>
+
+    <div class="col-lg-12">
+    {%- if item.physical -%}
+    <div class="order-block">
+      <button class="order btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+    </div>
+  </div>
+    {%- endif -%}
+
+    <hr></hr>
+  
+  
 {%- endmacro -%}
 
 {%- macro snippetText(name, label, options = {}) -%}

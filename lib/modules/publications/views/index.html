@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class="col-lg-8">
-        <div class="apos-snippets publications">
+        <div class="apos-snippets publications row">
+          {{ snippetSearchFilter() }}
           {{ renderSnippets(items, page.url) }}
         </div>
       </div>
