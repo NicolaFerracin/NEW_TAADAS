@@ -2,9 +2,9 @@
 var MongoClient = require('mongodb').MongoClient;
 var md5 = require('js-md5');
 var ISODate = require('iso-date');
-
+var MONGO_URI = process.env.MONGO_URI;
 // Connect to the db
-MongoClient.connect('mongodb://heroku_0nqgs5jf:rq9tu27tkg06esete11p1b3g1a@ds011321.mlab.com:11321/heroku_0nqgs5jf', function(err, db) {
+MongoClient.connect(MONGO_URI, function(err, db) {
   if(err) { return console.dir(err); }
 
   var publications = db.collection('publications');

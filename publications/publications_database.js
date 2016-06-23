@@ -71,8 +71,6 @@ MongoClient.connect("mongodb://localhost:27017/apostrophe-sandbox", function(err
 			searchSummary: ""
 		}};
 
-		// console.log(operator);
-
 		publications.updateOne({ _id: doc['_id'] }, operator, function(err, updated) {
 			if (err) throw err;
 
