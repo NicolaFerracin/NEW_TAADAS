@@ -1,11 +1,22 @@
 $(function() {						
 
 
-
-
-
 	var OrdersApp = React.createClass({
 		componentWillMount: function() {
+
+			/* add Search handler */
+
+			var applySearch = function() {
+				var query = $('.apos-search-input').val()
+				location.search = '\?q=' + query;
+			}
+
+			$('.icon-search').on('click', applySearch);
+			$('.apos-search-input').on('keypress', function(e) {
+					if ( e.keyCode == 13 ) {
+						applySearch();
+					}
+			}); 
 
 			/* append order request buttons to all publications that have physical copies available for order */
 
@@ -34,9 +45,6 @@ $(function() {
 					sessionStorage.setItem("orderedItems", JSON.stringify(orders));
 
 			});
-
-			
-
 		},
 		getInitialState: function() {
 			var orders = JSON.parse(sessionStorage.getItem("orderedItems")) || [];
