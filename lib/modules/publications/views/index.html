@@ -35,10 +35,8 @@
       </div>
     </div>
     <div class="col-lg-8">
-      <div class="row">
-        <div class="pub-search">{{ snippetSearchFilter() }}</div>
-     </div>
-      <div class="apos-snippets publications row">
+      <input type="text" id="pub-search-input" class="search-query form-control" placeholder="Search"/>
+      <div class="apos-snippets publications">
         {{ renderSnippets(items, page.url) }}
       </div>
     </div>

@@ -25,15 +25,19 @@
         </h4>
         {%- endif -%}
         <p> {{ item.description  }}</p>
-        <div class="col-lg-3">
-        {{ aposArea(item, 'thumbnail')}}
-        </div>
-        <div class="col-lg-9">
-        {{ aposArea(item, 'body') }}
+        <div class="row">
+          <div class="col-lg-4">
+          {{ aposArea(item, 'thumbnail')}}
+          </div>
+          <div class="col-lg-8">
+          {{ aposArea(item, 'body') }}
+          </div>
         </div>
       {%- if item.physical -%}
-      <div class="order-block col-lg-12">
-        <button class="order btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+      <div class="row">
+        <div class="order-block col-lg-12">
+          <button class="order btn btn-default" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+        </div>
       </div>
       {%- endif -%}
       <div class="col-lg-12">
