@@ -55,7 +55,8 @@ site.init({
   	  { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
       { name: 'dvd-orders', label: 'DVD Orders'},
-      { name: 'requests-form', label: 'Requests Form'}
+      { name: 'requests-form', label: 'Requests Form'},
+	  { name: 'employment', label: 'Employment'}
     ]
   },
 
