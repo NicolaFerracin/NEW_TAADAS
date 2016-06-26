@@ -39,21 +39,21 @@
   	<label>First Name:</label>
   	<input type="text" name="First Name" required></input>
   </p>
-  <!-- <p>
+  <p>
   	<label>Last Name:</label>
-  	<input type="text" required></input>
+  	<input type="text" name="Last Name" required></input>
   </p>	
   <p>
   	<label>Address:</label>
-  	<input type="text" required></input>
+  	<input type="text" name="Address" required></input>
    </p>
    <p>	
   	<label>City:</label>
-  	<input type="text" required></input>
+  	<input type="text" name="City" required></input>
   </p>
   <p>
   	<label>State:
-    <input list="states" id="stateslist" required></input></label>
+    <input list="states" id="stateslist" name="State" required></input></label>
   <datalist id="states">
     <option value="Alabama">Alabama</option>
     <option value="Alaska">Alaska</option>
@@ -111,22 +111,22 @@
 </p>
   <p>
     <label>Zip:</label>
-    <input type="text" required></input>
+    <input type="text" name="Zip" required></input>
   </p>
   <p>
     <label>Phone:</label>
-    <input type="text" required></input>
+    <input type="text" name="Phone" required></input>
   </p>  
   </p>
   <p>
     <label>Please click here if your shipping destination is a commercial location.</label>
-  	<input type="checkbox"</input>
+  	<input type="checkbox" name="Is Commercial"></input>
   </p>
   <p>  
     <label>
     Allow Promotional Emails (We will never divulge your email to a 3rd party)</label>
-    <input type="checkbox" checked="true"></input>
-  </p> -->
+    <input type="checkbox" checked="true" name="Allow Promotional"></input>
+  </p>
   <p id="submit-form">
     <input id="submititems" type="submit" value="Submit" class="btn btn-success"></input>
   </p>

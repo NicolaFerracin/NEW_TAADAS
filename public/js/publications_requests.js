@@ -1,119 +1,150 @@
 $(function() {						
 
 
-	var RequestsTable = React.createClass({
-		getInitialState: function() {
-			return { rows: [] }
-		},
+	var OrdersApp = React.createClass({
+		componentWillMount: function() {
 
-		componentDidMount: function() {
+			/* add Search handler */
 
-			this.setState( { rows: [], quantities: [] });
+			var applySearch = function() {
+				var query = $('.apos-search-input').val()
+				location.search = '\?q=' + query;
+			}
 
+			$('.icon-search').on('click', applySearch);
+			$('.apos-search-input').on('keypress', function(e) {
+					if ( e.keyCode == 13 ) {
+						applySearch();
+					}
+			}); 
 
-			var requestedItems = [];
-			// var quantities = {};
-			sessionStorage.setItem("requestedItems", JSON.stringify(requestedItems));
-			// sessionStorage.setItem("quantities", JSON.stringify(quantities));
+			/* append order request buttons to all publications that have physical copies available for order */
 
+			var that = this;
+			$('.order').on('click', function(e) {
 
-			/* attach click handler to request buttons that adds row to requests table */
-			 $('.request').on('click', function(e) {
-			 		console.log(this);
+					var title = e.target.attributes.pubtitle.value;
+					var identifier = e.target.attributes.identifier.value;
+					var orders = that.state.orders;
+					var newOrder = true;
 
-
-					var newRowsArray = this.state.rows;
-					var quantitiesArray = this.state.quantities;
-
-			 		var index = this.state.rows.length;
-
-			 		var title = e.target.attributes.pubtitle.value;
-
-			 		var identifier = e.target.attributes.identifier.value;
-
-			 		var inputClass = '.class_' + identifier;
-
-			 		// var qty = $(inputClass).val();
-			 		console.log('title: ', title);
-
-			 		
-
-			 		var RequestRow = React.createClass({
-			 			getInitialState: function() {
-			 				return { quantity: 1 }
-			 			},
-						render: function() {
-							var changeHandler = function(e) {
-			 					this.setState({ quantities: e.target.value || this.state.quantities + 1 });
-			 				}
-
-							return (<tr id={'id_' + this.props.identifier}><td>{title}</td><td><input id={'input' + this.props.identifier} type="number" min="1" value={this.state.quantity} onChange={changeHandler}/></td>
-									<td><i class="fa fa-trash-o"></i></td>
-								</tr>)
-						}
-					});
-
-					
-
-					var insertNewRow = true;
-
-					newRowsArray.forEach(function(rowObject, index) {
-						if( rowObject.props.identifier == identifier) {
-							console.log('identifier already exists!')
-							insertNewRow = false;
+					orders.forEach(function(order, index) {
+						if (order.title == title) {
+							console.log('title already in order table, increase order by 1');
+							orders[index].qty++;
+							newOrder = false;
+							return
 						} 
 					});
 
-					if (!insertNewRow) {
-						// quantitiesArray[index] += qty;
-						// this.setState({ quantities: quantitiesArray });
-						// this.setState({ rows: newRowsArray });
-						$('#input' + identifier).trigger('change');
-
-						return;
+					if ( newOrder ) {
+						orders.push({ title: title, qty: 1, identifier: identifier });
 					}
 
-					// quantitiesArray[index] = qty;
-					// this.setState({quantities: quantitiesArray});
-					newRowsArray.push(<RequestRow identifier={identifier} title={title}/>)
+					that.setState({ orders: orders })
+					sessionStorage.setItem("orderedItems", JSON.stringify(orders));
 
-					this.setState({ rows: newRowsArray });
-
-	 		}.bind(this));
-
-
+			});
+		},
+		getInitialState: function() {
+			var orders = JSON.parse(sessionStorage.getItem("orderedItems")) || [];
+			return {
+				orders: orders 
+			}
 		},
 
-		className: 'requests-table',
-	
 		render: function() {
-			// var rows = [];
 
-			// this.state.row.forEach(function(row) {
-		 //        	rows.push(<tr><td> blah blah blah </td></tr>)
-   //          });	
+			var handleDelete = function(index) {
+				var orders = this.state.orders;
+				orders.splice(index, 1);
+				this.setState({ orders: orders });
+				sessionStorage.setItem("orderedItems", JSON.stringify(orders));
+			};
 
-			return (<div><table className="orders">
-						<thead>
-							<tr>
-								<th colSpan="3">Your Publication Orders</th>
-							</tr>
-			          </thead>
-			          <tbody>
-			            <tr>
-			              <th>Title</th>
-			              <th>Qty</th>
-			              <th>X</th>
-			            </tr>
-			            { this.state.rows }
-			          </tbody>
-			        </table>
-	        </div>)
-	          
+			var handleChange = function(e, index) {
+				var orders = this.state.orders;
+				orders[index].qty = e.target.value;
+				this.setState({ orders: orders });
+				sessionStorage.setItem("orderedItems", JSON.stringify(orders));
+			};
+
+			return <OrdersTable orders={this.state.orders} handleDelete={handleDelete.bind(this)} handleChange={handleChange.bind(this)}/>
 		}
 
 	});
 
-	ReactDOM.render(<RequestsTable />, document.getElementById('my-requests'));
+	var OrderRow = React.createClass({
+
+		render: function() {
+			var title = this.props.title;
+
+			if ( title.length > 50 ) {
+				title = title.slice(0, 50) + ' (...)';
+			}
+
+			var qty = this.props.qty;
+			var index = this.props.index;
+			var that = this;
+
+			var handleClick = function() {
+				that.props.handleDelete(index);
+			};
+
+			var handleChange = function(e) {
+				that.props.handleChange(e, index);
+			};
+
+			return (<tr>
+						<td>{title}</td>
+						<td>
+							<input type="number" min="1" max="100" value={qty} onChange={handleChange}/>
+						</td>
+						<td onClick={handleClick}>
+						<i className="fa fa-trash-o"></i></td>
+					</tr>)
+		}
+
+	});
+
+
+	var OrdersTable = React.createClass({
+
+		render: function() {
+
+			var orders = this.props.orders;
+			var that = this;
+			var style = this.props.orders.length > 0 ? { "visibility": "visible" } : { "visibility": "hidden" };
+			var handleSubmit = this.props.handleSubmit;
+
+			return (<div>
+						<table className="orders">
+						<thead>
+							<tr>
+								<th colSpan="3">Your Publication Orders</th>
+							</tr>
+							<tr>
+								<th>Title</th>
+								<th>Qty</th>
+								<th>X</th>
+							</tr>
+						</thead>
+						<tbody>
+						{ 
+							orders.map(function(order, index) {
+								return ( <OrderRow key={index} title={order.title} qty={order.qty} index={index} handleDelete={that.props.handleDelete} handleChange={that.props.handleChange}/> )
+							})
+						}
+						</tbody>
+						</table>
+						<a href="requests-form" class="form-link">
+							<button id="submit-order" style={style} onClick={handleSubmit} className="btn btn-success">Submit Order</button>
+						</a>
+					</div>)
+
+		}
+	});
+
+	ReactDOM.render(<OrdersApp/>, document.getElementById('my-requests'));
 
 });
