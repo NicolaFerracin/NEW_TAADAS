@@ -27,12 +27,12 @@ $(function() {
 					}
 
 					that.setState({ orders: orders })
-					sessionStorage.setItem("orderedItems", JSON.stringify(orders));
+					sessionStorage.setItem("publicationOrders", JSON.stringify(orders));
 
 			});
 		},
 		getInitialState: function() {
-			var orders = JSON.parse(sessionStorage.getItem("orderedItems")) || [];
+			var orders = JSON.parse(sessionStorage.getItem("publicationOrders")) || [];
 			return {
 				orders: orders 
 			}
@@ -44,14 +44,14 @@ $(function() {
 				var orders = this.state.orders;
 				orders.splice(index, 1);
 				this.setState({ orders: orders });
-				sessionStorage.setItem("orderedItems", JSON.stringify(orders));
+				sessionStorage.setItem("publicationOrders", JSON.stringify(orders));
 			};
 
 			var handleChange = function(e, index) {
 				var orders = this.state.orders;
 				orders[index].qty = e.target.value;
 				this.setState({ orders: orders });
-				sessionStorage.setItem("orderedItems", JSON.stringify(orders));
+				sessionStorage.setItem("publicationOrders", JSON.stringify(orders));
 			};
 
 			return <OrdersTable orders={this.state.orders} handleDelete={handleDelete.bind(this)} handleChange={handleChange.bind(this)}/>
@@ -100,7 +100,6 @@ $(function() {
 			var orders = this.props.orders;
 			var that = this;
 			var style = this.props.orders.length > 0 ? { "visibility": "visible" } : { "visibility": "hidden" };
-			var handleSubmit = this.props.handleSubmit;
 
 			return (<div>
 						<table className="orders">
@@ -122,8 +121,8 @@ $(function() {
 						}
 						</tbody>
 						</table>
-						<a href="requests-form" class="form-link">
-							<button id="submit-order" style={style} onClick={handleSubmit} className="btn btn-success">Submit Order</button>
+						<a href="publication-order-form" class="form-link">
+							<button id="submit-order" style={style} className="btn btn-success">Submit Order</button>
 						</a>
 					</div>)
 
