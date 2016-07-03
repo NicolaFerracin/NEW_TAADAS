@@ -85,10 +85,28 @@
 			});
 			if ( currentOrder.size > 0 && document.getElementById('submitDvdOrder') === null ){
 				$('#dvdorders').after('<button id="submitDvdOrder" type="button" class="btn btn-success">Submit Order</button>');
-			}					
-			
-			
+
+				$('#submitDvdOrder').on('click', function(e) {
+			// e.preventDefault();
+				var ordersArray = [];
+
+				for (let [k,v] of currentOrder) { 
+				// We don’t escape the key '__proto__' // which can cause problems on older engines 
+					var order = {}
+					order['title'] = dvdlist[k].title;
+					order['qty'] = v;
+					order['identifier'] = dvdlist[k].information;
+					ordersArray.push(order);
+				} 
+
+				sessionStorage.setItem("dvdOrders", JSON.stringify(ordersArray));
+				console.log(sessionStorage.getItem('dvdOrders'));
+				location.href = 'dvd-order-form';
+		});
+
+			}				
 		}
+
 		function orderChanged(ind) {
 			currentOrder.set(ind, Number($('#numinput' + ind).val()));
 		}
@@ -137,9 +155,11 @@
 				}
 			});
 		}
+
+		
 		$(document).ready(function() {
 			searchChanged();	
-			
 		});
+
 	</script>
 {% endblock %}

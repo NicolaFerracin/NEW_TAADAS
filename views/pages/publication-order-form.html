@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% include "pageMacros.html" %}
+{% include "components/_order-form.html" %}
+
+{# the bodyClass block allows us to attach a classname to the body tag for easy style-scoping. #}
+{# be sure to call super() so that any pages inheriting this one will be appending classes, not overriding them. #}
+
+{% block main %}
+  {{ aposArea(page, 'body') }}
+
+  {{ orderForm('publication')}}
+{% endblock %}

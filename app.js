@@ -1,4 +1,5 @@
 var site = require('apostrophe-site')();
+var bodyParser = require('body-parser');
 
 site.init({
 	
@@ -7,8 +8,8 @@ site.init({
   shortName: 'NEW_TAADAS',
   hostName: 'NEW_TAADAS',
   title: 'NEW_TAADAS',
-  sessionSecret: 'apostrophe sandbox demo party',
-  adminPassword: 'demo',
+  sessionSecret: process.env.SESSION_SECRET,
+  adminPassword: process.env.PASSWORD,
   address: '0.0.0.0',
   port: 3000,
 
@@ -30,10 +31,6 @@ site.init({
   secondChanceLogin: true,
 
   locals:  require('./lib/locals.js'),
-  
-
-  
-  
 
   // you can define lockups for areas here
 
@@ -55,8 +52,9 @@ site.init({
   	  { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
       { name: 'dvd-orders', label: 'DVD Orders'},
-      { name: 'requests-form', label: 'Requests Form'},
-	  { name: 'employment', label: 'Employment'}
+      { name: 'employment', label: 'Employment'},
+      { name: 'dvd-order-form', label: 'DVD Order Form'},
+      { name: 'publication-order-form', label: 'Publication Order Form'},
     ]
   },
 
@@ -174,7 +172,7 @@ site.init({
       ]   
     }
   },
-/*
+
     uploadfs: {
       backend: 's3',
       secret: process.env.AMAZON_SECRET,
@@ -182,7 +180,7 @@ site.init({
       bucket: 'taadas',
       region: 'us-west-1'
     },
-*/
+
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
   // while stylesheets contains the names of LESS files in /public/css
@@ -193,22 +191,73 @@ site.init({
   
   setRoutes: function(callback) {
 	  var nodemailer = require('nodemailer');
+    var xoauth2 = require('xoauth2');
+
 		site.app.post('/order', function(req, res) {
+      console.log('req.body: ', req.body);
+
+      var formData = req.body;    
+
+      // turn data from order form into html
+
+      var tableRows = '';
+
+      var titlesArray = formData['titles'].split(','),
+          quantitiesArray = formData['quantities'].split(','),
+          identifiersArray = formData['identifiers'].split(',');
+
+          titlesArray.forEach(function(title, index) {
+            tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
+      });
+
+      var tableHead = '<thead><tr><th>Title</th><th>Quantity</th><th>Identifier</th></tr></thead>';
+
+      var table = '<table>' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
+
+      var contactInfo = '<div>' +
+                            '<p>' + formData['Company Name'] + '</p>' +
+                            '<p>' + formData['First Name'] + ' ' + formData['Last Name'] + '</p>' +
+                            '<p>' + formData['Address'] + '</p>' +
+                            '<p>' + formData['City'] + ', ' + formData['State'] + ' ' + formData['Zip'] + '</p>' +
+                            '<p>' + 'Phone: ' + formData['Phone'] + '</p>' +
+                            '<p>' + formData['Email'] + '</p>' +
+                            '<p>' + 'Allow Promotional Materials: ' + (formData['Allow Promotional'] === 'on').toString() + '</p>' +
+                            '<p>' + 'Is Commercial Location: ' + (formData['Is Commercial'] === 'on').toString() + '</p>' +
+                        '</div>';
+
+
+      var html = '<div>' + table + '</hr>' + contactInfo + '</div>';
+
+      if (req.headers.referer.match('publication')) {
+        var subject = 'Publication Orders';
+        var user = process.env.PUBLICATIONS_EMAIL;
+      }
+
+      if (req.headers.referer.match('dvd')) {
+        var subject = 'DVD Orders';
+        var user = process.env.DVD_EMAIL;
+      }
+
 			var mailOpts, smtpTrans;
-			  //Setup Nodemailer transport, create an application-specific password to avoid problems.
+			  
 				var transporter = nodemailer.createTransport({
 					service: 'Gmail',
 					auth: {
-						user: 'safehandstest@gmail.com',
-						pass: 'safehandstest123'
+						xoauth2: xoauth2.createXOAuth2Generator({
+                user: 'taadasorders@gmail.com',
+                clientId: process.env.GMAIL_CLIENT_ID,
+                clientSecret: process.env.GMAIL_CLIENT_SECRET,
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: process.env.ACCESS_TOKEN
+            })
 					}
 				});
 			  //Mail options
 			  mailOpts = {
-				  from: req.body.email,
-				  to: 'safehandstest@gmail.com',
-				  subject: 'Website contact form',
-				  text: req.body.message
+				  from: 'taadasorders@gmail.com',
+				  to: user,
+				  subject: subject,
+          html: html
 			  };
 			  transporter.sendMail(mailOpts, function (error, response) {
 				  //Email not sent
