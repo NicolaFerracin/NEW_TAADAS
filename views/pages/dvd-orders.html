@@ -147,8 +147,17 @@
 						catch(err){
 							filepath = 'http://placehold.it/700x500';
 						}
+						var subdesc = "";
+						if (filteredsearch[i].body.length > 300)
+						{
+							subdesc = filteredsearch[i].body.substring(0, 300) + "...";
+						}
+						else
+						{
+							subdesc = filteredsearch[i].body;
+						}
 						htmltext += '<div class="col-md-4 img-portfolio"><div onclick="addOrder(\'' + filteredsearch[i]._id + '\')"><img height="700" width="400" class="img-responsive img-hover" src="' + filepath + '" alt=""><h3>';
-						htmltext += filteredsearch[i].title + '</h3><p>' + filteredsearch[i].body + '</div></p></div>'
+						htmltext += filteredsearch[i].title + '</h3><p>' + subdesc + '</div></p></div>'
 					}
 					htmltext += '</div>';
 					$('#pagearea').html(htmltext);

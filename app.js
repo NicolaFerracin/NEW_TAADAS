@@ -8,8 +8,8 @@ site.init({
   shortName: 'NEW_TAADAS',
   hostName: 'NEW_TAADAS',
   title: 'NEW_TAADAS',
-  sessionSecret: process.env.SESSION_SECRET,
-  adminPassword: process.env.PASSWORD,
+  sessionSecret: 'test',
+  adminPassword: 'demo',
   address: '0.0.0.0',
   port: 3000,
 
@@ -172,7 +172,7 @@ site.init({
       ]   
     }
   },
-
+/*
     uploadfs: {
       backend: 's3',
       secret: process.env.AMAZON_SECRET,
@@ -180,7 +180,7 @@ site.init({
       bucket: 'taadas',
       region: 'us-west-1'
     },
-
+*/
   // These are assets we want to push to the browser.
   // The scripts array contains the names of JS files in /public/js,
   // while stylesheets contains the names of LESS files in /public/css

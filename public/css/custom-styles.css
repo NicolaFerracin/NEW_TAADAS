@@ -4,7 +4,11 @@
 }
 
 .apos-admin-bar {
-	top: 55px !important;
+	top: 150px !important;
+}
+
+.apos-ui-modal {
+	top: 150px !important;
 }
 .navbar {
 	background-color:  rgb(85, 41, 136);
