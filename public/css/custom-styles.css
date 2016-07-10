@@ -180,3 +180,11 @@ table.orders input[type="number"] {
   /*margin: 0 0 0 600px;*/
 }
 
+.dvdrequest {
+	color:blue;
+}
+
+.dvdrequest:hover {
+	text-decoration: underline;
+}
+
