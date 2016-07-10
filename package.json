@@ -4,7 +4,7 @@
   "description": "Minimal NEW_TAADAS",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "./config/setenv.sh; node app.js"
   },
   "repository": {
     "type": "git",

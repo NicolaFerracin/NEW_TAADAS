@@ -204,9 +204,9 @@ site.init({
 
       var tableRows = '';
 
-      var titlesArray = formData['titles'].split(','),
-          quantitiesArray = formData['quantities'].split(','),
-          identifiersArray = formData['identifiers'].split(',');
+      var titlesArray = formData['titles'].split('_'),
+          quantitiesArray = formData['quantities'].split('_'),
+          identifiersArray = formData['identifiers'].split('_');
 
           titlesArray.forEach(function(title, index) {
             tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'

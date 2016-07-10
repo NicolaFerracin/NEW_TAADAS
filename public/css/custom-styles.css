@@ -66,11 +66,11 @@ footer img {
 	margin-bottom: 20px;
 }
 
-.requests-form input {
+.order-form input {
   display: inline-block;
 }
 
-.requests-form label {
+.order-form label {
   display: inline-block;
   width: 200px;
   margin: 0 10px 0 0;
@@ -83,7 +83,7 @@ footer img {
 }
 
 
-#requests-table tr {
+#publication-orders-table tr, #dvd-orders-table tr {
   padding: 20px 0;
 }
 
@@ -105,7 +105,7 @@ footer img {
 
 /* Publications */
 
-.request-block input {
+.order-form-block input {
   width: 25px;
   height: 25px;
 }
