@@ -36,9 +36,9 @@ $('#publication-submit-form').on('click', function(e){
 			quantities += quantity;
 			identifiers += identifier;
 		} else {
-			titles += ',' + title;
-			quantities += ',' + quantity;
-			identifiers += ',' + identifier;
+			titles += '_' + title;
+			quantities += '_' + quantity;
+			identifiers += '_' + identifier;
 		}
 	});
 
