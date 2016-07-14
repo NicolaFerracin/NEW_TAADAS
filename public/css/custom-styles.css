@@ -187,4 +187,10 @@ table.orders input[type="number"] {
 .dvdrequest:hover {
 	text-decoration: underline;
 }
+.apos-admin-bar {
+    z-index: 1031 !important;
+}
 
+.apos-ui-modal {
+    z-index: 1032 !important;
+}
