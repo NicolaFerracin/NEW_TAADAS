@@ -52,8 +52,8 @@ $('#publication-submit-form').on('click', function(e){
                 data: data,
                 cache: false,
                 success: function() {
-                	// change to redirect to a success message page
-					console.log("success");
+		        console.log('success');
+			window.location.href="thank-you";
                 },
                 error: function() {
 					console.log("error");

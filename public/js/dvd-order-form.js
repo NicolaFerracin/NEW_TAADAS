@@ -56,7 +56,7 @@ $('#dvd-submit-form').on('click', function(e){
                 data: data.toString(),
                 cache: false,
                 success: function() {
-                	// change to redirect to a success message page
+			window.location.href="thank-you";	
 					console.log("success");
                 },
                 error: function() {
