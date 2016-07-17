@@ -17,6 +17,7 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<a class="brandimage" style="margin-left:calc(50% - 254px)" href="/"><img src="images/taadas-logo-white.png" style="height:100px"></a>
+			<a class="brandimage" style="margin-left:calc(50% - 254px)" href="/"><img src="images/taadas-logo-white.png" style="height:100px;margin-top:15px;"></a>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -94,17 +95,11 @@
 {% block footer %}
 <footer>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-9">
-                <p>{{ aposArea(global, 'footer', {
-                    textOnly: true,
-                    controls: ['italic', 'bold', 'createLink']
-                    })  
-                }}</p>
-                <img src="images/taadas-logo-white.png">
-                <p>Copyright &copy; TAADAS 2016 </p>
-            </div>
-			<div class="col-lg-3">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2">
+		   <h3 style="text-align:center;">This project is funded by the Tenneessee Department of Mental Health and Substance Abuse Services.</h3>
+		</div>
+		<div class="col-lg-2"> 
 			<br />
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" target="_top">
 			<input type="hidden" name="cmd" value="_s-xclick">
@@ -112,8 +107,20 @@
 			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 			</form>
-			</div>
+		</div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+		<img src="images/TNDMH-white.png" style="height:75px;width:300px;"/>
+		</hr>
+            </div>
+			
         </div>
+	<div class="row">
+	    <div class="col-lg-2 col-lg-offset-10">
+                <img src="images/taadas-logo-white.png"> 
+                <p>Copyright &copy; TAADAS 2016 </p>
+	    </div>
+	</div>
     </div>
 </footer>
 {% endblock %}

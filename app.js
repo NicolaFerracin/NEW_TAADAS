@@ -46,18 +46,19 @@ site.init({
       { name: 'default', label: 'Default' },
       { name: 'home', label: 'Home Page'},
       { name: 'resources', label: 'Resources'},
-  	  { name: 'contact', label: 'About Us'},
-  	  { name: 'donate', label: 'Donate'},
-  	  { name: 'materials', label: 'Training Materials'},
-  	  { name: 'membership-info', label: 'Membership Info'},
+      { name: 'contact', label: 'About Us'},
+      { name: 'donate', label: 'Donate'},
+      { name: 'materials', label: 'Training Materials'},
+      { name: 'membership-info', label: 'Membership Info'},
       { name: 'publications', label: 'Publications'},
       { name: 'dvd-orders', label: 'DVD Orders'},
       { name: 'employment', label: 'Employment'},
       { name: 'dvd-order-form', label: 'DVD Order Form'},
       { name: 'publication-order-form', label: 'Publication Order Form'},
-	  { name: 'sponsors', label: 'Sponsors'},
-	  { name: 'events', label: 'Events'},
-	  { name: 'current-members', label: 'Current Members'}
+      { name: 'sponsors', label: 'Sponsors'},
+      { name: 'thankyou', label: 'Thank You'},
+      { name: 'events', label: 'Events'},
+      { name: 'current-members', label: 'Current Members'}
     ]
   },
 
@@ -177,11 +178,11 @@ site.init({
   },
 
     uploadfs: {
-      backend: 's3',
-      secret: process.env.AMAZON_SECRET,
-      key: process.env.AMAZON_KEY,
-      bucket: 'taadas',
-      region: 'us-west-1'
+        backend: 's3',
+        secret: process.env.AMAZON_SECRET,
+        key: process.env.AMAZON_KEY,
+        bucket: 'taadas',
+        region: 'us-west-1'
     },
 
   // These are assets we want to push to the browser.
@@ -193,11 +194,10 @@ site.init({
   },
   
   setRoutes: function(callback) {
-	  var nodemailer = require('nodemailer');
+    var nodemailer = require('nodemailer');
     var xoauth2 = require('xoauth2');
 
-		site.app.post('/order', function(req, res) {
-      console.log('req.body: ', req.body);
+    site.app.post('/order', function(req, res) {
 
       var formData = req.body;    
 
@@ -210,7 +210,7 @@ site.init({
           identifiersArray = formData['identifiers'].split('_');
 
           titlesArray.forEach(function(title, index) {
-            tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
+              tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
       });
 
       var tableHead = '<thead><tr><th>Title</th><th>Quantity</th><th>Identifier</th></tr></thead>';
@@ -241,27 +241,28 @@ site.init({
         var user = process.env.DVD_EMAIL;
       }
 
-			var mailOpts, smtpTrans;
+	var mailOpts, smtpTrans;
 			  
-				var transporter = nodemailer.createTransport({
-					service: 'Gmail',
-					auth: {
-						xoauth2: xoauth2.createXOAuth2Generator({
-                user: 'taadasorders@gmail.com',
-                clientId: process.env.GMAIL_CLIENT_ID,
-                clientSecret: process.env.GMAIL_CLIENT_SECRET,
-                refreshToken: process.env.REFRESH_TOKEN,
-                accessToken: process.env.ACCESS_TOKEN
-            })
-					}
-				});
+	var transporter = nodemailer.createTransport({
+		        	service: 'Gmail',
+				auth: {
+			  	    xoauth2: xoauth2.createXOAuth2Generator({
+                                        user: 'taadasorders@gmail.com',
+                                        clientId: process.env.GMAIL_CLIENT_ID,
+                                        clientSecret: process.env.GMAIL_CLIENT_SECRET,
+                                        refreshToken: process.env.REFRESH_TOKEN,
+                                        accessToken: process.env.ACCESS_TOKEN
+                                   })
+		       	       }
+		       	  });
 			  //Mail options
 			  mailOpts = {
 				  from: 'taadasorders@gmail.com',
 				  to: user,
 				  subject: subject,
-          html: html
+                                  html: html
 			  };
+
 			  transporter.sendMail(mailOpts, function (error, response) {
 				  //Email not sent
 				  if (error) {
@@ -271,7 +272,6 @@ site.init({
 				  //Email sent
 				  else {
 					  res.json(response);
-					  console.log(response);
 				  }
 			  });
 		});
