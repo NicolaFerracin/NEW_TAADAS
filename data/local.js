@@ -7,6 +7,7 @@ module.exports = {
 
   // Absolute URL is only necessary with s3
   // uploadsUrl: '/uploads',
+   uploadsUrl: 'https://taadas.s3.amazonaws.com',
 
   // 'locals' are visible to nunjucks templates
   locals: {
@@ -48,7 +49,8 @@ module.exports = {
   // If these are your db settings then you don't need to be explicit. If not
   // you can uncomment this and get more specific.
   db: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/apostrophe-sandbox'
+    uri: 'mongodb://admin:pass@ds011321.mlab.com:11321/heroku_0nqgs5jf'
+    // uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/apostrophe-sandbox'
     // There is legacy support for host, port, name, user and password options,
     // but this is not necessary. They can all go in the uri option like this:
     // mongodb://user:password@host:port/dbname

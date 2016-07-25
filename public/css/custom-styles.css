@@ -1,3 +1,11 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 #wrapper {
   min-height: 300px;
   margin: 0 0 50px 0;
@@ -5,6 +13,11 @@
 
 .apos-admin-bar {
 	top: 150px !important;
+}
+
+.apos-refreshable{
+  padding-top: 150px; /*navbar overlapping compensations at start. exatc value will calculated in js with delay*/
+
 }
 
 .apos-ui-modal {
@@ -49,17 +62,6 @@
 
 h4.heading {
 	color: rgb(85, 41, 136);
-}
-
-footer {
-	background-color: rgb(0, 74, 141);
-	color: rgb(255, 255, 255);
-	margin: 0;
-}
-
-footer img {
-	width: 200px;
-	height: 50px;
 }
 
 .search-query {
@@ -145,7 +147,7 @@ table.orders {
 table.orders th, td {
     color: #999;
     border: 1px solid #eee;
-    padding: 12px 35px;
+    padding: 12px 25px;
     border-collapse: collapse;
   }
 
@@ -181,6 +183,7 @@ table.orders input[type="number"] {
 }
 
 .dvdrequest {
+  cursor: pointer;
 	color:blue;
 }
 
@@ -194,3 +197,7 @@ table.orders input[type="number"] {
 .apos-ui-modal {
     z-index: 1032 !important;
 }
+
+
+
+

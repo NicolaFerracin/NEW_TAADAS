@@ -259,5 +259,20 @@
 	"Publication Order Form": "Publication Order Form",
 	"Sponsors": "Sponsors",
 	"Events": "Events",
-	"Current Members": "Current Members"
+	"Current Members": "Current Members",
+	"Thank You": "Thank You",
+	"To see your raw HTML code in action you must save your work and refresh the page. If the page becomes unreadable, add ?safe_mode to the end of the URL and load the page again.": "To see your raw HTML code in action you must save your work and refresh the page. If the page becomes unreadable, add ?safe_mode to the end of the URL and load the page again.",
+	"No changes were made this past week.": "No changes were made this past week.",
+	"Revert": "Revert",
+	"Label": "Label",
+	"URL": "URL",
+	"Pretty Link": "Pretty Link",
+	"Image": "Image",
+	"Image link": "Image link",
+	"Box Imag&Text": "Box Imag&Text",
+	"Next": "Next",
+	"Previous": "Previous",
+	"Boxes": "Boxes",
+	"Box Image&Text": "Box Image&Text",
+	"Boxes Image&Text": "Boxes Image&Text"
 }

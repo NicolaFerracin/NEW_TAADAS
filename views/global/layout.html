@@ -1,5 +1,5 @@
 {% include 'pageMacros.html' %}
-
+{% include 'components/nav.html' %}
 {# This serves as our base template; it is rendered inside of the 'apos-refreshable' class in outerLayout.html. #}
 {# This is where we declare the main blocks that our layout is composed of, e.g. header, main, footer, etc. #}
 {# Depending on your needs this is where you would create blocks that you can hook into from other templates, #}
@@ -10,117 +10,67 @@
 <!-- APOS-TITLE {% block title %}{% endblock %} -->
 <!-- APOS-EXTRA-HEAD {% block extraHead %}{% endblock %} -->
 <!-- APOS-SEO-DESCRIPTION {% block seoDescription %}{% endblock %} -->
-
 {% block header %}
-  <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-			<a class="brandimage" style="margin-left:calc(50% - 254px)" href="/"><img src="images/taadas-logo-white.png" style="height:100px"></a>
-			<a class="brandimage" style="margin-left:calc(50% - 254px)" href="/"><img src="images/taadas-logo-white.png" style="height:100px;margin-top:15px;"></a>
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="sponsors">Sponsors</a>
-                    </li>
-					<li>
-                        <a href="free-literature">Free Literature</a>
-                    </li>
-                    <li>
-                        <a href="employment0">Employment</a>
-                    </li>
-					<li>
-                        <a href="events">Events</a>
-                    </li>
-                    <li>
-                        <a href="contact">About Us</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Our Programs and Services <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="redline">Redline</a>
-                            </li>
-                            <li>
-                                <a href="alcoholics-anonymous">Advocacy</a>
-                            </li>
-                            <li>
-                                <a href="gamblers-anonymous">Gambling</a>
-                            </li>
-                            <li>
-                                <a href="other-resources">Other Resources</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Join TAADAS <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="membership-info">Membership Information</a>
-                            </li>
-                            <li>
-                                <a href="current-members">Current Members</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="materials">Training</a>
-                    </li>
-					<li>
-                        <a href="dvd-orders">DVD Loans</a>
-                    </li>
-					<li>
-                        <a href="http://www.recoverygifts.org/">Recovery Gifts</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
+
+{{ nav(page, {classes: ''}) }}
+
 {% endblock %}
 
 {% block main %}
 {% endblock %}
 
+
 {% block footer %}
 <footer>
-    <div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2">
-		   <h3 style="text-align:center;">This project is funded by the Tenneessee Department of Mental Health and Substance Abuse Services.</h3>
-		</div>
-		<div class="col-lg-2"> 
-			<br />
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" target="_top">
-			<input type="hidden" name="cmd" value="_s-xclick">
-			<input type="hidden" name="hosted_button_id" value="ZQ7AXGP4AH82S">
-			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-			</form>
-		</div>
-        <div class="row">
-            <div class="col-lg-4 col-lg-offset-4">
-		<img src="images/TNDMH-white.png" style="height:75px;width:300px;"/>
-		</hr>
-            </div>
-			
+  <div class="container">
+    <div class="row">
+  		<div class="col-lg-8 col-lg-offset-2">
+  		    {{ aposArea(global, 'footerTopCenter', {
+            controls: ['files', 'html', 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'video', 'insertUnorderedList', 'table'],
+            styles: [
+              { value: 'p', label: 'Text' },
+              { value: 'h3', label: 'Title' },
+              { value: 'h5', label: 'Subtitle' }
+            ],
+            lockups: ['left', 'right']
+          }) }}
+  		</div>
+  		<div class="col-lg-2"> 
+  		
+  			<br />
+  			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" target="_top">
+  			<input type="hidden" name="cmd" value="_s-xclick">
+  			<input type="hidden" name="hosted_button_id" value="ZQ7AXGP4AH82S">
+  			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+  			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+  			</form>
+  		</div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+                
+		    {{ aposArea(global, 'footerBottomCenter', {
+          controls: ['files', 'html', 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'video', 'insertUnorderedList', 'table'],
+          styles: [
+            { value: 'p', label: 'Text' },
+            { value: 'h3', label: 'Title' },
+            { value: 'h5', label: 'Subtitle' }
+          ],
+          lockups: ['left', 'right']
+        }) }}
+         </div>
+         <div class="col-lg-2">
+		    {{ aposArea(global, 'footerBottomRight', {
+          controls: ['files', 'html', 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'video', 'insertUnorderedList', 'table'],
+          styles: [
+            { value: 'p', label: 'Text' },
+            { value: 'h3', label: 'Title' },
+            { value: 'h5', label: 'Subtitle' }
+          ],
+          lockups: ['left', 'right']
+        }) }}
         </div>
-	<div class="row">
-	    <div class="col-lg-2 col-lg-offset-10">
-                <img src="images/taadas-logo-white.png"> 
-                <p>Copyright &copy; TAADAS 2016 </p>
-	    </div>
-	</div>
+      </div>
     </div>
+  </div>
 </footer>
 {% endblock %}

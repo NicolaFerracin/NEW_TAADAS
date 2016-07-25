@@ -1,4 +1,5 @@
 locales
+dump/
 npm-debug.log
 public/uploads
 public/apos-minified
@@ -13,3 +14,4 @@ public/css/master-*.less
 public/js/_site-compiled.js
 data/
 config/
+.env
