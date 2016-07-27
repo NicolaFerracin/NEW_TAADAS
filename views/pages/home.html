@@ -20,19 +20,27 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-header text-center">
-                    Do you need help with addiction? Call the Tennessee REDLINE for 24 hour assistance 1.800.889.9789
-					<br />
-					<h2>Our Mission</h2>
-					<h3>To educate, support and engage our members and public, influence policy and advocate for prevention, treatment and recovery services.</h3>
+                    
+                    {{ aposArea(page, 'pheader', {
+                      controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h2', label: 'Heading 2' },
+                        { value: 'h3', label: 'Heading 3' },
+                        { value: 'h5', label: 'Heading 5' }
+                      ]
+                    }) }}
                 </div>
             </div>
+            
             <div class="col-md-3">
                 <div class="panel panel-default noborder">
                     <div class="panel-heading">
                         <h4><i class="fa fa-fw fa-calendar fa-inverse"></i> Training Calendar</h4>
                     </div>
                     <div class="panel-body">
-						 <iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="550" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
+						 <iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="500" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
                     </div>
                 </div>
             </div>
@@ -42,7 +50,16 @@
                         <h4><i class="fa fa-fw fa-pencil fa-inverse"></i> Advocacy News</h4>
                     </div>
                     <div class="panel-body">
-                        <p>{{ aposArea(page, 'home2', { textOnly: true }) }}</p>
+                        {{ aposArea(page, 'home_2', {
+                          controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
+                        }) }}
                     </div>
                 </div>
             </div>
@@ -52,7 +69,16 @@
                         <h4><i class="fa fa-fw fa-exclamation fa-inverse"></i> Announcements</h4>
                     </div>
                     <div class="panel-body">
-                        <p>{{ aposArea(page, 'home3', { textOnly: true }) }}</p>
+                         {{ aposArea(page, 'home_3', {
+                          controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
+                        }) }}
                     </div>
                 </div>
             </div>
@@ -62,7 +88,16 @@
                         <h4><i class="fa fa-fw fa-legal fa-inverse"></i> Legislative Agenda</h4>
                     </div>
                     <div class="panel-body">
-                        <p>{{ aposArea(page, 'home4', { textOnly: true }) }}</p>
+                        {{ aposArea(page, 'home_4', {
+                          controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
+                        }) }}
                     </div>
                 </div>
             </div>
@@ -72,33 +107,72 @@
         <!-- Portfolio Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Important Links</h2>
+                <div class="page-header text-center">
+                    
+                    {{ aposArea(page, 'pheader2', {
+                      controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h2', label: 'Heading 2' },
+                        { value: 'h3', label: 'Heading 3' },
+                        { value: 'h5', label: 'Heading 5' }
+                      ]
+                    }) }}
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock1', {
-             
-                    styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock2', {
              
-                     styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock3', {
              
-                     styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock4', {
-                     styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
@@ -107,28 +181,56 @@
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock5', {
              
-                    styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock6', {
              
-                    styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock7', {
-             
-                     styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                     
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock8', {
              
-                     styles: [  { value: 'h4', label: 'heading', class: 'heading' }, { value: 'p', label: 'description'} ]
+                    controls: ['arrayOfBoxes', 'gallery', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
+                    styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h2', label: 'Heading 2' },
+                            { value: 'h3', label: 'Heading 3' },
+                            { value: 'h5', label: 'Heading 5' }
+                          ]
                     })
                 }}
                 </div>   

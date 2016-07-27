@@ -4,6 +4,12 @@ var bodyParser = require('body-parser');
 require('dotenv').config();
 
 site.init({
+  
+  sanitizeHtml: {
+    allowedAttributes:{'*':['style']},
+    allowedTags: ['p','h1','h2','h3','h4','h5','h6','br','hr','span','div','code']
+  },
+  
 
   // This line is required and allows apostrophe-site to use require() and manage our NPM modules for us.
   root: module,
@@ -34,7 +40,7 @@ site.init({
 
   locals: require('./lib/locals.js'),
 
-
+  
 
 
   // you can define lockups for areas here
@@ -45,6 +51,8 @@ site.init({
   // refers to '/views/pages/default.html'.
 
   // The name property can also refer to a module, in the case of 'blog', 'map', 'events', etc.
+
+
 
   pages: {
     types: [{
@@ -59,9 +67,6 @@ site.init({
     }, {
       name: 'contact',
       label: 'About Us'
-    }, {
-      name: 'donate',
-      label: 'Donate'
     }, {
       name: 'materials',
       label: 'Training Materials'
