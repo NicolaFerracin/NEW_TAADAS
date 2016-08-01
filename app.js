@@ -7,7 +7,7 @@ site.init({
   
   sanitizeHtml: {
     allowedAttributes:{'*':['style']},
-    allowedTags: ['p','h1','h2','h3','h4','h5','h6','br','hr','span','div','code']
+    allowedTags: ['a', 'p','h1','h2','h3','h4','h5','h6','br','hr','span','div','code']
   },
   
 
@@ -112,6 +112,7 @@ site.init({
 
   // These are the modules we want to bring into the project.
   modules: {
+    
     // Styles required by the new editor, must go FIRST
     'apostrophe-editor-2': {},
     'apostrophe-ui-2': {},
