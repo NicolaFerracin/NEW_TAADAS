@@ -53,7 +53,19 @@ $('#publication-submit-form').on('click', function(e){
                 cache: false,
                 success: function() {
 		        console.log('success');
-			window.location.href="thank-you";
+		        
+		        	
+		        	try{
+		    		//pass all data to google analytic
+					rows.each(function(index, row) {
+						var title = $(this).find('td.title').text();
+						var quantity = $(this).find('td.quantity > input').val();
+						ga('send', 'event', 'publications', 'order', title, quantity);
+					})
+		        	} catch(e){}
+		        
+					window.location.href="thank-you";
+					
                 },
                 error: function() {
 					console.log("error");

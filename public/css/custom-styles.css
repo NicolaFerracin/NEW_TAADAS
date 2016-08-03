@@ -200,5 +200,18 @@ table.orders input[type="number"] {
 }
 
 
+h1,h2,h3,h4,h5,h6,.blue-color1 {
+  color:#552988;
+}
+.blue-color2 {
+  color:#8559b8;
+}
 
-
+.navbar-nav .dropdown:hover .dropdown-menu{
+  display: block;
+  
+}
+.navbar-nav .dropdown:hover{
+  background-color: #110022;
+  
+}

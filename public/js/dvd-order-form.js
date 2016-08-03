@@ -58,6 +58,15 @@ $('#dvd-submit-form').on('click', function(e){
                 success: function() {
 			window.location.href="thank-you";	
 					console.log("success");
+					
+					//pass all data to google analytic
+				  try{
+					rows.each(function(index, row) {
+						var title = $(this).find('td.title').text();
+						var quantity = $(this).find('td.quantity > input').val();
+						ga('send', 'event', 'DVDs', 'order', title, quantity);
+					})
+            	  } catch(e){}
                 },
                 error: function() {
 					console.log("error");
