@@ -45,6 +45,7 @@ $(function() {
 				orders.splice(index, 1);
 				this.setState({ orders: orders });
 				sessionStorage.setItem("publicationOrders", JSON.stringify(orders));
+				realignOrdersList();
 			};
 
 			var handleChange = function(e, index) {
@@ -52,6 +53,7 @@ $(function() {
 				orders[index].qty = e.target.value;
 				this.setState({ orders: orders });
 				sessionStorage.setItem("publicationOrders", JSON.stringify(orders));
+				realignOrdersList();
 			};
 
 			return <OrdersTable orders={this.state.orders} handleDelete={handleDelete.bind(this)} handleChange={handleChange.bind(this)}/>
@@ -144,6 +146,24 @@ $(function() {
 				applySearch();
 			}
 	}); 
+	
+	var realignOrdersList = function(){
+		var orders = $('#my-requests');
+			
+		
+		var navH = $('.navbar-fixed-top').height()+20;
+		var scrollY = $(window).scrollTop();
+		var parentY = orders.parent().offset().top;
+		var bodyH = $('body').height();
+		orders.css({'margin-top': Math.max(0, Math.min($('.orders-page-content').height()-(orders.height()+280),  scrollY + navH - parentY  - Math.max(0,(orders.height()+80-(bodyH-navH)))))+'px'});
+	
+	
+	}
+	
 
+	$(document).on('scroll',realignOrdersList);
+	debugger;	
+
+	
 
 });

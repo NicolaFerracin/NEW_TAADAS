@@ -98,7 +98,7 @@
 					order['identifier'] = dvdlist[k].information;
 					ordersArray.push(order);
 				} 
-
+				debugger;
 				sessionStorage.setItem("dvdOrders", JSON.stringify(ordersArray));
 				console.log(sessionStorage.getItem('dvdOrders'));
 				location.href = 'dvd-order-form';
@@ -146,7 +146,7 @@
 							filepath = apos.filePath(filtered[0]);
 						}
 						catch(err){
-							filepath = 'http://www.accutechdata.com/img/cd.jpg';
+							filepath = '/images/cd.jpg';
 						}
 						var subdesc = "";
 						subdesc = filteredsearch[i].body;
