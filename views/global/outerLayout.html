@@ -2,6 +2,8 @@
 
 {# HTML with typical page structure, not necessarily an apostrophe-pages page document #}
 
+
+
 {% block body %}
   {% block adminBar %}
     {% if doNotEdit %}
@@ -10,7 +12,7 @@
       </div>
     {% endif %}
     {# For the public sandbox demo site we show a login link all the time, but usually this whole bar is hidden when logged out #}
-    {% if user %}
+    {% if permissions.admin or  permissions['admin-dvd'] or permissions['admin-publication'] %}
       <div class="apos-admin-bar">
         <div class="apos-admin-bar-inner">
           <div class="apos-logo-tiny">
@@ -19,13 +21,19 @@
 
           {# edit === can edit THIS page #}
           <!-- {{ aposMediaMenu({ edit: permissions.guest })}} -->
-          {{ aposMediaMenu({ edit: true})}}
-
+          {% if permissions.admin %}
+            {{ aposMediaMenu({ edit: true})}}
+          {% endif %}
+          
           <!-- Menu for editing dvds -->
-          <!-- {{ aposDvdMenu({ edit: permissions.admin }) }} -->
-          {{ aposDvdMenu({ edit: true }) }}
-          {{ aposPublicationMenu({ edit: true}) }}
-
+          {% if (permissions.admin or permissions['admin-dvd']) %}
+            {{ aposDvdMenu({ edit: true }) }}
+          {% endif %}
+          
+          {% if (permissions.admin or permissions['admin-publication']) %}
+            {{ aposPublicationMenu({ edit: true}) }}
+         {% endif %}
+          
           <!-- {% if edit %} -->
             <div class="apos-admin-bar-item apos-preview-toggle">
               <i class="icon-eye"></i>
@@ -50,6 +58,8 @@
                 </ul>
               </li>
             </ul>
+            
+            {% if permissions.admin %}
             <ul class="apos-admin-bar-item apos-accordion-menu apos-people">
                <li class="apos-accordion-title"><i class="person"></i>People</li>
                <li class="apos-accordion-items">
@@ -60,6 +70,8 @@
                   </ul>
               </li>
             </ul>
+            
+            
             <ul class="apos-admin-bar-item apos-accordion-menu apos-groups">
                <li class="apos-accordion-title"><i class="person"></i>Groups</li>
                <li class="apos-accordion-items">
@@ -70,6 +82,8 @@
                   </ul>
               </li>
             </ul>
+             {% endif %}
+             
           <!-- {% else %} -->
               <div class="apos-admin-bar-item login-status">
               <a class="apos-button " href="/login">Log In</a>

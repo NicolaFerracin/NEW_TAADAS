@@ -54,7 +54,7 @@ $('#publication-submit-form').on('click', function(e){
                 success: function() {
 		        console.log('success');
 		        
-		        	
+		        	ga('send', 'event', 'publications-order');
 		        	try{
 		    		//pass all data to google analytic
 					rows.each(function(index, row) {

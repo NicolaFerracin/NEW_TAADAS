@@ -60,6 +60,7 @@ $('#dvd-submit-form').on('click', function(e){
 					console.log("success");
 					
 					//pass all data to google analytic
+					ga('send', 'event', 'DVDs-order');
 				  try{
 					rows.each(function(index, row) {
 						var title = $(this).find('td.title').text();

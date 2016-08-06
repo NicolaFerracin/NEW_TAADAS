@@ -20,7 +20,17 @@ site.init({
   adminPassword: process.env.ADMIN_PASS,
   address: process.env.IP,
   port: process.env.PORT,
-
+  redirectAfterLogin: function(user) {
+   // if (user.permissions.admin) {
+      return '/membership/member-s-area';
+   // } else {
+   //   return '/';
+   // }
+  },
+  
+  
+  
+  
   // Force a2 to prefix all of its URLs. It still
   // listens on its own port, but you can configure
   // your reverse proxy to send it traffic only
@@ -36,7 +46,8 @@ site.init({
 
   // Give users a chance to log in if they attempt to visit a page
   // which requires login
-  secondChanceLogin: true,
+  //this option disable 'redirectAfterLogin' processing
+  //secondChanceLogin: true,
 
   locals: require('./lib/locals.js'),
 
@@ -100,6 +111,9 @@ site.init({
     }, {
       name: 'current-members',
       label: 'Current Members'
+    }, {
+      name: 'members-area',
+      label: 'Members Area'
     }],
     tabOptions: {
       depth: 2
@@ -274,21 +288,47 @@ site.init({
 
       // turn data from order form into html
 
-      var tableRows = '';
+     
+      var table='';
+      
+      if (formData['titles']) {
+        
+        var tableRows = '';
+        var titlesArray = formData['titles'].split('_'),
+          quantitiesArray = formData['quantities'].split('_'),
+          identifiersArray = formData['identifiers'].split('_');
+          
+        delete(formData.titles);
+        delete(formData.quantities);
+        delete(formData.identifiers);
+  
+        titlesArray.forEach(function(title, index) {
+          tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
+        });
+        
+        var tableHead = '<thead><tr><th>Title</th><th>Quantity</th><th>Identifier</th></tr></thead>';
 
-      var titlesArray = formData['titles'].split('_'),
-        quantitiesArray = formData['quantities'].split('_'),
-        identifiersArray = formData['identifiers'].split('_');
+        table = '<table>' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
 
-      titlesArray.forEach(function(title, index) {
-        tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
-      });
+        
+      }
 
-      var tableHead = '<thead><tr><th>Title</th><th>Quantity</th><th>Identifier</th></tr></thead>';
-
-      var table = '<table>' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
-
-      var contactInfo = '<div>' +
+     
+      var formInfo = '<div>';
+      
+      for(var k in formData){
+        var val = formData[k];
+        
+        if(typeof(val)==='boolean'){
+          val = (val==='on')?'Yes':'No';
+          
+        }
+        
+        formInfo += '<p>'+k+': '+val+'</p>'
+      }
+      
+      /*
+      //old template
         '<p>' + formData['Company Name'] + '</p>' +
         '<p>' + formData['First Name'] + ' ' + formData['Last Name'] + '</p>' +
         '<p>' + formData['Address'] + '</p>' +
@@ -297,19 +337,22 @@ site.init({
         '<p>' + formData['Email'] + '</p>' +
         '<p>' + 'Allow Promotional Materials: ' + (formData['Allow Promotional'] === 'on').toString() + '</p>' +
         '<p>' + 'Is Commercial Location: ' + (formData['Is Commercial'] === 'on').toString() + '</p>' +
-        '</div>';
+        */
+        
+      formInfo+='</div>';
 
 
-      var html = '<div>' + table + '</hr>' + contactInfo + '</div>';
+      var html = '<div>' + table + '</hr>' + formInfo + '</div>';
 
       if (req.headers.referer.match('publication')) {
         var subject = 'Publication Orders';
         var user = process.env.PUBLICATIONS_EMAIL;
-      }
-
-      if (req.headers.referer.match('dvd')) {
+      }else if (req.headers.referer.match('dvd')) {
         var subject = 'DVD Orders';
         var user = process.env.DVD_EMAIL;
+      } else {
+        var subject = 'Join as member request';
+        var user = process.env.JOIN_EMAIL;
       }
 
       var mailOpts, smtpTrans;

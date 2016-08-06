@@ -11,9 +11,7 @@ body {
   margin: 0 0 50px 0;
 }
 
-.apos-admin-bar {
-	top: 150px !important;
-}
+
 
 .apos-refreshable{
   padding-top: 150px; /*navbar overlapping compensations at start. exatc value will calculated in js with delay*/
@@ -191,13 +189,23 @@ table.orders input[type="number"] {
 .dvdrequest:hover {
 	text-decoration: underline;
 }
+
+.navbar-fixed-top {
+ z-index: 100; 
+}
+
+/*
+.apos-admin-bar {
+	top: 150px !important;
+
+
 .apos-admin-bar {
     z-index: 1031 !important;
 }
 
 .apos-ui-modal {
     z-index: 1032 !important;
-}
+}*/
 
 
 h1,h2,h3,h4,h5,h6,.blue-color1 {
@@ -214,4 +222,11 @@ h1,h2,h3,h4,h5,h6,.blue-color1 {
 .navbar-nav .dropdown:hover{
   background-color: #110022;
   
+}
+
+.logged-in .navbar .nav-type-login{
+  display: none;
+}
+.logged-out .navbar .nav-type-logout{
+  display: none;
 }
