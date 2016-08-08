@@ -9,15 +9,16 @@
   <div class="container">
   	<div class="row">
   		<div class="col-lg-12">
-  			{{ aposArea(page, 'body', {
-          controls: ['imageBoxwithText', 'arrayOfBoxes'],
-          styles: [
-            { value: 'p', label: 'Text' },
-            { value: 'h3', label: 'Title' },
-            { value: 'h5', label: 'Subtitle' }
-          ],
-          lockups: ['left', 'right']
-        })}}
+  		  {{ aposArea(page, 'body', {
+            controls: editorFullControlls(),
+            styles: [
+              { value: 'p', label: 'Text' },
+              { value: 'h1', label: 'Heading 1' },
+              { value: 'h3', label: 'Heading 3' }
+
+            ]
+          }) }}
+  			
   		</div>
 	</div>
   </div>

@@ -13,13 +13,15 @@
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Training
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="/">Home</a>
-                    </li>
-                    <li class="active">Training</li>
-                </ol>
+               {{ aposArea(page, 'headertop', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}
+               
             </div>
         </div>
         <!-- /.row -->
@@ -29,8 +31,8 @@
 			<div class="col-lg-3">
 				<iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="550" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
 			</div>
-            <div class="col-lg-9">
-                <img class="img-responsive" src="images/Training.jpg" alt="">
+            <div class="col-lg-9 apos-fillw-image">
+                 {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
             </div>
         </div>
         <!-- /.row -->
@@ -38,10 +40,15 @@
         <!-- Service Panels -->
         <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
         <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Training Materials</h2>
-            </div>
-			<div class="text-center">{{ aposArea(page, 'materials') }}</div>
+
+			<div class="text-center">{{ aposArea(page, 'materials', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}</div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
 				
@@ -52,8 +59,15 @@
                         </span>
                     </div>
                     <div class="panel-body">
-                        <h4>Handouts</h4>
-                        <p>{{ aposArea(page, 'handouts') }}</p>
+                        {{ aposArea(page, 'handouts', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+                       
                     </div>
                 </div>
             </div>
@@ -66,8 +80,15 @@
                         </span>
                     </div>
                     <div class="panel-body">
-                        <h4>Presentations</h4>
-                        <p>{{ aposArea(page, 'presentations') }}</p>
+                         {{ aposArea(page, 'presentations', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+                       
                     </div>
                 </div>
             </div>
@@ -80,8 +101,15 @@
                         </span>
                     </div>
                     <div class="panel-body">
-                        <h4>Treatment Assessment</h4>
-                        <p>{{ aposArea(page, 'assessment1') }}</p>
+                        {{ aposArea(page, 'assessment1', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+                        
                     </div>
                 </div>
             </div>
@@ -94,8 +122,15 @@
                         </span>
                     </div>
                     <div class="panel-body">
-                        <h4>Prevention Assessment</h4>
-                        <p>{{ aposArea(page, 'assessment2') }}</p>
+                         {{ aposArea(page, 'assessment2', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+                       
                     </div>
                 </div>
             </div>

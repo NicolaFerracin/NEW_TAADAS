@@ -13,14 +13,6 @@ body {
 
 
 
-.apos-refreshable{
-  padding-top: 150px; /*navbar overlapping compensations at start. exatc value will calculated in js with delay*/
-
-}
-
-.apos-ui-modal {
-	top: 150px !important;
-}
 .navbar {
 	background-color:  rgb(85, 41, 136);
 }
@@ -191,21 +183,12 @@ table.orders input[type="number"] {
 }
 
 .navbar-fixed-top {
- z-index: 100; 
+ z-index: 900; 
+}
+.apos-admin-bar {
+ z-index: 901 !important; 
 }
 
-/*
-.apos-admin-bar {
-	top: 150px !important;
-
-
-.apos-admin-bar {
-    z-index: 1031 !important;
-}
-
-.apos-ui-modal {
-    z-index: 1032 !important;
-}*/
 
 
 h1,h2,h3,h4,h5,h6,.blue-color1 {
@@ -231,7 +214,7 @@ h1,h2,h3,h4,h5,h6,.blue-color1 {
   display: none;
 }
 
-header .apos-slideshow-items{
+.apos-fillw-image .apos-slideshow-items{
   padding: 0 !important;
   display: block !important;
   height: auto !important;

@@ -14,9 +14,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">{{ aposArea(page, 'resources1', {
-                                textOnly: true,
-                                styles: [ { value: 'h1', label: 'heading'}, { value: 'small', label: 'subheading' } ]
-                })}}
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 				</h1>
                 <ol class="breadcrumb">
                     <li><a href="/">Home</a>
@@ -30,7 +35,15 @@
         <div class="row">
             <div class="col-md-12">
                 <p>
-                {{ aposArea(page, 'resources2', { textOnly: false}) }}
+                {{ aposArea(page, 'resources2', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+
+                      ]
+                    }) }}
              
 		  	  </p>	
             </div>

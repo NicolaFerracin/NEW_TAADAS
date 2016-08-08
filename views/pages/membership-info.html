@@ -35,7 +35,16 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ aposArea(page, 'body1', { textOnly: true }) }}
+                            	 {{ aposArea(page, 'body1', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
+                            
 							</div>
                         </div>
                     </div>
@@ -48,7 +57,15 @@
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ aposArea(page, 'body2', { textOnly: true }) }}
+                                {{ aposArea(page, 'body2', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 							</div>
                         </div>
                     </div>
@@ -61,7 +78,15 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ aposArea(page, 'body3', { textOnly: true }) }}
+                                {{ aposArea(page, 'body3', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 							</div>
                         </div>
                     </div>
@@ -74,7 +99,15 @@
                         </div>
                         <div id="collapseFour" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ aposArea(page, 'body4', { textOnly: true }) }}
+                                {{ aposArea(page, 'body4', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 							</div>
                         </div>
                     </div>
@@ -87,7 +120,15 @@
                         </div>
                         <div id="collapseFive" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ aposArea(page, 'body5', { textOnly: true }) }}
+                                {{ aposArea(page, 'body5', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 							</div>
                         </div>
                     </div>
@@ -189,7 +230,15 @@
 									</div>
 									<div id="success"></div>
 									<!-- For success/fail messages -->
-									{{ aposArea(page, 'body6', { textOnly: true }) }}
+									{{ aposArea(page, 'body6', {
+				                      controls: editorFullControlls(),
+				                      styles: [
+				                        { value: 'p', label: 'Text' },
+				                        { value: 'h1', label: 'Heading 1' },
+				                        { value: 'h3', label: 'Heading 3' }
+				
+				                      ]
+				                    }) }}
 									<br />
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</form>

@@ -26,16 +26,16 @@
   <div class="container">
     <div class="row">
   		<div class="col-lg-8 col-lg-offset-2">
-  		    {{ aposArea(global, 'footerTopCenter', {
-            controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
-                          styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h2', label: 'Heading 2' },
-                            { value: 'h3', label: 'Heading 3' },
-                            { value: 'h5', label: 'Heading 5' }
-                          ]
+  		   {{ aposArea(global, 'footerTopCenter', {
+            controls: editorFullControlls(),
+            styles: [
+              { value: 'p', label: 'Text' },
+              { value: 'h1', label: 'Heading 1' },
+              { value: 'h3', label: 'Heading 3' }
+
+            ]
           }) }}
+  		   
   		</div>
   		<div class="col-lg-2"> 
   		
@@ -49,29 +49,29 @@
   		</div>
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-                
-		    {{ aposArea(global, 'footerBottomCenter', {
-         controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
-                          styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h2', label: 'Heading 2' },
-                            { value: 'h3', label: 'Heading 3' },
-                            { value: 'h5', label: 'Heading 5' }
-                          ]
+        {{ aposArea(global, 'footerBottomCenter', {
+          controls: editorFullControlls(),
+          styles: [
+            { value: 'p', label: 'Text' },
+            { value: 'h1', label: 'Heading 1' },
+            { value: 'h3', label: 'Heading 3' }
+
+          ]
         }) }}
+        
+
          </div>
          <div class="col-lg-2">
-		    {{ aposArea(global, 'footerBottomRight', {
-         controls: ['gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify'],
-                          styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h2', label: 'Heading 2' },
-                            { value: 'h3', label: 'Heading 3' },
-                            { value: 'h5', label: 'Heading 5' }
-                          ]
-        }) }}
+            {{ aposArea(global, 'footerBottomRight', {
+              controls: editorFullControlls(),
+              styles: [
+                { value: 'p', label: 'Text' },
+                { value: 'h1', label: 'Heading 1' },
+                { value: 'h3', label: 'Heading 3' }
+
+              ]
+            }) }}
+
         </div>
       </div>
     </div>

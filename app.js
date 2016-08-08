@@ -73,6 +73,9 @@ site.init({
       name: 'home',
       label: 'Home Page'
     }, {
+      name: 'current-members',
+      label: '2 columns'
+    }, {
       name: 'resources',
       label: 'Resources'
     }, {
@@ -91,26 +94,14 @@ site.init({
       name: 'dvd-orders',
       label: 'DVD Orders'
     }, {
-      name: 'employment',
-      label: 'Employment'
-    }, {
       name: 'dvd-order-form',
       label: 'DVD Order Form'
     }, {
       name: 'publication-order-form',
       label: 'Publication Order Form'
     }, {
-      name: 'sponsors',
-      label: 'Sponsors'
-    }, {
-      name: 'thankyou',
-      label: 'Thank You'
-    }, {
       name: 'events',
       label: 'Events'
-    }, {
-      name: 'current-members',
-      label: 'Current Members'
     }, {
       name: 'members-area',
       label: 'Members Area'
@@ -128,7 +119,14 @@ site.init({
   modules: {
     
     // Styles required by the new editor, must go FIRST
-    'apostrophe-editor-2': {},
+    
+    'apostrophe-editor-2': {
+      plugins: [
+        { name: 'panelbutton', path: '/editor/plugins/panelbutton/' },
+        { name: 'colorbutton', path: '/editor/plugins/colorbutton/' },
+        { name: 'font', path: '/editor/plugins/font/' }
+      ]
+    },
     'apostrophe-ui-2': {},
     'apostrophe-browserify': {
       files: ['./public/js/modules/_site.js']
@@ -431,6 +429,13 @@ site.init({
       });
 
     });
+
+
+    site.apos.addLocal('editorFullControlls', function() {
+      return  ['imageBoxwithText', 'arrayOfBoxes','gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+    });
+    return callback(null);
+    
 
 
     callback(null);
