@@ -230,3 +230,9 @@ h1,h2,h3,h4,h5,h6,.blue-color1 {
 .logged-out .navbar .nav-type-logout{
   display: none;
 }
+
+header .apos-slideshow-items{
+  padding: 0 !important;
+  display: block !important;
+  height: auto !important;
+}

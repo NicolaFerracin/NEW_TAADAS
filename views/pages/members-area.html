@@ -9,7 +9,7 @@
 {% block header %}
 	{{ super() }}
 <header>
-    <img src="/images/header.jpg" id="header-image"></div>
+    {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
 </header>
   
 {% endblock %}
