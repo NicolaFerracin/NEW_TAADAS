@@ -36,7 +36,7 @@
             <div class="col-md-3">
                 <div class="panel panel-default noborder">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-calendar fa-inverse"></i> Training Calendar</h4>
+                        {{ aposSingleton(page, 'rowheader1', 'iconAndText') }}
                     </div>
                     <div class="panel-body">
 						 <iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="500" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
@@ -46,7 +46,7 @@
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-pencil fa-inverse"></i> Advocacy News</h4>
+                        {{ aposSingleton(page, 'rowheader2', 'iconAndText') }}
                     </div>
                     <div class="panel-body">
                         {{ aposArea(page, 'home_2', {
@@ -63,7 +63,7 @@
             <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-exclamation fa-inverse"></i> Announcements</h4>
+                        {{ aposSingleton(page, 'rowheader3', 'iconAndText') }}
                     </div>
                     <div class="panel-body">
                          {{ aposArea(page, 'home_3', {
@@ -80,7 +80,7 @@
 			<div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4><i class="fa fa-fw fa-legal fa-inverse"></i> Legislative Agenda</h4>
+                         {{ aposSingleton(page, 'rowheader4', 'iconAndText') }}
                     </div>
                     <div class="panel-body">
                         {{ aposArea(page, 'home_4', {

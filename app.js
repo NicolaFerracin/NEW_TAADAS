@@ -253,6 +253,20 @@ site.init({
             required: true
           }]
         }]
+      },
+      {
+        name: 'iconAndText',
+        label: 'Iconic header',
+        type: 'array',
+        schema: [{
+          name: 'icon',
+          label:'Fontawesome icon name',
+          type: 'string'},
+          {
+          name: 'text',
+          label:'Header text',
+          type: 'string'}
+          ]
       }]
     }
   },
