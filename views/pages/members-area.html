@@ -8,8 +8,20 @@
 
 {% block header %}
 	{{ super() }}
-<header class='apos-fillw-image'>
+<header class='apos-fillw-image' style="position:relative">
     {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
+    <div style="position:absolute;right:10%;top:70px;background:rgba(255,255,255,0.94);border-radius:3px;padding:35px">
+        {{ aposArea(page, 'pheaderanounces', {
+          controls: editorFullControlls(),
+          styles: [
+            { value: 'p', label: 'Text' },
+            { value: 'h1', label: 'Heading 1' },
+            { value: 'h3', label: 'Heading 3' }
+
+          ]
+        }) }}
+        
+    </div>
 </header>
   
 {% endblock %}
