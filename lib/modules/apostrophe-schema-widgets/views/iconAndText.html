@@ -1,1 +1,1 @@
-<div class='left'><h4><i class="fa fa-fw fa-{{ item.icon }} fa-inverse"></i> {{ item.text }}</h4></div>
+<div class='left'><h{% if item.bigsize %}1{% else %}4{% endif %}><i class="fa fa-fw fa-{{ item.icon }}"></i> {{ item.text }}</h{% if item.bigsize %}1{% else %}4{% endif %}></div>

@@ -12,6 +12,6 @@ public/modules
 public/css/master-*.less
 .jshintrc
 public/js/_site-compiled.js
-data/
+#data/   push this folder bacaouse local.js has no more secret values, but just redirect it form .env file.
 config/
 .env

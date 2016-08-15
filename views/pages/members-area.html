@@ -10,7 +10,7 @@
 	{{ super() }}
 <header class='apos-fillw-image' style="position:relative">
     {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
-    <div style="position:absolute;right:10%;top:70px;background:rgba(255,255,255,0.94);border-radius:3px;padding:35px">
+    <div class="anouncment-box">
         {{ aposArea(page, 'pheaderanounces', {
           controls: editorFullControlls(),
           styles: [

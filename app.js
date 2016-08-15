@@ -22,7 +22,7 @@ site.init({
   port: process.env.PORT,
   redirectAfterLogin: function(user) {
    // if (user.permissions.admin) {
-      return '/membership/member-s-area';
+      return '/join-taadas/membership-info/member-s-area';
    // } else {
    //   return '/';
    // }
@@ -67,6 +67,9 @@ site.init({
 
   pages: {
     types: [{
+      name: 'forum',
+      label: 'Forum'
+    },{
       name: 'default',
       label: 'Default'
     }, {
@@ -224,6 +227,7 @@ site.init({
         name: 'arrayOfBoxes',
         label: 'Boxes Image&Text',
         type: 'array',
+        icon:'fa-square-o',
         schema: [{
           name: 'boxes',
           type: 'array',
@@ -258,6 +262,7 @@ site.init({
         name: 'iconAndText',
         label: 'Iconic header',
         type: 'array',
+        icon:'fa-heart',
         schema: [{
           name: 'icon',
           label:'Fontawesome icon name',
@@ -265,7 +270,11 @@ site.init({
           {
           name: 'text',
           label:'Header text',
-          type: 'string'}
+          type: 'string'},
+          {
+          name: 'bigsize',
+          label:'Big size',
+          type: 'boolean'}
           ]
       }]
     }
@@ -446,7 +455,7 @@ site.init({
 
 
     site.apos.addLocal('editorFullControlls', function() {
-      return  ['imageBoxwithText', 'arrayOfBoxes','gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'slideshow', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+      return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
     });
     return callback(null);
     

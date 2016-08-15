@@ -37,7 +37,7 @@
     }
 }
 
-.logged-in {
+.logged-in-admin {
     .apos-item{
         outline: dashed 1px #fdd;
     }
@@ -70,4 +70,31 @@
 .left{
     text-align: left;
     
+}
+
+.anouncment-box{
+    
+    position:relative;
+    background:rgba(255,255,255,0.96);
+    padding:15px 35px;
+}
+
+@media (min-width: 768px) {
+    .anouncment-box{
+        border:1px solid #ddd;
+        position:absolute;
+        border-radius:3px;
+        right:10%;
+        top:15%;
+        max-width:357px;
+    }
+}
+
+
+
+
+.apos-slideshow-items{
+    -webkit-padding-start:0;
+    display: block !important;
+    height: auto !important;
 }

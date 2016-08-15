@@ -45,11 +45,11 @@ module.exports = {
   },
 
   // Set to true for full CSS and JS minify, on staging and production servers
-  minify: false,
+  minify: process.env.PRODICTION,
   // If these are your db settings then you don't need to be explicit. If not
   // you can uncomment this and get more specific.
   db: {
-    uri: 'mongodb://admin:pass@ds011321.mlab.com:11321/heroku_0nqgs5jf'
+    uri: process.env.MONGODB_URI
     // uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/apostrophe-sandbox'
     // There is legacy support for host, port, name, user and password options,
     // but this is not necessary. They can all go in the uri option like this:

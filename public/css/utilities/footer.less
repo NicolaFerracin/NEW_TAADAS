@@ -1,9 +1,13 @@
 footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
     text-align: center;
     background-color: rgb(0, 74, 141);
     color: rgb(255, 255, 255);
     margin: 0;
-    padding-top: 6px;
+    padding: 20px;
+    
     .apos-slideshow-item {
         background: none !important;
     }
@@ -11,17 +15,23 @@ footer {
         padding: 0px;
         display: inline-block !important;
     }
-    p{
+    
+    .row {
+        margin: 0 0 20px 0;
+    }
+    
+    p {
         margin: 0;
         
     }
     
-    a{
+    a {
         white-space: nowrap;
     }
     
     img {
         max-width: 300px;
+        min-width: 200px;
         /*
         position: absolute;
         top: 0;
@@ -30,5 +40,30 @@ footer {
         right: 0;
         margin: auto;
         */
+    }
+    
+    @media screen and (max-width: 899px) {
+        #donation {
+            display: none;
+        }
+    }
+    
+    @media screen and (max-width: 767px) {
+        #footer-bottom {
+            display: none;
+        }
+    }
+}
+
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+/* Extra small devices (767px and down) */
+@media (max-width: 767px) { 
+    .row.vertical-align {
+        display: block; /* turn off the flexible box layout */
     }
 }
