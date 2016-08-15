@@ -23,6 +23,7 @@ $(function(){
       margin = 36+'px';
         $("footer").css("margin-top", margin);
         $("footer").css({position: "static"});
+        $("footer").css({bottom: 0});
       }
       
       
