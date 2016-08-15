@@ -25,6 +25,9 @@
 		      	<li class="dropdown">
 					<a href="{{ item.url }}" class="dropdown-toggle nav-type-{{ item.type }}" data-toggle_disabled="dropdown">{{ item.title }} <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
+	                    	<li>
+	                    		<a class="nav-type-{{ item.type }}"  href="{{ item.url }}">{{ item.title }}</a>
+	                    	</li>
 			        		{% for sitem in item.children %}
 			        		<li>
 	                            <a class="nav-type-{{ sitem.type }}" href="{{ sitem.url }}">{{ sitem.title }}</a>
