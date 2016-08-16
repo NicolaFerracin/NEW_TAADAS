@@ -5,6 +5,8 @@ $(function(){
     
     function positionFooter() {
      
+     
+     
      // get body height
       var bodyH = $("body").height();
       // doc height
@@ -44,8 +46,8 @@ $(function(){
   });
   
   function navBarCompensation(){
-    
      var n = $('.navbar-fixed-top');
+     n.css({position:'fixed'});
       var navH = n.height();
       n.parent().css({'padding-top':navH+'px'});
 

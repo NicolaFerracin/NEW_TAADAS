@@ -261,7 +261,8 @@ site.init({
       {
         name: 'iconAndText',
         label: 'Iconic header',
-        type: 'array',
+        instructions: 'Look for icons names at http://fontawesome.io/icons/',
+        
         icon:'fa-heart',
         schema: [{
           name: 'icon',
@@ -276,7 +277,43 @@ site.init({
           label:'Big size',
           type: 'boolean'}
           ]
-      }]
+      },
+      {
+        name: 'bigIcon',
+        label: 'Big Icon Header',
+        instructions: 'Look for icons names at http://fontawesome.io/icons/',
+        icon:'fa-heart fa-2x',
+        schema: [
+          { 
+            name: 'icon',
+            label:'Fontawesome icon name',
+            type: 'string'}
+          ]
+      },
+      {
+        name: 'accordeon',
+        label: 'Accordeon',
+        icon:'fa-bars',
+        type: 'array',
+        schema: [
+          {
+            name: 'boxes',
+            type: 'array',
+            schema:[
+              {
+                name: 'title',
+                label:'Title',
+                type: 'string'},
+              {
+                name: 'accbody',
+                label:'Item\'s Body',
+                type: 'area'}
+              ]
+          }
+          ]
+      }
+      
+      ]
     }
   },
 
@@ -455,7 +492,7 @@ site.init({
 
 
     site.apos.addLocal('editorFullControlls', function() {
-      return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+      return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
     });
     return callback(null);
     

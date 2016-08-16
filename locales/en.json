@@ -288,5 +288,9 @@
 	"<i class=\"fa fa-picture-o\"></i> Iconic header": "<i class=\"fa fa-picture-o\"></i> Iconic header",
 	"Inverse color": "Inverse color",
 	"Big size": "Big size",
-	"Forum": "Forum"
+	"Forum": "Forum",
+	"Big Icon Header": "Big Icon Header",
+	"Item's Body": "Item's Body",
+	"Accordeon": "Accordeon",
+	"Accordeons Id (should be unique for page)": "Accordeons Id (should be unique for page)"
 }

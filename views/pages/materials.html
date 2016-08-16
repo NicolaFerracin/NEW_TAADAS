@@ -29,10 +29,42 @@
         <!-- Image Header -->
         <div class="row">
 			<div class="col-lg-3">
-				<iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="550" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
+				
+				{{ aposArea(page, 'body1', {
+                  controls: editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+                  ]
+                }) }}
 			</div>
             <div class="col-lg-9 apos-fillw-image">
                  {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
+                 
+                 <div class="row" style="margin-top:15px">
+        			<div class="col-lg-6">
+        				{{ aposArea(page, 'body2', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+        			</div>
+                    <div class="col-lg-6">
+                        {{ aposArea(page, 'body3', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+                          ]
+                        }) }}
+                    </div>
+                </div>
+                 
             </div>
         </div>
         <!-- /.row -->
@@ -53,10 +85,7 @@
                 <div class="panel panel-default text-center">
 				
                     <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i>
-                        </span>
+                       {{ aposSingleton(page, 'rowheader1', 'bigIcon') }}
                     </div>
                     <div class="panel-body">
                         {{ aposArea(page, 'handouts', {
@@ -74,10 +103,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-spinner fa-stack-1x fa-inverse"></i>
-                        </span>
+                        {{ aposSingleton(page, 'rowheader2', 'bigIcon') }}
                     </div>
                     <div class="panel-body">
                          {{ aposArea(page, 'presentations', {
@@ -95,10 +121,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-user-md fa-stack-1x fa-inverse"></i>
-                        </span>
+                        {{ aposSingleton(page, 'rowheader3', 'bigIcon') }}
                     </div>
                     <div class="panel-body">
                         {{ aposArea(page, 'assessment1', {
@@ -116,10 +139,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                              <i class="fa fa-heart fa-stack-1x fa-inverse"></i>
-                        </span>
+                         {{ aposSingleton(page, 'rowheader4', 'bigIcon') }}
                     </div>
                     <div class="panel-body">
                          {{ aposArea(page, 'assessment2', {
