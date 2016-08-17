@@ -88,9 +88,6 @@ site.init({
       name: 'materials',
       label: 'Training Materials'
     }, {
-      name: 'membership-info',
-      label: 'Membership Info'
-    }, {
       name: 'publications',
       label: 'Publications'
     }, {
@@ -273,8 +270,16 @@ site.init({
           label:'Header text',
           type: 'string'},
           {
+          name: 'color',
+          label:'Color (CSS)',
+          type: 'string'},
+          {
           name: 'bigsize',
           label:'Big size',
+          type: 'boolean'},
+          {
+          name: 'center',
+          label:'Centralized',
           type: 'boolean'}
           ]
       },
@@ -468,28 +473,33 @@ site.init({
     }
 
 
+    
     //Testing to give DVD data to the browser
-    site.apos.pages.find({
-      "type": "dvd"
-    }).toArray(function(err, searchdvd) {
-      if (err) {
-        return callback(err);
-      }
-      site.apos.pushGlobalData({
-        dvdData: searchdvd
+    var renewDVDs = function () {
+        site.apos.pages.find({
+        "type": "dvd"
+      }).toArray(function(err, searchdvd) {
+        if (err) {
+          return callback(err);
+        }
+        site.apos.pushGlobalData({
+          dvdData: searchdvd
+        });
       });
-    });
-
-    site.apos.files.find({}).toArray(function(err, searchfiles) {
-      if (err) {
-        return callback(err);
-      }
-      site.apos.pushGlobalData({
-        fileData: searchfiles
+  
+      site.apos.files.find({}).toArray(function(err, searchfiles) {
+        if (err) {
+          return callback(err);
+        }
+        site.apos.pushGlobalData({
+          fileData: searchfiles
+        });
+  
       });
 
-    });
-
+    }
+    renewDVDs();
+   
 
     site.apos.addLocal('editorFullControlls', function() {
       return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];

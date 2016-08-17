@@ -56,18 +56,24 @@ $('#dvd-submit-form').on('click', function(e){
                 data: data.toString(),
                 cache: false,
                 success: function() {
-			window.location.href="thank-you";	
+		
 					console.log("success");
 					
 					//pass all data to google analytic
-					ga('send', 'event', 'DVDs-order');
 				  try{
 					rows.each(function(index, row) {
 						var title = $(this).find('td.title').text();
 						var quantity = $(this).find('td.quantity > input').val();
-						ga('send', 'event', 'DVDs', 'order', title, quantity);
+						quantity = parseInt(quantity);
+						while (quantity>0) {
+							ga('send', 'event', 'DVD_', 'order', title);
+							quantity--;
+						}
 					})
             	  } catch(e){}
+            	  
+            	  	window.location.href="/thank-you";	
+            	  
                 },
                 error: function() {
 					console.log("error");

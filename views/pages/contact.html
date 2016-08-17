@@ -14,14 +14,6 @@
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Page Heading/Breadcrumbs -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Contact
-                </h1>
-            </div>
-        </div>
-        <!-- /.row -->
 
         <!-- Content Row -->
         <div class="row">
@@ -39,27 +31,27 @@
 			<!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6446.328707973921!2d-86.69763072442426!3d36.11385346282491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88646ed955268cf7%3A0xa6a3cc917e3078a2!2sTaadas!5e0!3m2!1sen!2sus!4v1468171316215" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                {{ aposArea(page, 'mapplace', {
+                  controls: editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+
+                  ]
+                }) }}
             </div>
 			<!-- Contact Details Column -->
             <div class="col-md-4">
-                <h3>Contact Details</h3>
-                <p>
-                    Airport Executive Plaza<br>1321 Murfreesboro Pike Suite 155<br>Nashville, TN 37217<br>
-                </p>
-                <p><i class="fa fa-phone"></i> 
-                    <abbr title="Phone">P</abbr>: 615-780-5901</p>
-                <p><i class="fa fa-envelope-o"></i> 
-                    <abbr title="Email">E</abbr>: <a href="mailto:mail@taadas.org">mail@taadas.org</a>
-                </p>
-                <ul class="list-unstyled list-inline list-social-icons">
-                    <li>
-                        <a href="https://www.linkedin.com/company/taadas"><i class="fa fa-linkedin-square fa-2x"></i></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/taadas_media"><i class="fa fa-twitter-square fa-2x"></i></a>
-                    </li>
-                </ul>
+                {{ aposArea(page, 'details', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+
+                      ]
+                }) }}
             </div>
 			
 		</div>

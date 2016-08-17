@@ -54,17 +54,21 @@ $('#publication-submit-form').on('click', function(e){
                 success: function() {
 		        console.log('success');
 		        
-		        	ga('send', 'event', 'publications-order');
+
 		        	try{
 		    		//pass all data to google analytic
 					rows.each(function(index, row) {
 						var title = $(this).find('td.title').text();
 						var quantity = $(this).find('td.quantity > input').val();
-						ga('send', 'event', 'publications', 'order', title, quantity);
+						quantity = parseInt(quantity);
+						while (quantity>0) {
+							ga('send', 'event', 'Publication_', 'order', title);
+							quantity--;
+						}
 					})
 		        	} catch(e){}
 		        
-					window.location.href="thank-you";
+					window.location.href="/thank-you";
 					
                 },
                 error: function() {

@@ -292,5 +292,7 @@
 	"Big Icon Header": "Big Icon Header",
 	"Item's Body": "Item's Body",
 	"Accordeon": "Accordeon",
-	"Accordeons Id (should be unique for page)": "Accordeons Id (should be unique for page)"
+	"Accordeons Id (should be unique for page)": "Accordeons Id (should be unique for page)",
+	"Color (CSS)": "Color (CSS)",
+	"Centralized": "Centralized"
 }
