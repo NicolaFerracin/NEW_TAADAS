@@ -271,7 +271,11 @@ site.init({
           type: 'string'},
           {
           name: 'color',
-          label:'Color (CSS)',
+          label:'Background Color (CSS)',
+          type: 'string'},
+          {
+          name: 'colorf',
+          label:'Text Color (CSS)',
           type: 'string'},
           {
           name: 'bigsize',
@@ -406,7 +410,7 @@ site.init({
 
 
       var html = '<div>' + table + '</hr>' + formInfo + '</div>';
-
+      var subject,user;
       if (req.headers.referer.match('publication')) {
         var subject = 'Publication Orders';
         var user = process.env.PUBLICATIONS_EMAIL;
@@ -414,8 +418,13 @@ site.init({
         var subject = 'DVD Orders';
         var user = process.env.DVD_EMAIL;
       } else {
-        var subject = 'Join as member request';
-        var user = process.env.JOIN_EMAIL;
+        if (formData.to) {
+          subject = formData.subj;
+          user = formData.to+'@taadas.org';
+        } else {
+          subject = 'Join as member request';
+          user = process.env.JOIN_EMAIL;
+        }
       }
 
       var mailOpts, smtpTrans;

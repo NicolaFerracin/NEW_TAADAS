@@ -294,5 +294,7 @@
 	"Accordeon": "Accordeon",
 	"Accordeons Id (should be unique for page)": "Accordeons Id (should be unique for page)",
 	"Color (CSS)": "Color (CSS)",
-	"Centralized": "Centralized"
+	"Centralized": "Centralized",
+	"Background Color (CSS)": "Background Color (CSS)",
+	"Text Color (CSS)": "Text Color (CSS)"
 }

@@ -47,7 +47,7 @@ $('#publication-submit-form').on('click', function(e){
 	data += identifiers;
 
 	$.ajax({
-                url: "../order",
+                url: "/order",
                 type: "POST",
                 data: data,
                 cache: false,

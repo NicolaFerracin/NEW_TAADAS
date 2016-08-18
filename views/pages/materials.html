@@ -40,8 +40,14 @@
                 }) }}
 			</div>
             <div class="col-lg-9 apos-fillw-image">
-                 {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
-                 
+                 {{ aposArea(page, 'header', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}
                  <div class="row" style="margin-top:15px">
         			<div class="col-lg-6">
         				{{ aposArea(page, 'body2', {
@@ -84,7 +90,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
 				
-                   {{ aposSingleton(page, 'rowheader1', 'bigIcon') }}
+                   {{ aposSingleton(page, 'rowheader1', 'iconAndText') }}
                     <div class="panel-body">
                         {{ aposArea(page, 'handouts', {
                           controls: editorFullControlls(),
@@ -100,7 +106,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
-                    {{ aposSingleton(page, 'rowheader2', 'bigIcon') }}
+                    {{ aposSingleton(page, 'rowheader2', 'iconAndText') }}
                     <div class="panel-body">
                          {{ aposArea(page, 'presentations', {
                           controls: editorFullControlls(),
@@ -116,7 +122,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
-                    {{ aposSingleton(page, 'rowheader3', 'bigIcon') }}
+                    {{ aposSingleton(page, 'rowheader3', 'iconAndText') }}
                     <div class="panel-body">
                         {{ aposArea(page, 'assessment1', {
                           controls: editorFullControlls(),
@@ -132,7 +138,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
                 <div class="panel panel-default text-center">
-                     {{ aposSingleton(page, 'rowheader4', 'bigIcon') }}
+                    {{ aposSingleton(page, 'rowheader4', 'iconAndText') }}
                     <div class="panel-body">
                          {{ aposArea(page, 'assessment2', {
                           controls: editorFullControlls(),
