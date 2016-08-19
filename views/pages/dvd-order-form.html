@@ -6,17 +6,7 @@
 {# be sure to call super() so that any pages inheriting this one will be appending classes, not overriding them. #}
 
 {% block main %}
- {{ aposArea(page, 'body', {
-                      controls: editorFullControlls(),
-                      styles: [
-                        { value: 'p', label: 'Text' },
-                        { value: 'h1', label: 'Heading 1' },
-                        { value: 'h3', label: 'Heading 3' }
-
-                      ]
-                    }) }}
 
   {{  orderForm('dvd') }}
-
-
+  
 {% endblock %}

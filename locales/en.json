@@ -296,5 +296,13 @@
 	"Color (CSS)": "Color (CSS)",
 	"Centralized": "Centralized",
 	"Background Color (CSS)": "Background Color (CSS)",
-	"Text Color (CSS)": "Text Color (CSS)"
+	"Text Color (CSS)": "Text Color (CSS)",
+	"External Link": "External Link",
+	"Files Archive": "Files Archive",
+	"File": "File",
+	"By File title": "By File title",
+	"Type File titles here": "Type File titles here",
+	"Max Files Shown": "Max Files Shown",
+	"Submit: Files": "Submit: Files",
+	"Show Files With These Tags": "Show Files With These Tags"
 }

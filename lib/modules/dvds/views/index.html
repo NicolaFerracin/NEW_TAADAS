@@ -1,0 +1,71 @@
+
+{% extends "layout.html" %}
+
+{% include "_macros.html" %}
+
+{% block bodyClass %}{{ super() }} apos-snippet-page{% endblock %}
+
+{# Output the current content of the page, with buttons to edit it #}
+
+{% block subnav %}
+    <ol class="children">
+    {% for relative in page.children %}
+      <li><a href="{{ relative.url }}">{{ relative.title | e }}</a></li>
+    {% endfor %}
+    </ol>
+  {{ snippetFilters() }}
+{% endblock %}
+
+{% block main %}
+<div class="container orders-page-content">
+  <div class="row">
+    <div class="col-lg-12">
+      {{ aposArea(page, 'beforeContent', {
+        controls:editorFullControlls(),
+        styles: [
+          { value: 'p', label: 'Text' },
+          { value: 'h1', label: 'Heading 1' },
+          { value: 'h3', label: 'Heading 3' }
+        ]
+      }) }}
+    </div>
+  </div>
+  <div class="row">
+     <div class="col-lg-4">
+      <div id="my-requests">
+      </div>
+    </div>
+    <div class="col-lg-8">
+       <div class="input-group">
+        <input type="text" id="pub-search-input" class="form-control" placeholder="Search"/>
+        <span class="input-group-btn">
+          <button id="icon-clear-search" class="btn btn-default" type="button"><i class="fa fa-remove"></i></button>
+        </span>
+        <span class="input-group-btn">
+          <button id="icon-search" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+        </span>
+       
+      </div>
+      <div class="apos-snippets publications">
+        {{ renderSnippets(items, page.url) }}
+      </div>
+    </div>
+  </div>
+  <div class="pager">
+       {{ renderPager(pager, page.url) }}  
+  </div>
+    <div>
+       <script src="https://fb.me/react-15.0.1.min.js"></script>
+       <script src="https://fb.me/react-dom-15.0.1.min.js"></script>
+       <script>
+         window.formType = 'dvd';
+       </script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+       <script type="text/babel" src="/js/orders.js">
+       </script>
+    </div>
+</div>
+
+{% endblock %}
+
+

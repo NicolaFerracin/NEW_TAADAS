@@ -5,28 +5,53 @@
 
 {%- macro renderSnippets(items, pageUrl) -%}
   {%- if items -%}
-    {%- for item in items -%}
-      {{ renderSnippet(item, pageUrl) }}
-    {%- endfor -%}
+    {%- if items.length -%}
+      {%- for item in items -%}
+        {{ renderSnippet(item, pageUrl) }}
+      {%- endfor -%}
+    {%- else -%}
+      <h4>Nothing with your request.</h4>
+    {%- endif -%}
   {%- else -%}
     <h4>There are no snippets yet.</h4>
   {%- endif -%}
 {%- endmacro -%}
 
 {%- macro renderSnippet(item, pageUrl, options) -%}
-  <div class="apos-snippet">
-    {%- if options.edit and item._edit -%}
-      <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
-    {%- endif -%}
-    {%- if not item.hideTitle -%}
-      <h4>
-        {{ item.title | e }}
-      </h4>
-    {%- endif -%}
-    {{ aposArea(item, 'body') }}
 
+    <div class="apos-edit-snippet-button">
+        {%- if item._edit -%}
+          <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
+        {%- endif -%}
+    </div>
+        {%- if not item.hideTitle -%}
+        <h4>
+          {{ item.title | e }}
+        </h4>
+        {%- endif -%}
+        <p> {{ item.description  }}</p>
+        <div class="row">
+          <div class="col-lg-3">
+            {% if item.thumbnail.items[0].ids.lenght %} 
+              {{ aposArea(item, 'thumbnail')}}
+            {% else %}
+              <img style="width:100%" class="apos-slideshow-image" alt="cd" data-image="" src="https://taadas.s3.amazonaws.com/files/117010121662454535-cd.full.jpg">
+            {% endif %}
+          </div>
+          <div class="col-lg-9">
+          {{ item.body }}
+          </div>
+        </div>
+      
+      <div class="row">
+        <div class="order-block col-lg-12">
+          <button class="order btn btn-default pull-right" pubtitle="{{ item.title }}" identifier="{{ item.identifier }}">Request this item</button>
+        </div>
+      </div>
 
-  </div>
+      <div class="col-lg-12">
+        <hr></hr>
+      </div>
 {%- endmacro -%}
 
 {%- macro snippetText(name, label, options = {}) -%}
@@ -162,7 +187,7 @@
     <input type="text" name="search" class="apos-search-input" placeholder="Search" />
     <a href="#" class="apos-search-submit-button">
       <i class="icon icon-search"></i>
-      <input type="submit"  data-search-submit class="apos-search-submit" value="{{ __('Go') }}" />
+      <!-- <input type="submit"  data-search-submit class="apos-search-submit" value="{{ __('Go') }}" /> -->
     </a>
 <!--     <a href="#" class="apos-remove-search" data-remove-search>
 

@@ -33,6 +33,11 @@
           {% if (permissions.admin or permissions['admin-publication']) %}
             {{ aposPublicationMenu({ edit: true}) }}
          {% endif %}
+         
+         
+         {% if permissions.admin %}
+            {{ aposFileuplodedMenu({ edit: true}) }}
+         {% endif %}
           
           <!-- {% if edit %} -->
             <div class="apos-admin-bar-item apos-preview-toggle">

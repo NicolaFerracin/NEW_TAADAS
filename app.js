@@ -5,11 +5,6 @@ require('dotenv').config();
 
 site.init({
   
-  sanitizeHtml: {
-    allowedAttributes:{'*':['*']},
-    allowedTags: ['a', 'p','h1','h2','h3','h4','h5','h6','br','hr','span','div','code','i','b']
-  },
-  
 
   // This line is required and allows apostrophe-site to use require() and manage our NPM modules for us.
   root: module,
@@ -21,11 +16,11 @@ site.init({
   address: process.env.IP,
   port: process.env.PORT,
   redirectAfterLogin: function(user) {
-   // if (user.permissions.admin) {
+  if (user) {
       return '/join-taadas/membership-info/member-s-area';
-   // } else {
-   //   return '/';
-   // }
+   } else {
+      return '/';
+   }
   },
   
   
@@ -67,9 +62,6 @@ site.init({
 
   pages: {
     types: [{
-      name: 'forum',
-      label: 'Forum'
-    },{
       name: 'default',
       label: 'Default'
     }, {
@@ -90,16 +82,19 @@ site.init({
     }, {
       name: 'publications',
       label: 'Publications'
-    }, {
-      name: 'dvd-orders',
+    },{
+      name: 'dvds',
       label: 'DVD Orders'
+    },{
+      name: 'filesuploded',
+      label: 'Files Archive'
     }, {
       name: 'dvd-order-form',
       label: 'DVD Order Form'
     }, {
       name: 'publication-order-form',
       label: 'Publication Order Form'
-    }, {
+    },{
       name: 'events',
       label: 'Events'
     }, {
@@ -217,6 +212,23 @@ site.init({
         name: 'physical',
         type: 'boolean',
         label: 'physical'
+      }]
+    },
+    'filesuploded': {
+      removeFields: [ 'thumbnail'],
+      extend: 'apostrophe-snippets',
+      name: 'filesuploded',
+      label: 'Files',
+      instance: 'fileuploded',
+      instanceLabel: 'File',
+      addFields: [{
+        name: 'title',
+        type: 'string',
+        label: 'Title'
+      }, {
+        name: 'description',
+        type: 'string',
+        label: 'Description'
       }]
     },
     'apostrophe-schema-widgets': {
@@ -339,7 +351,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['site', 'custom-styles'],
-    scripts: ['_site-compiled', 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'pagination', 'global']
+    scripts: ['_site-compiled', 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
   },
 
 
@@ -481,43 +493,27 @@ site.init({
       return 'https://taadas.s3.amazonaws.com';
     }
 
-
-    
-    //Testing to give DVD data to the browser
-    var renewDVDs = function () {
-        site.apos.pages.find({
-        "type": "dvd"
-      }).toArray(function(err, searchdvd) {
-        if (err) {
-          return callback(err);
-        }
-        site.apos.pushGlobalData({
-          dvdData: searchdvd
-        });
-      });
-  
-      site.apos.files.find({}).toArray(function(err, searchfiles) {
-        if (err) {
-          return callback(err);
-        }
-        site.apos.pushGlobalData({
-          fileData: searchfiles
-        });
-  
-      });
-
-    }
-    renewDVDs();
-   
-
     site.apos.addLocal('editorFullControlls', function() {
       return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
     });
-    return callback(null);
     
-
-
-    callback(null);
+   site.apos.addLocal('normalizeNavItem', function(item) {
+        if (item.title.indexOf('#')>=0) {
+          var a = item.title.split('#');
+          item.url = a[1];
+          item.title = a[0];
+          item.target="_blank";
+        }
+    });
+    
+    return callback(null);
+  },
+  
+    sanitizeHtml: {
+    allowedTags: false,
+    allowedAttributes: false
   }
+  
+
 
 });

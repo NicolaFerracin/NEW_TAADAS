@@ -1,9 +1,15 @@
 $(function() {
 	
-	var items = JSON.parse(sessionStorage.getItem('publicationOrders'));
-
+	debugger;
+	var storeName = window.formType+'Orders';
+	
+	
+	var items = JSON.parse(sessionStorage.getItem(storeName)) || [];
+	
+	
+	
 	items.forEach(function(el) {
-		$('#publication-orders').append('<tr><td class="title">' + el.title + '</td>' + '<td class="quantity"><input type="number" min="1" max="100" value=' + el.qty + '></input></td><td class="identifier">' + el.identifier + '</td><td><button class="delete">X</button></td></tr>');
+		$('#orders-table').append('<tr><td class="title">' + el.title + '</td>' + '<td class="quantity"><input type="number" min="1" max="100" value=' + el.qty + '></input></td><td class="identifier" style="display:none">' +(el.identifier||'&nbsp;') + '</td><td><button class="delete">X</button></td></tr>');
 
 	});
 
@@ -12,19 +18,21 @@ $(function() {
 	});
 
 
-$('#publication-submit-form').on('click', function(e){	
+$('#submit-form').on('click', function(e){	
 	e.preventDefault();
 
-	var data = $('#publication-orders-form').serialize();
+	var data = $('#orders-form').serialize();
 
 	// add list of ordered titles, identifiers, and quantity to data
 
-	var rows = $('#publication-orders > tr');
+	var rows = $('#orders > tr');
 
 	var titles = 'titles=';
 	var quantities = 'quantities=';
 	var identifiers = 'identifiers=';
-
+	
+	debugger;
+	
 	rows.each(function(index, row) {
 		var title = $(this).find('td.title').text();
 		var quantity = $(this).find('td.quantity > input').val();
@@ -52,7 +60,7 @@ $('#publication-submit-form').on('click', function(e){
                 data: data,
                 cache: false,
                 success: function() {
-		        console.log('success');
+			        
 		        
 
 		        	try{
@@ -62,9 +70,10 @@ $('#publication-submit-form').on('click', function(e){
 						var quantity = $(this).find('td.quantity > input').val();
 						quantity = parseInt(quantity);
 						while (quantity>0) {
-							ga('send', 'event', 'Publication_', 'order', title);
+							ga('send', 'event', 'order', window.formType, title);
 							quantity--;
 						}
+						sessionStorage.setItem(storeName,'[]');
 					})
 		        	} catch(e){}
 		        
