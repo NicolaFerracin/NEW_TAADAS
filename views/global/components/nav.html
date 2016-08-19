@@ -1,7 +1,7 @@
 {% macro nav(page, options) %}
 	<nav style="position:relative" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	  <div class="container">
-		<a class="brandimage" style="margin-left:calc(50% - 254px)" href="/"><img src="/images/taadas-logo-white.png" style="height:100px;margin-top:15px;"></a>
+	  <div class="container" style="text-align:center">
+		<a class="brandimage" href="/"><img src="/images/taadas-logo-white.png" style="height:100px;margin-top:15px;"></a>
 		<div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -11,7 +11,7 @@
             </button>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-		  <ul class="nav navbar-nav navbar-right">
+		  <ul class="nav navbar-nav">
 		    <li>
 		    	{% if not page.ancestors.length %}
 		    		<a href="/" class="active">{{ page.title }}</a>

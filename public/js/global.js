@@ -37,6 +37,21 @@ $(function(){
     $(window).resize(positionFooter)
     positionFooter();
     
+    var brandImg = $('.brandimage').find('img');
+    var decreasingPos = 400;
+    
+    $(document).on('scroll',function(e){
+      
+      if ($(window).scrollTop()>decreasingPos) {
+        brandImg.css({height:'25px',transition:'0.3s'});
+      } else {
+        brandImg.css({height:'100px',transition:'0.3s'});
+      }
+    });
+      if ($(window).scrollTop()>decreasingPos) {
+        brandImg.css({height:'25px'});
+      }
+    
     
   });
 
