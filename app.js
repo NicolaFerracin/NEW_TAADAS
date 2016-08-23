@@ -332,7 +332,33 @@ site.init({
               ]
           }
           ]
+      },
+      
+      {
+        name: 'banner',
+        label: 'Banner',
+        icon:'fa-image',
+        schema: [
+          {name: 'image',
+            label: 'Image',
+            type: 'singleton',
+            widgetType: 'slideshow',
+            options: {
+              limit: 1
+            }
+          },
+          { 
+            name: 'url',
+            label:'Hyperlink',
+            type: 'string'},
+          { 
+            name: 'newtab',
+            label:'Open in new tab',
+            type: 'boolean'}
+          ]
+        
       }
+
       
       ]
     }
@@ -494,7 +520,7 @@ site.init({
     }
 
     site.apos.addLocal('editorFullControlls', function() {
-      return  [ 'slideshow', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+      return  [ 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
     });
     
    site.apos.addLocal('normalizeNavItem', function(item) {
