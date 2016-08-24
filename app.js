@@ -1,7 +1,11 @@
 var site = require('apostrophe-site')();
 var bodyParser = require('body-parser');
 
+
 require('dotenv').config();
+
+var discourse_sso = require('discourse-sso');
+var sso = new discourse_sso(process.env.DISCOURCE_SSO_SECRET);
 
 site.init({
   
@@ -499,8 +503,53 @@ site.init({
         }
       });
     });
+    
+    
+     site.app.get('/discourse/sso', function(req, res) {
+
+        if (req.user) {
+          //pass login info
+          
+          
+          var payload = req.query.sso;
+          var sig = req.query.sig;
+          if(sso.validate(payload, sig)) {
+            var nonce = sso.getNonce(payload);
+            
+            var userparams = {
+                // Required, will throw exception otherwise 
+                "nonce": nonce,
+                "external_id": req.user._id,
+                "email": (req.user.username!=='admin')?req.user.email:process.env.DISCOURCE_ADMIN_EMAIL,
+                // Optional 
+                "username": (req.user.username!=='admin')?req.user.username:process.env.DISCOURCE_ADMIN_LOGIN,
+                "name": req.user.title
+            };
+            var q = sso.buildLoginString(userparams);
+            
+            
+            res.redirect('http://158.69.220.239/session/sso_login?' + q);
+          } else {
+            res.send('error');
+          }
+          
+          
+          
+          
+        } else {
+          res.redirect('/login');
+        }
+       
+        
+        
+      });
+    
+    
     return callback(null);
   },
+
+  
+
 
   afterInit: function(callback) {
     // We're going to do a special console message now that the
