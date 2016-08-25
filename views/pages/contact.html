@@ -17,17 +17,19 @@
 
         <!-- Content Row -->
         <div class="row">
-			<div class="page-header text-center">
-			     {{ aposArea(page, 'aboutus', {
-                      controls: editorFullControlls(),
-                      styles: [
-                        { value: 'p', label: 'Text' },
-                        { value: 'h1', label: 'Heading 1' },
-                        { value: 'h3', label: 'Heading 3' }
-
-                      ]
-                    }) }}
+    			<div class="col-md-12">
+    			     {{ aposArea(page, 'aboutus', {
+                          controls: editorFullControlls(),
+                          styles: [
+                            { value: 'p', label: 'Text' },
+                            { value: 'h1', label: 'Heading 1' },
+                            { value: 'h3', label: 'Heading 3' }
+    
+                          ]
+                        }) }}
+    			</div>
 			</div>
+			<div class="row">
 			<!-- Map Column -->
             <div class="col-md-8">
                 <!-- Embedded Google Map -->

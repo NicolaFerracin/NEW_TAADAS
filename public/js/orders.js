@@ -139,23 +139,41 @@ $(function() {
 	
 		ReactDOM.render(<OrdersApp/>, document.getElementById('my-requests'));
 		
-		
+		var ordersPositionFirst = true;
 			
 		var realignOrdersList = function(){
 			var orders = $('#my-requests');
+			if (document.body.clientWidth>=768) {
 				
-			
-			var navH = $('.navbar-fixed-top').height()+20;
-			var scrollY = $(window).scrollTop();
-			var parentY = orders.parent().offset().top;
-			var bodyH = $('body').height();
-			orders.css({'margin-top': Math.max(0, Math.min($('.orders-page-content').height()-(orders.height()+280),  scrollY + navH - parentY  - Math.max(0,(orders.height()+80-(bodyH-navH)))))+'px'});
-		
+				
+				if(!ordersPositionFirst){
+					ordersPositionFirst = true;
+					debugger;
+					orders.parent().parent().prepend(orders.parent());
+				}
+				
+					
+				
+				var navH = $('.navbar-fixed-top').height()+20;
+				var scrollY = $(window).scrollTop();
+				var parentY = orders.parent().offset().top;
+				var bodyH = $('body').height();
+				orders.css({'margin-top': Math.max(0, Math.min($('.orders-page-content').height()-(orders.height()+280),  scrollY + navH - parentY  - Math.max(0,(orders.height()+80-(bodyH-navH)))))+'px'});
+			} else {
+				if(ordersPositionFirst){
+					ordersPositionFirst = false;
+					debugger;
+					orders.parent().parent().append(orders.parent());
+					orders.css({'margin-top': 0});
+				}
+				
+			}
 		
 		}
 		
 	
 		$(document).on('scroll',realignOrdersList);
+		$(document).on('resize',realignOrdersList);
 
 
 		

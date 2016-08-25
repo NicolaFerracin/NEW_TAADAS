@@ -20,7 +20,7 @@
 {%- macro renderSnippet(item, pageUrl, options) -%}
   <div class="filearchive-item">
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-sm-7">
         <div class="apos-edit-snippet-button">
             {%- if item._edit -%}
               <a class="apos-control apos-ui apos-button apos-edit-snippet-button" data-edit-{{ item.type | css }} data-slug="{{ item.slug }}" href="#"><i class="icon-pencil"></i> Edit</a>
@@ -33,7 +33,7 @@
         {%- endif -%}
         <p> {{ item.description  }}</p>
       </div>
-      <div class="col-lg-5">
+      <div class="col-sm-5">
         {{ aposSingleton(item, 'body', 'files') }}
       </div>
     </div>

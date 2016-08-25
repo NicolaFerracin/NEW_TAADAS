@@ -43,13 +43,13 @@ $(function(){
     $(document).on('scroll',function(e){
       
       if ($(window).scrollTop()>decreasingPos) {
-        brandImg.css({height:'25px',transition:'0.3s'});
+        brandImg.css({width:'87px',transition:'0.3s'});
       } else {
-        brandImg.css({height:'100px',transition:'0.3s'});
+        brandImg.css({width:'348px',transition:'0.3s'});
       }
     });
       if ($(window).scrollTop()>decreasingPos) {
-        brandImg.css({height:'25px'});
+        brandImg.css({width:'87px'});
       }
     
     
