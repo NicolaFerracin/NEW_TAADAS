@@ -23,7 +23,14 @@
         <div class="row">
             <!-- Sidebar Column -->
             <div class="col-md-3">
-                <iframe  src="https://www.eventbrite.com/calendar-widget?eid=21684469833" frameborder="0" height="550" width="250" marginheight="0" marginwidth="20" allowtransparency="true"></iframe>
+                	{{ aposArea(page, 'body2', {
+                  controls: editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+                  ]
+                }) }}
             </div>
             <!-- Content Column -->
             <div class="col-md-9">

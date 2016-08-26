@@ -58,12 +58,16 @@ $(function(){
   function height() {
     return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
   }
-  });
   
-  function navBarCompensation(){
-     var n = $('.navbar-fixed-top');
-     n.css({position:'fixed'});
-      var navH = n.height();
-      n.parent().css({'padding-top':navH+'px'});
+  $('a.apos-files-name').attr('target','_blank');
+  
+  
+});
+  
+function navBarCompensation(){
+   var n = $('.navbar-fixed-top');
+   n.css({position:'fixed'});
+    var navH = n.height();
+    n.parent().css({'padding-top':navH+'px'});
 
-  }
+}
