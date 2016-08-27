@@ -1,8 +1,9 @@
-{% set size = 'full' %}
-{% if options.size %}
-  {% set size = options.size %}
-{% endif %}
-
+{% if item._items.length %}
+  {% set size = 'full' %}
+  {% if options.size %}
+    {% set size = options.size %}
+  {% endif %}
+  
   {% block items %}
     <ul data-slideshow-items class="apos-slideshow-items">
       {% for file in item._items %}
@@ -10,7 +11,7 @@
           {# Make the first image initially current #}
           <li data-slideshow-item class="apos-slideshow-item {% if loop.first %}apos-current apos-first {% endif %}{% if loop.last %}apos-last {% endif %}" style='background-image:url("{{ aposFilePath(file, { size: size }) }}")')>
             {% if item.showCredits and file.credit %}
-              <a class="item-href" target="_blank" href="{{ file.credit }}">
+              <a class="item-href"{% if file.credit[0] != '/' %} target="_blank"{% endif %} href="{{ file.credit }}">
             {% endif %}
             
           
@@ -40,10 +41,12 @@
     </ul>
   {% endblock %}
   
-  
-{% block arrows %}
-  {% if item._items.length > 1 %}
-    <a href="#" data-next class="apos-slideshow-button apos-slideshow-next">{{ __('Next') }}</a>
-    <a href="#" data-previous class="apos-slideshow-button apos-slideshow-prev">{{ __('Previous') }}</a>
-  {% endif %}
-{% endblock %}
+  {% block arrows %}
+    {% if item._items.length > 1 %}
+      <a href="#" data-next class="apos-slideshow-button apos-slideshow-next">{{ __('Next') }}</a>
+      <a href="#" data-previous class="apos-slideshow-button apos-slideshow-prev">{{ __('Previous') }}</a>
+    {% endif %}
+    
+  {% endblock %}
+
+{% endif %}
