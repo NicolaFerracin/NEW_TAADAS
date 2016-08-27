@@ -1,0 +1,49 @@
+{% set size = 'full' %}
+{% if options.size %}
+  {% set size = options.size %}
+{% endif %}
+
+  {% block items %}
+    <ul data-slideshow-items class="apos-slideshow-items">
+      {% for file in item._items %}
+        {% if ((loop.index0 < options.limit) or (not options.limit)) %}
+          {# Make the first image initially current #}
+          <li data-slideshow-item class="apos-slideshow-item {% if loop.first %}apos-current apos-first {% endif %}{% if loop.last %}apos-last {% endif %}" style='background-image:url("{{ aposFilePath(file, { size: size }) }}")')>
+            {% if item.showCredits and file.credit %}
+              <a class="item-href" target="_blank" href="{{ file.credit }}">
+            {% endif %}
+            
+          
+           <img class="apos-slideshow-image" alt="{{file.title | e|nlbr}}" data-image src="{{ aposFilePath(file, { size: size }) }}" />
+            
+            {% if (item.showDescriptions and file.description and (not options.userOptions.disableDescriptions)) or (item.showTitles and file.title and (not options.userOptions.disableTitles)) %}
+              <div class="apos-slideshow-description-container">
+                
+               
+                  <div class="apos-slideshow-description">
+                    {% if item.showTitles and file.title %}<h2>{{ file.title }}</h2>{% endif %}
+                     {% if item.showDescriptions and file.description and (not options.userOptions.disableDescriptions) %}
+                    <p>
+                      {{ file.description | nlbr }}
+                    </p>
+                    {% endif %}
+                  </div>
+                
+              </div>
+            {% endif %}
+            {% if item.showCredits and file.credit %}
+              </a>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endblock %}
+  
+  
+{% block arrows %}
+  {% if item._items.length > 1 %}
+    <a href="#" data-next class="apos-slideshow-button apos-slideshow-next">{{ __('Next') }}</a>
+    <a href="#" data-previous class="apos-slideshow-button apos-slideshow-prev">{{ __('Previous') }}</a>
+  {% endif %}
+{% endblock %}

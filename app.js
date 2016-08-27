@@ -240,7 +240,7 @@ site.init({
         name: 'arrayOfBoxes',
         label: 'Boxes Image&Text',
         type: 'array',
-        icon:'fa-square-o',
+        icon:'fa4 fa4-fw fa4-square-o',
         schema: [{
           name: 'boxes',
           type: 'array',
@@ -276,7 +276,7 @@ site.init({
         label: 'Iconic header',
         instructions: 'Look for icons names at http://fontawesome.io/icons/',
         
-        icon:'fa-heart',
+        icon:'fa4 fa4-fw fa4-heart',
         schema: [{
           name: 'icon',
           label:'Fontawesome icon name',
@@ -307,7 +307,7 @@ site.init({
         name: 'bigIcon',
         label: 'Big Icon Header',
         instructions: 'Look for icons names at http://fontawesome.io/icons/',
-        icon:'fa-heart fa-2x',
+        icon:'fa4 fa4-fw fa4-heart fa4-2x',
         schema: [
           { 
             name: 'icon',
@@ -318,7 +318,7 @@ site.init({
       {
         name: 'accordeon',
         label: 'Accordeon',
-        icon:'fa-bars',
+        icon:'fa4 fa4-fw fa4-bars',
         type: 'array',
         schema: [
           {
@@ -341,7 +341,7 @@ site.init({
       {
         name: 'banner',
         label: 'Banner',
-        icon:'fa-image',
+        icon:'fa4 fa4-fw fa4-image',
         schema: [
           {name: 'image',
             label: 'Image',
