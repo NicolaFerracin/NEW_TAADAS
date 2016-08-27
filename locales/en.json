@@ -43,7 +43,7 @@
 	"Select Orientation": "Select Orientation",
 	"Show Titles": "Show Titles",
 	"Show Descriptions": "Show Descriptions",
-	"Show Credits": "Enable Hyperlink",
+	"Show Credits": "Show Credits",
 	"Recently Added In Media Chooser": "Recently Added In Media Chooser",
 	"Search": "Search",
 	"You have reached the limit of %s file(s) in this location.": "You have reached the limit of %s file(s) in this location.",
@@ -84,7 +84,7 @@
 	"Title": "Title",
 	"Description": "Description",
 	"Too long.": "Too long.",
-	"Credit": "Hyperlink",
+	"Credit": "Credits",
 	"Tags": "Tags",
 	"Type Here": "Type Here",
 	"Limit Reached!": "Limit Reached!",
@@ -307,5 +307,12 @@
 	"Show Files With These Tags": "Show Files With These Tags",
 	"Hyperlink": "Hyperlink",
 	"Banner": "Banner",
-	"Open in new tab": "Open in new tab"
+	"Open in new tab": "Open in new tab",
+	"New Blog Post": "New Blog Post",
+	"Blog Settings": "Blog Settings",
+	"Browse Blog Posts": "Browse Blog Posts",
+	"Browse Trash": "Browse Trash",
+	"Move Entire Blog to Trash": "Move Entire Blog to Trash",
+	"Blog Post Settings": "Blog Post Settings",
+	"Blog Post Versions": "Blog Post Versions"
 }

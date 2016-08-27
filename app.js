@@ -106,10 +106,10 @@ site.init({
       label: 'Members Area'
     }],
     tabOptions: {
-      depth: 2
+      depth: 4
     },
     descendantOptions: {
-      depth: 2
+      depth: 4
     }
 
   },
