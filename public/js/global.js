@@ -61,6 +61,13 @@ $(function(){
   
   $('a.apos-files-name').attr('target','_blank');
   
+  //hide emty columns
+  $('.hide-if-empty').each(function(){
+    if(!$(this).text().trim() && ($('img', this).length===0)) {
+      $(this).hide();
+    }
+  });
+  
   
 });
   
@@ -71,3 +78,4 @@ function navBarCompensation(){
     n.parent().css({'padding-top':navH+'px'});
 
 }
+
