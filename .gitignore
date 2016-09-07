@@ -15,5 +15,5 @@ public/js/_site-compiled.js
 #data/   push this folder bacaouse local.js has no more secret values, but just redirect it form .env file.
 config/
 .env
-dump/
+
 dump_/
