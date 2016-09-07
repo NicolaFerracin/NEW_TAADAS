@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"heroku_0nqgs5jf.aposVersions"},{"v":1,"key":{"pageId":1,"createdAt":-1},"name":"pageId_1_createdAt_-1","ns":"heroku_0nqgs5jf.aposVersions","safe":true}]}
