@@ -503,6 +503,11 @@ site.init({
     });
     
     
+     site.app.get('/backup', getDumpsList);
+     site.app.get('/backup/apply/:fn', applyDump);
+     site.app.get('/backup/download/:fn', downloadDump);
+     site.app.post('/backup/upload', uploadDump);
+     
      site.app.get('/discourse/sso', function(req, res) {
 
         if (req.user) {
@@ -589,4 +594,164 @@ site.init({
   
 
 
+
 });
+
+
+//==================================================================
+//=== backuping ====================================================
+//==================================================================
+
+var backupsDir =  __dirname+'/dump';
+
+function enumDumps(fullPath) {
+  var files = fs.readdirSync(backupsDir);
+  if (fullPath) {
+    return files.map(function(f){
+      return backupsDir+'/'+f;
+    });
+  } else {
+    return files;
+    
+  }
+}
+
+//backup database each night
+
+var fs = require('fs');
+var CronJob = require('cron').CronJob;
+var spawnSync = require('child_process').spawnSync;
+
+function execute(command) {
+  command=command.split(' ');
+  var ret = spawnSync(command.shift(), command);
+  
+
+  
+  return ret.stderr.toString();
+  // body...
+}
+
+//function puts(error, stdout, stderr) { console.log(stdout);console.log(stderr); }
+
+
+
+new CronJob('0 1 1 * * *', function() { //nightly at 01:01
+//new CronJob('30 * * * * *', function() { //each minute
+
+  console.log('started backup process');
+  var d = new Date();
+  var dumpFN = __dirname+'/dump/dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
+  try{
+    if (process.env.PRODICTION) {
+      execute("mongodump --db taadas_db --gzip --archive="+dumpFN);
+    } else {
+      execute("mongodump --host ds011321.mlab.com --db heroku_0nqgs5jf --port 11321 -u taadas_admin -p ab39sf25481Q --gzip --archive="+dumpFN);
+    }
+
+  var expirationTime = new Date().getTime() - 864000000;
+  var files = enumDumps(true);
+  files.some(function(f){
+
+    var stats = fs.statSync(fn);
+    if (stats.ctime.getTime() < expirationTime) {
+      
+      fs.unlinkSync(fn);
+    }
+    
+  })
+  }catch(e){
+    console.log(e);
+    
+  }
+  
+}, null, true, 'America/Los_Angeles');
+
+
+//ui
+var nunjucks = require('nunjucks');
+
+function checkBackupPermissions(req, res){
+  if (!req.user || !req.user.permissions.admin) {
+    res.end('Access denied.');
+    
+  } else {
+    
+    return true;
+  }
+
+}
+
+var messageToShow='';
+
+function getDumpsList(req, res) {
+  if (checkBackupPermissions(req,res)) {
+    var template = fs.readFileSync(__dirname+'/views/backups-list.html', 'utf8');
+    res.end(nunjucks.renderString(template, {files:enumDumps(),message:messageToShow}));
+    messageToShow = '';
+    
+  }
+       
+}
+
+function uploadDump(req, res) {
+  if (checkBackupPermissions(req,res)) {
+    
+    if (req.files.dumpFile.name.indexOf('/')>=0 || req.files.dumpFile.name.indexOf('\\')>=0) {
+      res.end('wrong file name');
+      return;
+    }
+    
+    var source = fs.createReadStream(req.files.dumpFile.path);
+    var dest = fs.createWriteStream(backupsDir+'/'+req.files.dumpFile.name);
+    
+    source.pipe(dest);
+    source.on('end', function() {
+      messageToShow = 'Uploading success.';
+      res.redirect('/backup');
+    });
+    source.on('error', function(err) {
+      messageToShow = err;
+      res.redirect('/backup');
+    });
+
+    
+  }
+  
+}
+
+function downloadDump(req, res) {
+  if (checkBackupPermissions(req,res)) {
+    
+    
+    res.writeHead(200, {"Content-Type": "application/octet-stream","Content-Disposition": 'inline; filename="'+req.params.fn+'"'
+    });
+    fs.createReadStream(backupsDir+'/'+req.params.fn)
+      .pipe(res);
+
+  }
+}
+
+function applyDump(req, res) {
+  if (checkBackupPermissions(req,res)) {
+    
+  var dumpFN = backupsDir+'/'+req.params.fn;
+  try{
+    var called;
+    if (process.env.PRODICTION) {
+      messageToShow = execute("mongorestore --db taadas_db --gzip --drop --archive="+dumpFN);
+    } else {
+      messageToShow = execute("mongorestore --host ds011321.mlab.com --db heroku_0nqgs5jf --port 11321 -u taadas_admin -p ab39sf25481Q --gzip --drop --archive="+dumpFN);
+    }
+    messageToShow = messageToShow.split('\n').join('<br>');
+    res.redirect('/backup');
+  }catch(e){
+    console.log(e);
+    messageToShow = e;
+    res.redirect('/backup');
+  }
+  
+    
+  }
+};
+    

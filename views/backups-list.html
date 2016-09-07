@@ -1,0 +1,60 @@
+<head>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
+</head>
+
+<div class="container">
+    <h1>Taadas database backup system:</h1>
+    
+    <p>Backups contai dump of mongo database For taadas.org web site and not include forum or uploaded files. Each backup stored on server for 10 days and then will be removed. Backup dumping sheduled at 01:01 of each night.</p>
+    
+    <h3 style="background:#888;color:#fff;padding:15px">backups available to download or restore:</h3>
+    
+    {% for item in files %}
+    <div class="row" style="margin:20px; font-size:140%">
+      <div class="col-sm-4">
+          {{ item }}
+      </div>
+      <div class="col-sm-4">
+          <a target="_blank" href="/backup/download/{{item}}"><i class="fa4 fa4-cloud-download"></i> download</a>
+      </div>
+      <div class="col-sm-4">
+          <a style="color:orange" href="#" onclick="restoreClicked('{{item}}')"><i class="fa4 fa4-exclamation-triangle"></i> restore website to this state</a>
+      </div>
+    </div>
+    {% endfor  %}
+    
+    <script>
+        function restoreClicked(fn) {
+           if (prompt('A you sure you want aply dump"'+fn+'" to taadas.org database? type "yes"')==='yes') {
+               document.body.innerHTML = '<h1>Please wait, restoring in progress and may take few minutes...</h1>';
+               location.href='/backup/apply/'+fn;
+                
+           } else {
+               alert('operation canceled.')
+               
+           }
+            
+        }
+        
+        
+    </script>
+    
+    {% if message %}
+    <div class="alert alert-warning" role="alert">
+        {{ message | safe }}
+    </div>
+    {% endif %}
+     
+    <form  class="input-group" style="margin-top:30px; float:right; text-align:center" ref='uploadForm' 
+            id='uploadForm' 
+            action='/backup/upload' 
+            method='post' 
+            encType="multipart/form-data">
+        <h4>Dump uploading:</h4>
+                <input class="btn btn-default"  type="file" name="dumpFile" accept=".taadas_backup" required />
+                <input style="margin:20px" class="btn btn-success"  type='submit' value='Upload' />
+        </form>	
+    <h3 style="text-align:center; padding:20px"><a href="/">return to website</a></h3>
+   
+</div>
