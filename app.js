@@ -602,8 +602,12 @@ site.init({
 //=== backuping ====================================================
 //==================================================================
 
-var backupsDir =  __dirname+'/dump';
+var fs = require('fs');
 
+var backupsDir =  __dirname+'/dump';
+if (!fs.existsSync(backupsDir)){
+    fs.mkdirSync(backupsDir);
+}
 function enumDumps(fullPath) {
   var files = fs.readdirSync(backupsDir);
   if (fullPath) {
@@ -618,7 +622,7 @@ function enumDumps(fullPath) {
 
 //backup database each night
 
-var fs = require('fs');
+
 var CronJob = require('cron').CronJob;
 var spawnSync = require('child_process').spawnSync;
 
