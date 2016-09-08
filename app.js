@@ -774,7 +774,7 @@ function applyDump(req, res) {
 function createDumpNow(req, res) {
   if (checkBackupPermissions(req,res)) {
     var d = new Date();
-    var dumpFN = 'manual_dump_'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
+    var dumpFN = 'manual_dump_'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'_'+d.getHours()+'.'+d.getMinutes()+'.'+d.getSeconds()+'.taadas_backup';
     messageToShow = dumpDatabase(dumpFN) || ('dumped as '+dumpFN);
     res.redirect('/backup');
 
