@@ -602,9 +602,12 @@ site.init({
 //=== backuping ====================================================
 //==================================================================
 
+var keepDumpsForDays= 10;
+var backupsDir =  __dirname+'/dump';
+
+
 var fs = require('fs');
 
-var backupsDir =  __dirname+'/dump';
 if (!fs.existsSync(backupsDir)){
     fs.mkdirSync(backupsDir);
 }
@@ -640,31 +643,32 @@ function execute(command) {
 
 
 
+
 new CronJob('0 1 1 * * *', function() { //nightly at 01:01
 //new CronJob('30 * * * * *', function() { //each minute
 
   console.log('started backup process');
   var d = new Date();
   var dumpFN = __dirname+'/dump/dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
-  try{
+  try {
     if (process.env.PRODICTION) {
       execute("mongodump --db taadas_db --gzip --archive="+dumpFN);
     } else {
       execute("mongodump --host ds011321.mlab.com --db heroku_0nqgs5jf --port 11321 -u taadas_admin -p ab39sf25481Q --gzip --archive="+dumpFN);
     }
 
-  var expirationTime = new Date().getTime() - 864000000;
-  var files = enumDumps(true);
-  files.some(function(f){
-
-    var stats = fs.statSync(fn);
-    if (stats.ctime.getTime() < expirationTime) {
-      
-      fs.unlinkSync(fn);
-    }
+    var expirationTime = new Date().getTime() - 86400000*keepDumpsForDays;
+    var files = enumDumps(true);
+    files.some(function(fn){
     
-  })
-  }catch(e){
+      var stats = fs.statSync(fn);
+      if (stats.ctime.getTime() < expirationTime) {
+        
+        fs.unlinkSync(fn);
+      }
+      
+    })
+  } catch(e) {
     console.log(e);
     
   }
