@@ -636,7 +636,9 @@ function execute(command) {
   
 
   
-  return ret.stderr.toString();
+  if (ret.stderr) {
+    return ret.stderr.toString();
+  }
   // body...
 }
 
