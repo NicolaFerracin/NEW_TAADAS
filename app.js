@@ -507,6 +507,7 @@ site.init({
      site.app.get('/backup/apply/:fn', applyDump);
      site.app.get('/backup/download/:fn', downloadDump);
      site.app.post('/backup/upload', uploadDump);
+     site.app.get('/backup/dump-now', createDumpNow);
      
      site.app.get('/discourse/sso', function(req, res) {
 
@@ -642,15 +643,9 @@ function execute(command) {
 //function puts(error, stdout, stderr) { console.log(stdout);console.log(stderr); }
 
 
-
-
-new CronJob('0 1 1 * * *', function() { //nightly at 01:01
-//new CronJob('30 * * * * *', function() { //each minute
-
-  console.log('started backup process');
-  var d = new Date();
-  var dumpFN = __dirname+'/dump/dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
-  try {
+function dumpDatabase(dumpFN) {
+   try {
+     dumpFN = __dirname+'/dump/'+dumpFN;
     if (process.env.PRODICTION) {
       execute("mongodump --db taadas_db --gzip --archive="+dumpFN);
     } else {
@@ -669,9 +664,19 @@ new CronJob('0 1 1 * * *', function() { //nightly at 01:01
       
     })
   } catch(e) {
-    console.log(e);
+    return(e);
     
   }
+}
+
+new CronJob('0 1 1 * * *', function() { //nightly at 01:01
+//new CronJob('30 * * * * *', function() { //each minute
+
+  console.log('started backup process');
+  var d = new Date();
+  var dumpFN = 'dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
+  console.log(dumpDatabase(dumpFN));
+ 
   
 }, null, true, 'America/Los_Angeles');
 
@@ -761,6 +766,16 @@ function applyDump(req, res) {
   }
   
     
+  }
+};
+
+function createDumpNow(req, res) {
+  if (checkBackupPermissions(req,res)) {
+    var d = new Date();
+    var dumpFN = 'manual_dump_'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
+    messageToShow = dumpDatabase(dumpFN) || ('dumped as '+dumpFN);
+    res.redirect('/backup');
+
   }
 };
     

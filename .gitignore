@@ -16,4 +16,4 @@ public/js/_site-compiled.js
 config/
 .env
 
-dump_/
+_dump/
