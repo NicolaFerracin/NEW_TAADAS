@@ -58,7 +58,7 @@ $(function(){
   function height() {
     return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0;
   }
-  
+
   $('a.apos-files-name').attr('target','_blank');
   
   //hide emty columns

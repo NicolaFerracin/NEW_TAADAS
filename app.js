@@ -7,13 +7,17 @@ require('dotenv').config();
 var discourse_sso = require('discourse-sso');
 var sso = new discourse_sso(process.env.DISCOURCE_SSO_SECRET);
 
+function editorFullControlls() {
+    return  [ 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+}
+
 site.init({
   
 
   // This line is required and allows apostrophe-site to use require() and manage our NPM modules for us.
   root: module,
-  shortName: 'NEW_TAADAS',
-  hostName: 'NEW_TAADAS',
+  shortName: 'TAADAS',
+  hostName: 'https://taadas.org',
   title: 'TAADAS',
   sessionSecret: process.env.SESSION_SECRET,
   adminPassword: process.env.ADMIN_PASS,
@@ -332,7 +336,18 @@ site.init({
               {
                 name: 'accbody',
                 label:'Item\'s Body',
-                type: 'area'}
+                type: 'area',
+                options:{
+                  controls:editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+                  ]
+                }
+                
+      
+              }
               ]
           }
           ]
@@ -492,12 +507,12 @@ site.init({
       transporter.sendMail(mailOpts, function(error, response) {
         //Email not sent
         if (error) {
-          res.json(error);
+          res.end('error');
           console.log(error);
         }
         //Email sent
         else {
-          res.json(response);
+          res.end('ok');
         }
       });
     });
@@ -572,9 +587,7 @@ site.init({
       return 'https://taadas.s3.amazonaws.com';
     }
 
-    site.apos.addLocal('editorFullControlls', function() {
-      return  [ 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
-    });
+    site.apos.addLocal('editorFullControlls', editorFullControlls);
     
    site.apos.addLocal('normalizeNavItem', function(item) {
         if (item.title.indexOf('#')>=0) {
