@@ -47,6 +47,7 @@
                     }) }}
                 </div>
             </div>
+       </div>
 
 <!-- Image Header -->
         <div class="row">
@@ -96,7 +97,7 @@
             </div>
         </div>
         <!-- /.row -->
-        
+        <div class="row">
             <div class="col-md-7">
                 <div class="panel panel-default">
                     {{ aposSingleton(page, 'rowheader1', 'iconAndText') }}
@@ -155,55 +156,56 @@
                     }) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 text-center">
-                {{ aposArea(page, 'linkblock1', {
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-lg-3 text-center">
-                {{ aposArea(page, 'linkblock2', {
-             
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-lg-3 text-center">
-                {{ aposArea(page, 'linkblock3', {
-             
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-lg-3 text-center">
-                {{ aposArea(page, 'linkblock4', {
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 text-center">
+            {{ aposArea(page, 'linkblock1', {
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
             </div>
-            <div class="row">
+            <div class="col-lg-3 text-center">
+            {{ aposArea(page, 'linkblock2', {
+         
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-lg-3 text-center">
+            {{ aposArea(page, 'linkblock3', {
+         
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-lg-3 text-center">
+            {{ aposArea(page, 'linkblock4', {
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+        </div>
+        <div class="row">
                 <div class="col-lg-3 text-center">
                 {{ aposArea(page, 'linkblock5', {
              
@@ -253,13 +255,9 @@
                 }}
                 </div>   
             </div>
-            </div>
 
-        </div>
+   </div>     
         <!-- /.row -->
 
-        
-
-        <hr>
     <!-- Page Content -->
 {% endblock %}
