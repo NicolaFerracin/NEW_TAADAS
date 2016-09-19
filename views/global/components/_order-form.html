@@ -30,26 +30,22 @@
         </div>
   <div class="order-form block">
   <form id="orders-form" autocomplete="on">
-    <h4>Mailing Address</h4>
   	<p>
-      <label>Company/Agency Name:</label>
-      <input type="text" name="Company Name"></input>
+      <label>Name:</label>
+      <input type="text" name="Name"></input>
     </p>
+    <p>
+      <label>Agency:</label>
+      <input type="text" name="Agency"></input>
+    </p>
+    
     <p>
       <label>Email:</label>
       <input type="email" name="Email" required></input>
     </p>
-  <p>
-  	<label>First Name:</label>
-  	<input type="text" name="First Name" required></input>
-  </p>
-  <p>
-  	<label>Last Name:</label>
-  	<input type="text" name="Last Name" required></input>
-  </p>	
-  <p>
-  	<label>Address:</label>
-  	<input type="text" name="Address" required></input>
+    <p>
+    	<label>Address:</label>
+  	  <input type="text" name="Address" required></input>
    </p>
    <p>	
   	<label>City:</label>
@@ -58,61 +54,61 @@
   <p>
   	<label>State:
     <input list="states" id="stateslist" name="State" required></input></label>
-  <datalist id="states">
-    <option value="Alabama">Alabama</option>
-    <option value="Alaska">Alaska</option>
-    <option value="Arizona">Arizona</option>
-    <option value="Arkansas">Arkansas</option>
-    <option value="Colorado">Colorado</option>
-    <option value="Connecticut">Connecticut</option>
-    <option value="Delaware">Delaware</option>
-    <option value="District Of Columbia">District Of Columbia</option>
-    <option value="Fdr. States Of Micronesia">Fdr. States Of Micronesia</option>
-    <option value="Georgia">Georgia</option>
-    <option value="Hawaii">Hawaii</option>
-    <option value="Idaho">Idaho</option>
-    <option value="Illinois">Illinois</option>
-    <option value="Indiana">Indiana</option>
-    <option value="Iowa">Iowa</option>
-    <option value="Kansas">Kansas</option>
-    <option value="Kentucky">Kentucky</option>
-    <option value="Louisiana">Louisiana</option>
-    <option value="Maine">Maine</option>
-    <option value="Maryland">Maryland</option>
-    <option value="Massachusetts">Massachusetts</option>
-    <option value="Michigan">Michigan</option>
-    <option value="Minnesota">Minnesota</option>
-    <option value="Mississippi">Mississippi</option>
-    <option value="Missouri">Missouri</option>
-    <option value="Montana">Montana</option>
-    <option value="Nebraska">Nebraska</option>
-    <option value="Nevada">Nevada</option>
-    <option value="New Hampshire">New Hampshire</option>
-    <option value="New Jersey">New Jersey</option>
-    <option value="New Mexico">New Mexico</option>
-    <option value="New York">New York</option>
-    <option value="North Carolina">North Carolina</option>
-    <option value="North Dakota">North Dakota</option>
-    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
-    <option value="Ohio">Ohio</option>
-    <option value="Oklahoma">Oklahoma</option>
-    <option value="Oregon">Oregon</option>
-    <option value="Palau">Palau</option>
-    <option value="Pennsylvania">Pennsylvania</option>
-    <option value="Rhode Island">Rhode Island</option>
-    <option value="South Carolina">South Carolina</option>
-    <option value="South Dakota">South Dakota</option>
-    <option value="Tennessee">Tennessee</option>
-    <option value="Texas">Texas</option>
-    <option value="Utah">Utah</option>
-    <option value="Vermont">Vermont</option>
-    <option value="Virginia">Virginia</option>
-    <option value="Washington">Washington</option>
-    <option value="West Virginia">West Virginia</option>
-    <option value="Wisconsin">Wisconsin</option>
-    <option value="Wyoming">Wyoming</option>
-  </datalist>
-</p>
+    <datalist id="states">
+      <option value="Alabama">Alabama</option>
+      <option value="Alaska">Alaska</option>
+      <option value="Arizona">Arizona</option>
+      <option value="Arkansas">Arkansas</option>
+      <option value="Colorado">Colorado</option>
+      <option value="Connecticut">Connecticut</option>
+      <option value="Delaware">Delaware</option>
+      <option value="District Of Columbia">District Of Columbia</option>
+      <option value="Fdr. States Of Micronesia">Fdr. States Of Micronesia</option>
+      <option value="Georgia">Georgia</option>
+      <option value="Hawaii">Hawaii</option>
+      <option value="Idaho">Idaho</option>
+      <option value="Illinois">Illinois</option>
+      <option value="Indiana">Indiana</option>
+      <option value="Iowa">Iowa</option>
+      <option value="Kansas">Kansas</option>
+      <option value="Kentucky">Kentucky</option>
+      <option value="Louisiana">Louisiana</option>
+      <option value="Maine">Maine</option>
+      <option value="Maryland">Maryland</option>
+      <option value="Massachusetts">Massachusetts</option>
+      <option value="Michigan">Michigan</option>
+      <option value="Minnesota">Minnesota</option>
+      <option value="Mississippi">Mississippi</option>
+      <option value="Missouri">Missouri</option>
+      <option value="Montana">Montana</option>
+      <option value="Nebraska">Nebraska</option>
+      <option value="Nevada">Nevada</option>
+      <option value="New Hampshire">New Hampshire</option>
+      <option value="New Jersey">New Jersey</option>
+      <option value="New Mexico">New Mexico</option>
+      <option value="New York">New York</option>
+      <option value="North Carolina">North Carolina</option>
+      <option value="North Dakota">North Dakota</option>
+      <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+      <option value="Ohio">Ohio</option>
+      <option value="Oklahoma">Oklahoma</option>
+      <option value="Oregon">Oregon</option>
+      <option value="Palau">Palau</option>
+      <option value="Pennsylvania">Pennsylvania</option>
+      <option value="Rhode Island">Rhode Island</option>
+      <option value="South Carolina">South Carolina</option>
+      <option value="South Dakota">South Dakota</option>
+      <option value="Tennessee">Tennessee</option>
+      <option value="Texas">Texas</option>
+      <option value="Utah">Utah</option>
+      <option value="Vermont">Vermont</option>
+      <option value="Virginia">Virginia</option>
+      <option value="Washington">Washington</option>
+      <option value="West Virginia">West Virginia</option>
+      <option value="Wisconsin">Wisconsin</option>
+      <option value="Wyoming">Wyoming</option>
+    </datalist>
+  </p>
   <p>
     <label>Zip:</label>
     <input type="number" name="Zip" required></input>
@@ -131,6 +127,24 @@
     Allow Promotional Emails (We will never divulge your email to a 3rd party)</label>
     <input type="checkbox" checked="true" name="Allow Promotional"></input>
   </p>
+  <p>	
+  	<label>Date needing <span class="items-type-title"></span>:</label>
+  	<input type="date" name="Date Needing" required></input>
+  </p>
+  <div class="row">
+    <div class="col-lg-12">
+       {{ aposArea(page, 'body2', {
+        controls: editorFullControlls(),
+        styles: [
+          { value: 'p', label: 'Text' },
+          { value: 'h1', label: 'Heading 1' },
+          { value: 'h3', label: 'Heading 3' }
+      
+        ]
+      }) }}
+    </div>
+  </div>
+  
   <p id="submit-form">
     <input id="submititems" type="submit" value="Submit" class="btn btn-success"></input>
   </p>
@@ -140,5 +154,20 @@
 <script> window.formType = "{{orderType}}";</script>
 <script type="text/javascript" src="/js/order-form.js"></script>
 </div>
+
+<div class="row">
+  <div class="col-lg-12">
+     {{ aposArea(page, 'body3', {
+      controls: editorFullControlls(),
+      styles: [
+        { value: 'p', label: 'Text' },
+        { value: 'h1', label: 'Heading 1' },
+        { value: 'h3', label: 'Heading 3' }
+    
+      ]
+    }) }}
+  </div>
+</div>
+
 </div>
 {% endmacro %}

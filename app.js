@@ -475,7 +475,8 @@ site.init({
       } else {
         if (formData.to) {
           subject = formData.subj;
-          user = formData.to+'@taadas.org';
+          var to = formData.to.replace(/[,;<>]/g,'');
+          user = to+'@taadas.org';
         } else {
           subject = 'Join as member request';
           user = process.env.JOIN_EMAIL;

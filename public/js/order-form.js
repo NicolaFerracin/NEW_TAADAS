@@ -3,6 +3,7 @@ $(function() {
 	debugger;
 	var storeName = window.formType+'Orders';
 	
+	$('.items-type-title').text(window.formType+' (s)');
 	
 	var items = JSON.parse(sessionStorage.getItem(storeName)) || [];
 	

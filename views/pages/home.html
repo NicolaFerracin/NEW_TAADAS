@@ -32,8 +32,9 @@
                     }) }}
                 </div>
             </div>
-            
-            <div class="col-lg-3 col-md-6">
+        </div>
+        <div class="row">  
+            <div class="col-lg-3 col-md-6 hide-if-empty">
                 <div class="panel panel-default noborder">
                     {{ aposSingleton(page, 'rowheader1', 'iconAndText') }}
                     <div class="panel-body">
@@ -49,7 +50,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-3 col-md-6 hide-if-empty">
                 <div class="panel panel-default">
                     {{ aposSingleton(page, 'rowheader2', 'iconAndText') }}
                     <div class="panel-body">
@@ -64,7 +65,7 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix visible-md"></div>
+            <div class="clearfix visible-md hide-if-empty"></div>
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-default">
                     {{ aposSingleton(page, 'rowheader3', 'iconAndText') }}
@@ -80,7 +81,7 @@
                     </div>
                 </div>
             </div>
-			<div class="col-lg-3 col-md-6">
+			<div class="col-lg-3 col-md-6 hide-if-empty">
                 <div class="panel panel-default">
                     {{ aposSingleton(page, 'rowheader4', 'iconAndText') }}
                     <div class="panel-body">
@@ -113,119 +114,120 @@
                     }) }}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock1', {
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock2', {
-             
-                    controls:editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock3', {
-             
-                    controls:editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock4', {
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock5', {
-             
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock6', {
-             
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock7', {
-                     
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>
-                <div class="col-md-3 text-center">
-                {{ aposArea(page, 'linkblock8', {
-             
-                    controls: editorFullControlls(),
-                    styles: [
-                            { value: 'p', label: 'Text' },
-                            { value: 'h1', label: 'Heading 1' },
-                            { value: 'h3', label: 'Heading 3' }
-                          ]
-                    })
-                }}
-                </div>   
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                     {{ aposArea(page, 'prefooter', {
-                      controls: editorFullControlls(),
-                      styles: [
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock1', {
+                controls: editorFullControlls(),
+                styles: [
                         { value: 'p', label: 'Text' },
                         { value: 'h1', label: 'Heading 1' },
                         { value: 'h3', label: 'Heading 3' }
                       ]
-                    }) }}
-                </div>
+                })
+            }}
             </div>
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock2', {
+         
+                controls:editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
             </div>
-
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock3', {
+         
+                controls:editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock4', {
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock5', {
+         
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-md-3 text-cente hide-if-empty">
+            {{ aposArea(page, 'linkblock6', {
+         
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock7', {
+                 
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>
+            <div class="col-md-3 text-center hide-if-empty">
+            {{ aposArea(page, 'linkblock8', {
+         
+                controls: editorFullControlls(),
+                styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                })
+            }}
+            </div>   
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                 {{ aposArea(page, 'prefooter', {
+                  controls: editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+                  ]
+                }) }}
+            </div>
+        </div>
+        </div>
+
+        
         <!-- /.row -->
 
         
