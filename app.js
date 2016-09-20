@@ -466,22 +466,16 @@ site.init({
 
       var html = '<div>' + table + '</hr>' + formInfo + '</div>';
       var subject,user;
-      if (req.headers.referer.match('publication')) {
-        var subject = 'Publication Orders';
-        var user = process.env.PUBLICATIONS_EMAIL;
-      }else if (req.headers.referer.match('dvd')) {
-        var subject = 'DVD Orders';
-        var user = process.env.DVD_EMAIL;
-      } else {
+
         if (formData.to) {
           subject = formData.subj;
           var to = formData.to.replace(/[,;<>]/g,'');
           user = to+'@taadas.org';
         } else {
           subject = 'Join as member request';
-          user = process.env.JOIN_EMAIL;
+          user = process.env.DEFAULT_FORMS_EMAIL;
         }
-      }
+      
 
       var mailOpts, smtpTrans;
 

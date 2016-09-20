@@ -269,3 +269,36 @@ h1,h2,h3,h4,h5,h6,.blue-color1 {
   }
   
 }
+
+.reveal-if-active {
+  padding-left:40px;
+  transition:0.3s;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+input[type="radio"]:checked ~ .reveal-if-active,
+input[type="checkbox"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 300px;
+  overflow: visible;
+}
+
+.reveal-if-inactive {
+  transition:0.3s;
+  padding-left:40px;
+  opacity: 1;
+  max-height: 300px;
+  overflow: visible;
+}
+input[type="radio"]:checked ~ .reveal-if-inactive,
+input[type="checkbox"]:checked ~ .reveal-if-inactive {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.form_container div{
+	margin-top:5px;
+	margin-bottom:5px;
+}
