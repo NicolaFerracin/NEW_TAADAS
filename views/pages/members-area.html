@@ -8,7 +8,7 @@
 
 {% block header %}
 	{{ super() }}
-<header class='apos-fillw-image' style="position:relative">
+<header class='apos-fillw-image' style="position:relative;min-height:450px">
         {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
         
     {% if page.pheaderanounces.items.length > 0 %}
@@ -51,7 +51,7 @@
 
 <!-- Image Header -->
         <div class="row">
-			<div class="col-md-3">
+			<div class="col-lg-3 col-md-3 col-sm-4">
 				
 				{{ aposArea(page, 'body1', {
                   controls: editorFullControlls(),
@@ -62,8 +62,10 @@
                   ]
                 }) }}
 			</div>
-            <div class="col-md-9 apos-fillw-image">
-                 {{ aposArea(page, 'header2', {
+			
+			 <div class="col-sm-8 apos-fillw-image hidden-lg">
+                
+                   {{ aposArea(page, 'header2', {
                       controls: editorFullControlls(),
                       styles: [
                         { value: 'p', label: 'Text' },
@@ -71,8 +73,23 @@
                         { value: 'h3', label: 'Heading 3' }
                       ]
                     }) }}
+             </div>    
+			<div class="clearfix visible-xs-block visible-sm-block visible-md-block"></div>
+            <div class="col-lg-9 apos-fillw-image ">
+                
+                <div class="hidden-md hidden-sm hidden-xs">
+                    {{ aposArea(page, 'header2', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}
+                </div>    
+                    
                  <div class="row" style="margin-top:15px">
-        			<div class="col-md-6">
+        			<div class="col-lg-6 col-md-6">
         				{{ aposArea(page, 'body2', {
                           controls: editorFullControlls(),
                           styles: [
@@ -82,7 +99,7 @@
                           ]
                         }) }}
         			</div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6">
                         {{ aposArea(page, 'body3', {
                           controls: editorFullControlls(),
                           styles: [

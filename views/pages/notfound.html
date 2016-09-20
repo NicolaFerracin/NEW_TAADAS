@@ -1,4 +1,18 @@
-{% extends 'layout.html' %}
-{% block mainContent %}
-  <h3>What! We don't have whatever you are looking for.</h3>
+{% extends "layout.html" %} {% include "pageMacros.html" %} {% block bodyClass %}{{ super() }} notfound-page{% endblock %} {% block main %}
+
+<div class="container text-center">
+    <div style="margin:100px">
+        <h3 class="hide-desktop page-title">{{page.title}}</h3>
+        <ul class="subnav-items hide-desktop">
+            {% for child in page.children %}
+            <li class="subnav-item">
+                <a href="{{ child.url }}">{{ child.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <h3>{{ page.title }} 404 - Page not found</h3>
+        <p>Ops! We couldn't find the page you were looking for. <a href="/">Go back to the home page</a> or wait 3 seconds to be redirected.</p>
+    </div>
+{# #}
+</div>
 {% endblock %}
