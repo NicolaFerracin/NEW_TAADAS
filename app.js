@@ -472,7 +472,7 @@ site.init({
           var to = formData.to.replace(/[,;<>]/g,'');
           user = to+'@taadas.org';
         } else {
-          subject = 'Join as member request';
+          subject = 'No subject form received';
           user = process.env.DEFAULT_FORMS_EMAIL;
         }
       
