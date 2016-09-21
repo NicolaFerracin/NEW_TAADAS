@@ -184,17 +184,7 @@ site.init({
       }, {
         name: 'information',
         type: 'string',
-        label: 'Information',
-      }, {
-        name: 'identifiers',
-        type: 'array',
-        label: 'Identifiers',
-        schema: [{
-          name: 'identifier',
-          type: 'integer',
-          label: 'Identifier'
-
-        }]
+        label: 'Identifier',
       }]
     },
 
@@ -425,28 +415,49 @@ site.init({
         delete(formData.identifiers);
   
         titlesArray.forEach(function(title, index) {
-          tableRows += '<tr><td>' + title + '</td><td>' + quantitiesArray[index] + '</td><td>' + identifiersArray[index] + '</td></tr>'
+          tableRows += '<tr><td style="padding:4px 20px">' + title + '</td><td style="padding:4px 20px"><b>' + quantitiesArray[index] + '</b></td><td style="padding:4px 20px">' + identifiersArray[index] + '</td></tr>'
         });
         
-        var tableHead = '<thead><tr><th>Title</th><th>Quantity</th><th>Identifier</th></tr></thead>';
+        var tableHead = '<thead><tr><th><b>Title</b></th><th><b>Quantity</b></th><th><b>Identifier</b></th></tr></thead>';
 
         table = '<table>' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
 
         
       }
+      
+       var subject,user;
+
+        if (formData.to) {
+          subject = formData.subj;
+          var to = formData.to.replace(/[,;<>]/g,'');
+          user = to+'@taadas.org';
+          delete(formData.to);
+          delete(formData.subj);
+        } else {
+          subject = 'No subject form received';
+          user = process.env.DEFAULT_FORMS_EMAIL;
+        }
+      
 
      
       var formInfo = '<div>';
       
-      for(var k in formData){
-        var val = formData[k];
-        
-        if(typeof(val)==='boolean'){
-          val = (val==='on')?'Yes':'No';
+      for (var k in formData) {
+        if (k!=='__proto__') {
+          var val = formData[k];
           
-        }
-        
-        formInfo += '<p>'+k+': '+val+'</p>'
+          if (typeof(val)==='boolean') {
+            val = (val==='on')?'Yes':'No';
+          }
+          
+          if (k.indexOf('header')===0) {
+            
+            formInfo += '<hr><h2><b>'+val+'</b></h2>';
+          } else if (val!=='') {
+            formInfo += '<p><b style="padding:4px; border:1px solid #888">'+k.split('~').shift()+':</b> '+val+'</p>';
+          }
+            
+          }
       }
       
       /*
@@ -464,18 +475,8 @@ site.init({
       formInfo+='</div>';
 
 
-      var html = '<div>' + table + '</hr>' + formInfo + '</div>';
-      var subject,user;
-
-        if (formData.to) {
-          subject = formData.subj;
-          var to = formData.to.replace(/[,;<>]/g,'');
-          user = to+'@taadas.org';
-        } else {
-          subject = 'No subject form received';
-          user = process.env.DEFAULT_FORMS_EMAIL;
-        }
-      
+      var html = '<div>' + table + formInfo + '</div>';
+     
 
       var mailOpts, smtpTrans;
 

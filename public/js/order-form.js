@@ -35,9 +35,9 @@ $('#submit-form').on('click', function(e){
 	debugger;
 	
 	rows.each(function(index, row) {
-		var title = $(this).find('td.title').text();
+		var title = encodeURIComponent($(this).find('td.title').text());
 		var quantity = $(this).find('td.quantity > input').val();
-		var identifier = $(this).find('td.identifier').text();
+		var identifier = encodeURIComponent($(this).find('td.identifier').text());
 		identifier = identifier.replace(/&/, '');
 
 		if (index === 0)  {

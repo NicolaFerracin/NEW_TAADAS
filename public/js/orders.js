@@ -94,7 +94,7 @@ $(function() {
 								<input type="number" min="1" max="100" value={qty} onChange={handleChange}/>
 							</td>
 							<td onClick={handleClick}>
-							<i className="fa fa-trash-o"></i></td>
+							<i className="fa4 fa4-trash-o"></i></td>
 						</tr>)
 			}
 	
