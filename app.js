@@ -420,7 +420,7 @@ site.init({
         
         var tableHead = '<thead><tr><th><b>Title</b></th><th><b>Quantity</b></th><th><b>Identifier</b></th></tr></thead>';
 
-        table = '<table>' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
+        table = '<table border="1" style="border-collapse: collapse;width:100%">' + tableHead + '<tbody>' + tableRows + '</tbody></table>';
 
         
       }
@@ -460,22 +460,12 @@ site.init({
           }
       }
       
-      /*
-      //old template
-        '<p>' + formData['Company Name'] + '</p>' +
-        '<p>' + formData['First Name'] + ' ' + formData['Last Name'] + '</p>' +
-        '<p>' + formData['Address'] + '</p>' +
-        '<p>' + formData['City'] + ', ' + formData['State'] + ' ' + formData['Zip'] + '</p>' +
-        '<p>' + 'Phone: ' + formData['Phone'] + '</p>' +
-        '<p>' + formData['Email'] + '</p>' +
-        '<p>' + 'Allow Promotional Materials: ' + (formData['Allow Promotional'] === 'on').toString() + '</p>' +
-        '<p>' + 'Is Commercial Location: ' + (formData['Is Commercial'] === 'on').toString() + '</p>' +
-        */
+
         
       formInfo+='</div>';
 
 
-      var html = '<div>' + table + formInfo + '</div>';
+      var html = '<div>' + formInfo +'<br><br>'+ table+ '</div>';
      
 
       var mailOpts, smtpTrans;
@@ -543,7 +533,7 @@ site.init({
             var q = sso.buildLoginString(userparams);
             
             
-            res.redirect('http://158.69.220.239/session/sso_login?' + q);
+            res.redirect('https://discourse.taadas.org/session/sso_login?' + q);
           } else {
             res.send('error');
           }
