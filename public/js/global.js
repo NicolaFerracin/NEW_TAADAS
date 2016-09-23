@@ -69,6 +69,18 @@ $(function(){
   });
   
   
+  
+  //pdf links tracking 
+  var trackOutboundPdfLink = function(event) {
+    debugger;
+     ga('send', 'event', 'pdf', 'click', event.target.text);
+  }
+  $('a[href$=".pdf"]').each(function(){
+     $(this).on('click', trackOutboundPdfLink);
+  })
+  
+  
+  
 });
   
 function navBarCompensation(){

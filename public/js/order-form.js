@@ -21,7 +21,45 @@ $(function() {
 
 $('#submit-form').on('click', function(e){	
 	e.preventDefault();
+	
+	var valid = true;
+	$('input,textarea,select').filter('[required]:visible').each(function () {
+		var t = $(this);
+		
+		var val;
+		if(t.attr('type')==='checkbox'){
+			val = this.checked;
+		} else {
+			val = t.val();
+		}
+		
+		if (!val) {
+			
+			var visible = true;
+			t.parents().each(function(){
+				if ($(this).height()<2) {
+					visible=false;
+				}
+				
+			});
+			if (visible) {
+				valid = false;
+				t.css({outline:'1px solid #f00'});
+				t.focus();
+			}
+		} else {
+			t.css({outline:'none'});
+		}
+	
+	
+	});
+	if (!valid) {
+		return;
+	}
 
+	$(this).html('<i class="fa4 fa4-spinner fa4-2x fa4-spin"></i> please wait...');
+
+	
 	var data = $('#orders-form').serialize();
 
 	// add list of ordered titles, identifiers, and quantity to data
@@ -32,7 +70,7 @@ $('#submit-form').on('click', function(e){
 	var quantities = 'quantities=';
 	var identifiers = 'identifiers=';
 	
-	debugger;
+
 	
 	rows.each(function(index, row) {
 		var title = encodeURIComponent($(this).find('td.title').text());
@@ -70,10 +108,10 @@ $('#submit-form').on('click', function(e){
 						var title = $(this).find('td.title').text();
 						var quantity = $(this).find('td.quantity > input').val();
 						quantity = parseInt(quantity);
-						while (quantity>0) {
-							ga('send', 'event', 'order', window.formType, title);
-							quantity--;
-						}
+						//while (quantity>0) {
+							ga('send', 'event', 'order', window.formType, title, quantity);
+						//	quantity--;
+						//}
 						sessionStorage.setItem(storeName,'[]');
 					})
 		        	} catch(e){}
@@ -82,6 +120,7 @@ $('#submit-form').on('click', function(e){
 					
                 },
                 error: function() {
+                	alert('Sorry, error has occured.');
 					console.log("error");
                 }
             });
