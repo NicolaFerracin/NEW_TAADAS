@@ -407,7 +407,7 @@ site.init({
       '/publications/products.asp':'/free-literature',
       '/training.htm':'/training',
       '/Redline.htm':'/our-programs-and-services/redline',
-      '/clearinghouse_main.htm':'/clearinghouse-main',
+      '/clearinghouse_main.htm':'/our-programs-and-services/clearinghouse-main',
       '/Membership Section/TAADASMembers.htm ':'/join-taadas/membership-info',
       '/Membership%20Section/TAADASMembers.htm':'/join-taadas/membership-info'
     }
