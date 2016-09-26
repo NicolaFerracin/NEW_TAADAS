@@ -408,8 +408,8 @@ site.init({
       '/training.htm':'/training',
       '/Redline.htm':'/our-programs-and-services/redline',
       '/clearinghouse_main.htm':'/clearinghouse-main',
-      '/Membership Section/TAADASMembers.htm ':'/membership-info',
-      '/Membership%20Section/TAADASMembers.htm':'/membership-info'
+      '/Membership Section/TAADASMembers.htm ':'/join-taadas/membership-info',
+      '/Membership%20Section/TAADASMembers.htm':'/join-taadas/membership-info'
     }
     
     for (var k in oldSitRedirects) {
@@ -431,6 +431,8 @@ site.init({
     site.app.post('/order', function(req, res) {
       var formData = req.body;
       
+      
+      /*
       if (formData.subj.toLocaleLowerCase() === 'Membership Form'.toLocaleLowerCase()) {
         // membership form
         var paypalMerchant = "nicola.ferracin@gmail.com";
@@ -475,7 +477,7 @@ site.init({
           }
         });
         return;
-      }
+      }*/
       
       // turn data from order form into html
       var table='';
