@@ -393,14 +393,91 @@ site.init({
   setRoutes: function(callback) {
     var nodemailer = require('nodemailer');
     var xoauth2 = require('xoauth2');
-
+    
+    // new member after payment is successfull
+    site.app.post('/' + process.env.PAYPAL_LISTENER, function(req, res) {
+      
+      
+      
+      res.end();
+    });
+    
+    var oldSitRedirects = {
+      '/publications/default.asp':'/publications',
+      '/publications/products.asp':'/free-literature',
+      '/training.htm':'/training',
+      '/Redline.htm':'/our-programs-and-services/redline',
+      '/clearinghouse_main.htm':'/clearinghouse-main',
+      '/Membership Section/TAADASMembers.htm ':'/membership-info',
+      '/Membership%20Section/TAADASMembers.htm':'/membership-info'
+    }
+    
+    for (var k in oldSitRedirects) {
+      if (oldSitRedirects.hasOwnProperty(k)) {
+        (function() {
+          var to = oldSitRedirects[k];
+          site.app.get(k,  function(req, res) {
+            
+            res.redirect(to);
+          })
+          
+        })();
+        
+      }
+    
+    }
+    
+    
     site.app.post('/order', function(req, res) {
-
       var formData = req.body;
+      
+      if (formData.subj.toLocaleLowerCase() === 'Membership Form'.toLocaleLowerCase()) {
+        // membership form
+        var paypalMerchant = "nicola.ferracin@gmail.com";
+        var dues = formData['Dues'];
+        var paypalAmount = dues.substring(dues.indexOf("$") + 1, dues.indexOf(" "));
+        // var paypalLink = "https://www.paypal.com/cgi-bin/webscr?business=" + paypalMerchant + "&cmd=_xclick&currency_code=USD&amount=" + paypalAmount + "&item_name=TAADAS%20membership"
+        var paypalButton = '<form action="https://www.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="221"><input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" alt="PayPal - The safer, easier way to pay online"><img alt="" width="1" height="1" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" ></form>'
+        var emailBody = "Hey, you just registered on TAADAS.org. Thank you! You are almost there to become a full member, we just need to confirm the payment through paypal."
+                        + "\n\n" + "Please click the following link to confirm your paymensssst" + paypalButton;
+        
+        var mailOpts, smtpTrans;
 
+        var transporter = nodemailer.createTransport({
+          service: 'Gmail',
+          auth: {
+            xoauth2: xoauth2.createXOAuth2Generator({
+              user: 'taadasorders@gmail.com',
+              clientId: process.env.GMAIL_CLIENT_ID,
+              clientSecret: process.env.GMAIL_CLIENT_SECRET,
+              refreshToken: process.env.REFRESH_TOKEN,
+              accessToken: process.env.ACCESS_TOKEN
+            })
+          }
+        });
+        //Mail options
+        mailOpts = {
+          from: 'taadasorders@gmail.com',
+          to: formData['Email'],
+          subject: formData.subj,
+          html: emailBody
+        };
+  
+        transporter.sendMail(mailOpts, function(error, response) {
+          //Email not sent
+          if (error) {
+            res.end('error');
+            console.log(error);
+          }
+          //Email sent
+          else {
+            res.end('ok');
+          }
+        });
+        return;
+      }
+      
       // turn data from order form into html
-
-     
       var table='';
       
       if (formData['titles']) {
@@ -467,7 +544,6 @@ site.init({
 
       var html = '<div>' + formInfo +'<br><br>'+ table+ '</div>';
      
-
       var mailOpts, smtpTrans;
 
       var transporter = nodemailer.createTransport({
