@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% include "pageMacros.html" %}
+
+{# the bodyClass block allows us to attach a classname to the body tag for easy style-scoping. #}
+{# be sure to call super() so that any pages inheriting this one will be appending classes, not overriding them. #}
+{% block bodyClass %}{{ super() }} default-page{% endblock %}
+
+{% block main %}
+
+  <div class="container">
+      <div class="row">
+            <div class="col-lg-12">
+               {{ aposArea(page, 'headertop', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}
+               
+            </div>
+        </div>
+  	<div class="row">
+  		<div class="col-lg-8 col-lg-offset-2">
+  		    <div id="sitemap" class="compact">
+                {% for item in page.tabs %}
+                    {% if item.pagePermissions.length == 0 %}
+                  <div 
+                  {% if item.children.length > 0 %}
+                      class="sitemap-category"
+                  {% else %}
+                      class="sitemap-category-no-child"
+                  {% endif %}>
+                        <h5>
+                           <a href={{item.url}}>{{item.title}}</a>
+                        </h5>
+                       {% for subitem in item.children %}
+                       {% if subitem.pagePermissions.length == 0 %}
+                           <p class="sitemap-subitem">
+                               <a 
+                               {% if subitem.externalLink %}
+		        		        href="{{subitem.externalLink}}"
+		        		        target="_blank"
+		        	           {% else %}
+		        		        href="{{ subitem.url }}"
+		                       {% endif %}>
+                            {{subitem.title}}
+                            </a>
+                            </p>
+                  {% endif %}
+                       {% endfor %}
+                    </br>
+                  </div>
+                  {% endif %}
+               {% endfor %}
+  		    </div>
+</div>
+    </div>
+</div>
+{% endblock %}

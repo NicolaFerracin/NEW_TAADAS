@@ -11,20 +11,16 @@
 <header class='apos-fillw-image' style="position:relative;min-height:450px">
         {{ aposSingleton(page, 'header', 'slideshow', { filter: false, limit: 1 }) }}
         
-    {% if page.pheaderanounces.items.length > 0 %}
-        <div class="anouncment-box">
-    {% else %}
-        <div class="anouncment-box-empty">
-    {% endif %}
-                {{ aposArea(page, 'pheaderanounces', {
-                  controls: editorFullControlls(),
-                  styles: [
-                    { value: 'p', label: 'Text' },
-                    { value: 'h1', label: 'Heading 1' },
-                    { value: 'h3', label: 'Heading 3' }
-                  ]
-                }) }}
-            </div>
+        <div class="anouncment-box hide-if-empty">
+            {{ aposArea(page, 'pheaderanounces', {
+              controls: editorFullControlls(),
+              styles: [
+                { value: 'p', label: 'Text' },
+                { value: 'h1', label: 'Heading 1' },
+                { value: 'h3', label: 'Heading 3' }
+              ]
+            }) }}
+        </div>
 </header>
   
 {% endblock %}

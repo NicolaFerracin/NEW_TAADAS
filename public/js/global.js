@@ -61,10 +61,13 @@ $(function(){
 
   $('a.apos-files-name').attr('target','_blank');
   
+  debugger;
   //hide emty columns
   $('.hide-if-empty').each(function(){
-    if(!$(this).text().trim() && ($('img', this).length===0)) {
+    if(!$(this).text().trim() && ($('img', this).length===0) && !(apos.data.user && apos.data.user.permissions.edit)) {
       $(this).hide();
+    } else {
+      $(this).removeClass('hide-if-empty');
     }
   });
   
