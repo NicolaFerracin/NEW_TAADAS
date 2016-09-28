@@ -598,15 +598,9 @@ site.init({
         }
         post.cmd='_notify-validate';
         
-        var url;
-        if (process.env.PRODICTION) {
-          url = 'https://www.paypal.com/cgi-bin/webscr';
-        } else {
-          url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
-        }
-        
+
         request.post(
-            url,
+            'https://www.sandbox.paypal.com/cgi-bin/webscr',
             { form: post },
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
