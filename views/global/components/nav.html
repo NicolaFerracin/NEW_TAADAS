@@ -46,5 +46,8 @@
 		  </ul>
 	  	</div>
 	  </div>
+{% if page.slug != '/prolong-membership' %}
+{{ checkMembership(user) }}
+{% endif %}
 	</nav>
 {% endmacro %}
