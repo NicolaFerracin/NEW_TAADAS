@@ -1,4 +1,4 @@
-locales/
+locales/en.json
 dump/
 npm-debug.log
 public/uploads
