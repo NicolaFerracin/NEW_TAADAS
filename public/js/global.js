@@ -61,10 +61,10 @@ $(function(){
 
   $('a.apos-files-name').attr('target','_blank');
   
-  debugger;
+
   //hide emty columns
   $('.hide-if-empty').each(function(){
-    if(!$(this).text().trim() && ($('img', this).length===0) && !(apos.data.user && apos.data.user.permissions.edit)) {
+    if(!$(this).text().replace(/^\s+|\s+$/g, '') && ($('img', this).length===0) && !(apos.data.user && apos.data.user.permissions.edit)) {
       $(this).hide();
     } else {
       $(this).removeClass('hide-if-empty');
@@ -75,7 +75,6 @@ $(function(){
   
   //pdf links tracking 
   var trackOutboundPdfLink = function(event) {
-    debugger;
      ga('send', 'event', 'pdf', 'click', event.target.text);
   }
   $('a[href$=".pdf"]').each(function(){

@@ -76,28 +76,89 @@ function  objectToEmailBody(formData) {
      return formInfo+'</div>';
 }
 
-function membershipIsExpired(user) {
-  return false;
-  var ret = !user.permissions.admin && (!user.membershipExpiration || (user.membershipExpiration< (new Date()).getTime()));
-  if (ret) {
-    debugger;
-    //TODO: remove member role
+function membershipIsExpired(userLocal) {
+
+  var ret = !userLocal.permissions.admin && (!userLocal.membershipExpiration || (userLocal.membershipExpiration< (new Date()).getTime()));
+  
+  if(ret){
+     site.apos.pages.findOne({ _id: userLocal._id }, function(err, user) {
+      if (user) {
+        
+        var modifed = false;
+        
+        if (user.membershipExpiration) {
+          modifed = true;
+          user.membershipExpiration = false;
+          userLocal.membershipExpiration = false;
+        }
+        
+        var ind = user.groupIds.indexOf('71432004817976094');
+        if (ind>=0) {
+          modifed = true;
+          user.groupIds.splice(ind,1);
+          userLocal.groupIds.splice(ind,1);
+        }
+        
+        if (modifed) {
+          site.apos.pages.update({
+            _id: userLocal._id
+          }, {
+            $set: user
+          }, function(err, res){
+  
+          })
+        }
+        
+      }
+
+    });
   }
+  
   return ret;
 }
-function prolongMembershipForYear(user) {
+function prolongMembershipForYear(userId, paymentId, callback) {
   
-  var yearLen = 1000+60+60+24+366;
+
   
-  if (!user.membershipExpiration) {
-    
-    user.membershipExpiration = (new Date()).getTime() + yearLen;
-  } else {
-    user.membershipExpiration += yearLen;
-  }
-  
-  //TODO: add membership role
- 
+    site.apos.pages.findOne({ _id: userId }, function(err, user) {
+      if (user) {
+        
+        if(user.paymentId === paymentId){
+          callback();
+          return;
+          
+        }
+        
+        if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
+        
+        var yearLen = 1000*60;//*60*24*366;
+        
+        
+        if (!user.membershipExpiration) {
+          
+          user.membershipExpiration = (new Date()).getTime() + yearLen;
+        } else {
+          user.membershipExpiration += yearLen;
+        }
+        
+        site.apos.pages.update({
+          _id: userId
+        }, {
+          $set:user
+        }, function(err, res){
+          callback();
+          
+        })
+        
+        
+      } else {
+        callback();
+        
+      }
+      
+      
+      
+    });
 }
 
 
@@ -132,7 +193,7 @@ site.init({
     
   if (user) {
     if (membershipIsExpired(user)) {
-      return '/prolong-membership';
+      return '/'; //expired membership goto home instead 
     } else {
       return '/join-taadas/membership-info/member-s-area';
     }
@@ -221,6 +282,9 @@ site.init({
     }, {
       name: 'sitemap',
       label: 'Sitemap'
+    }, {
+      name: 'prolong-membership',
+      label: 'Prolong membership'
     }],
     tabOptions: {
       depth: 4
@@ -506,7 +570,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['site', 'custom-styles'],
-    scripts: ['_site-compiled', 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
+    scripts: ['_site-compiled',/*'respond.min', ie8-media requests enabling*/ 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
   },
 
 
@@ -547,7 +611,9 @@ site.init({
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     if (body === 'VERIFIED') {
-                      
+                      prolongMembershipForYear(paymentUserId,req.body.txn_id, function(){
+                        res.end();
+                      })
                       
                     } else {
                       wrongPayment('Paypal server did not verify payment info');
@@ -718,6 +784,12 @@ site.init({
     }
 
     site.apos.addLocal('editorFullControlls', editorFullControlls);
+    site.apos.addLocal('checkMembership', function(user) {
+        if (user && membershipIsExpired(user)) {
+          return '<div class="membersip-expired"><i class="fa4 fa4-alert"></i><a href="/prolong-membership">Your membership has expired. Click here to prolong it.</a></div>';
+          
+        }
+    });
     
    site.apos.addLocal('normalizeNavItem', function(item) {
         if (item.title.indexOf('#')>=0) {
@@ -821,7 +893,7 @@ new CronJob('0 1 1 * * *', function() { //nightly at 01:01
   var d = new Date();
   var dumpFN = 'dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
   console.log(dumpDatabase(dumpFN));
- 
+
   
 }, null, true, 'America/Los_Angeles');
 
