@@ -166,7 +166,7 @@ var discourse_sso = require('discourse-sso');
 var sso = new discourse_sso(process.env.DISCOURCE_SSO_SECRET);
 
 function editorFullControlls() {
-    return  [ 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
+    return  [ 'setOfColumns', 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
 }
 
 
@@ -414,7 +414,40 @@ site.init({
       }]
     },
     'apostrophe-schema-widgets': {
-      widgets: [{
+      widgets: [
+        // { 
+        //   name: 'setOfColumns',
+        //   label: 'Set of Columns',
+        //   schema: [{
+        //     name: 'amount',
+        //     label:'Amount of columns (accepted: 1, 2, 3, 4, and 12)',
+        //     type: 'string'}]
+        // },
+        {
+        name: 'setOfColumns',
+        label: 'Set of Columns',
+        icon:'fa4 fa4-fw fa4-bars',
+        instructions: 'Please, add only 1, 2, 3, 4, 6 or 12 columns.',
+        type: 'array',
+        schema: [{
+            name: 'columns',
+            type: 'array',
+            schema:[{
+                name: 'content',
+                label:'Column Content',
+                type: 'area',
+                options:{
+                  controls:editorFullControlls(),
+                  styles: [
+                    { value: 'p', label: 'Text' },
+                    { value: 'h1', label: 'Heading 1' },
+                    { value: 'h3', label: 'Heading 3' }
+                  ]
+                }
+              }]
+          }]
+        },
+        {
         name: 'arrayOfBoxes',
         label: 'Boxes Image&Text',
         type: 'array',
