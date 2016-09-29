@@ -9,24 +9,25 @@ var request = require('request');
 var nodemailer = require('nodemailer');
  var xoauth2 = require('xoauth2');
     
-var transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    xoauth2: xoauth2.createXOAuth2Generator({
-      user: 'taadasorders@gmail.com',
-      clientId: process.env.GMAIL_CLIENT_ID,
-      clientSecret: process.env.GMAIL_CLIENT_SECRET,
-      refreshToken: process.env.REFRESH_TOKEN,
-      accessToken: process.env.ACCESS_TOKEN
-    })
-  }
-});
+var transporter;
 function sendEmail(to, subject, body, success, fail){
      
+     if (!transporter) {//lazy loading
+        transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          xoauth2: xoauth2.createXOAuth2Generator({
+            user: 'taadasorders@gmail.com',
+            clientId: process.env.GMAIL_CLIENT_ID,
+            clientSecret: process.env.GMAIL_CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: process.env.ACCESS_TOKEN
+          })
+        }
+      });
+     }
      
       var mailOpts, smtpTrans;
-
-
       //Mail options
       mailOpts = {
         from: 'taadasorders@gmail.com',
@@ -51,6 +52,7 @@ function sendEmail(to, subject, body, success, fail){
       });
 }
 
+//convert request's body in to readable html text.
 function  objectToEmailBody(formData) {
      
       var formInfo = '<div>';
@@ -77,10 +79,12 @@ function  objectToEmailBody(formData) {
 }
 
 function membershipIsExpired(userLocal) {
-
-  var ret = !userLocal.permissions.admin && (!userLocal.membershipExpiration || (userLocal.membershipExpiration< (new Date()).getTime()));
   
-  if(ret){
+  
+  
+  var ret = !userLocal.permissions.admin && (!userLocal.membershipExpiration || ((new Date(userLocal.membershipExpiration)).getTime() < new Date().getTime()));
+  
+  if (ret) {
      site.apos.pages.findOne({ _id: userLocal._id }, function(err, user) {
       if (user) {
         
@@ -116,17 +120,21 @@ function membershipIsExpired(userLocal) {
   
   return ret;
 }
-function prolongMembershipForYear(userId, paymentId, callback) {
+function prolongMembershipForYear(userId, paymentId, payedAmount, callback) {
   
 
   
     site.apos.pages.findOne({ _id: userId }, function(err, user) {
       if (user) {
         
-        if(user.paymentId === paymentId){
+        if (user.paymentId === paymentId) {
           callback();
           return;
-          
+        }
+        
+        if (payedAmount != user.membershipPrice) {
+          sendEmail(process.env.DEFAULT_FORMS_EMAIL, 'Membership payment has different amount', '<h2>+Expected $'+user.membershipPrice+' but received $'+payedAmount+'</h2><br><br>Users title: <b>'+user.title+'</b><br>Paypal transaction ID: <b>'+paymentId+'</b><br>');
+          return;
         }
         
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
@@ -136,9 +144,9 @@ function prolongMembershipForYear(userId, paymentId, callback) {
         
         if (!user.membershipExpiration) {
           
-          user.membershipExpiration = (new Date()).getTime() + yearLen;
+          user.membershipExpiration = new Date((new Date()).getTime() + yearLen);
         } else {
-          user.membershipExpiration += yearLen;
+          user.membershipExpiration = new Date((new Date(userLocal.membershipExpiration)).getDate() + yearLen);
         }
         
         site.apos.pages.update({
@@ -168,9 +176,6 @@ var sso = new discourse_sso(process.env.DISCOURCE_SSO_SECRET);
 function editorFullControlls() {
     return  [ 'setOfColumns', 'slideshow', 'banner', 'imageBoxwithText', 'arrayOfBoxes', 'iconAndText', 'accordeon', 'bigIcon', 'gallery', 'files', 'html',"HorizontalRule", 'style', 'bold', 'italic', 'createLink', 'unlink', 'buttons', 'video','insertTable', 'embed', 'pullquote',  'insertUnorderedList','JustifyLeft','JustifyCenter','JustifyRight', 'justify','TextColor','Font','FontSize'];
 }
-
-
-
 
 
 
@@ -346,6 +351,15 @@ site.init({
         options: {
           aspectRatio: [100, 100]
         }
+      },{
+        name: 'membershipPrice',
+        type: 'integer',
+        label: 'Membership Price $',
+        required: true
+      },{
+        name: 'membershipExpiration',
+        type: 'date',
+        label: 'Membership Expiration',
       }]
     },
     'apostrophe-groups': {},
@@ -640,7 +654,7 @@ site.init({
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     if (body === 'VERIFIED') {
-                      prolongMembershipForYear(paymentUserId,req.body.txn_id, function(){
+                      prolongMembershipForYear(paymentUserId,req.body.txn_id,payedAmount, function(){
                         res.end();
                       })
                       
@@ -754,32 +768,35 @@ site.init({
         if (req.user) {
           //pass login info
           
+          if (!membershipIsExpired(req.user)) {
           
-          var payload = req.query.sso;
-          var sig = req.query.sig;
-          if(sso.validate(payload, sig)) {
-            var nonce = sso.getNonce(payload);
-            
-            var userparams = {
-                // Required, will throw exception otherwise 
-                "nonce": nonce,
-                "external_id": req.user._id,
-                "email": (req.user.username!=='admin')?req.user.email:process.env.DISCOURCE_ADMIN_EMAIL,
-                // Optional 
-                "username": (req.user.username!=='admin')?req.user.username:process.env.DISCOURCE_ADMIN_LOGIN,
-                "name": req.user.title
-            };
-            var q = sso.buildLoginString(userparams);
-            
-            
-            res.redirect('https://discourse.taadas.org/session/sso_login?' + q);
+            var payload = req.query.sso;
+            var sig = req.query.sig;
+            if(sso.validate(payload, sig)) {
+              var nonce = sso.getNonce(payload);
+              
+              var userparams = {
+                  // Required, will throw exception otherwise 
+                  "nonce": nonce,
+                  "external_id": req.user._id,
+                  "email": (req.user.username!=='admin')?req.user.email:process.env.DISCOURCE_ADMIN_EMAIL,
+                  // Optional 
+                  "username": (req.user.username!=='admin')?req.user.username:process.env.DISCOURCE_ADMIN_LOGIN,
+                  "name": req.user.title
+              };
+              var q = sso.buildLoginString(userparams);
+              
+              
+              
+              res.redirect('https://discourse.taadas.org/session/sso_login?' + q);
+              
+              
+            } else {
+              res.send('error');
+            }
           } else {
-            res.send('error');
+            res.redirect('/prolong-membership');
           }
-          
-          
-          
-          
         } else {
           res.redirect('/login');
         }
