@@ -305,7 +305,7 @@ site.init({
       // to include, even though they are
       // accessible on the site. You can also
       // do this at the command line
-      excludeTypes: []
+      excludeTypes: ['dvd','person','publication','fileuploded']
     },
     'apostrophe-editor-2': {
       plugins: [
@@ -612,6 +612,8 @@ site.init({
    
     // new member after payment is successfull
     site.app.post('/' + process.env.PAYPAL_LISTENER, function(req, res) {
+      
+      console.log('INCOME PAYPAL PAYMENT...');
       
       var wrongPayment = function(message) {
         sendEmail(process.env.DEFAULT_FORMS_EMAIL, 'Wrong payment notification', '<h2>'+message+'</h2><br><br>'+objectToEmailBody(req.body));
