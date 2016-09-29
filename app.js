@@ -125,6 +125,10 @@ function prolongMembershipForYear(userId, paymentId, payedAmount, callback) {
 
   
     site.apos.pages.findOne({ _id: userId }, function(err, user) {
+      
+      var dateToApos = function(d){
+        return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+      }
       if (user) {
         
         if (user.paymentId === paymentId) {
@@ -142,11 +146,11 @@ function prolongMembershipForYear(userId, paymentId, payedAmount, callback) {
         var yearLen = 1000*60;//*60*24*366;
         
         
-        if (!user.membershipExpiration) {
+        if (!user.membershipExpiration || ((new Date(user.membershipExpiration)).getTime() < new Date().getTime())) {
           
-          user.membershipExpiration = new Date((new Date()).getTime() + yearLen);
+          user.membershipExpiration = dateToApos(new Date((new Date()).getTime() + yearLen));
         } else {
-          user.membershipExpiration = new Date((new Date(userLocal.membershipExpiration)).getDate() + yearLen);
+          user.membershipExpiration = dateToApos(new Date((new Date(userLocal.membershipExpiration)).getDate() + yearLen));
         }
         
         site.apos.pages.update({
