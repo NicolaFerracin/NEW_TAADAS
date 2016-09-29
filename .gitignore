@@ -1,4 +1,5 @@
 locales/en.json
+public/sitemap.xml
 dump/
 npm-debug.log
 public/uploads
