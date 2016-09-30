@@ -80,9 +80,9 @@ function  objectToEmailBody(formData) {
 
 function membershipIsExpired(userLocal) {
   
-  for(var k in userLocal){
+  /*for(var k in userLocal){
     console.log(k+': '+userLocal[k])
-  }
+  }*/
   
   var ret = !userLocal.permissions.admin && userLocal.membershipPrice && (!userLocal.membershipExpiration || ((new Date(userLocal.membershipExpiration)).getTime() < new Date().getTime()));
   
@@ -129,7 +129,7 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
     site.apos.pages.findOne({ _id: userId }, function(err, user) {
       
       var dateToApos = function(d){
-        return d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate();
+        return d.toISOString().split('T').shift();
       }
       if (user) {
         
@@ -146,9 +146,9 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         }
         
         console.log('payment is correct');
-        for(var k in user){
+        /*for(var k in user){
           console.log(k+': '+user[k])
-        }
+        }*/
         
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
@@ -156,23 +156,23 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         
         
         if (!user.membershipExpiration || ((new Date(user.membershipExpiration)).getTime() < new Date().getTime())) {
-          console.log('expiration date was empty or expired');
+          //console.log('expiration date was empty or expired');
           
           var newTime = (new Date()).getTime() + yearLen;
           var newDate = dateToApos(new Date(newTime));
           
-          console.log('newTime: '+newTime);
-          console.log('newDate: '+newDate);
+         /* console.log('newTime: '+newTime);
+          console.log('newDate: '+newDate);*/
           
           user.membershipExpiration = newDate;
         } else {
-          console.log('expiration date increased +'+yearLen);
+          //console.log('expiration date increased +'+yearLen);
           user.membershipExpiration = dateToApos(new Date((new Date(user.membershipExpiration)).getDate() + yearLen));
         }
         
-        for(var k in user){
+        /*for (var k in user) {
           console.log(k+': '+user[k])
-        }
+        }*/
        
         
         site.apos.pages.update({
