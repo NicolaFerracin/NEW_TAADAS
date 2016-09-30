@@ -152,7 +152,14 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         
         if (!user.membershipExpiration || ((new Date(user.membershipExpiration)).getTime() < new Date().getTime())) {
           console.log('expiration date was empty or expired');
-          user.membershipExpiration = dateToApos(new Date((new Date()).getTime() + yearLen));
+          
+          var newTime = (new Date()).getTime() + yearLen;
+          var newDate = dateToApos(new Date(newTime));
+          
+          console.log('newTime: '+newTime);
+          console.log('newDate: '+newDate);
+          
+          user.membershipExpiration = newDate;
         } else {
           console.log('expiration date increased +'+yearLen);
           user.membershipExpiration = dateToApos(new Date((new Date(userLocal.membershipExpiration)).getDate() + yearLen));
@@ -163,6 +170,9 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         }, {
           $set:user
         }, function(err, res){
+          if (err) {
+             sendEmail(process.env.DEFAULT_FORMS_EMAIL, 'Error on paypal payment processing', err+'<br><br>'+objectToEmailBody(paymentBody));
+          }
           callback();
           
         })
