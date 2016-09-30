@@ -82,7 +82,7 @@ function membershipIsExpired(userLocal) {
   
   
   
-  var ret = !userLocal.permissions.admin && (!userLocal.membershipExpiration || ((new Date(userLocal.membershipExpiration)).getTime() < new Date().getTime()));
+  var ret = !userLocal.permissions.admin && userLocal.membershipPrice && (!userLocal.membershipExpiration || ((new Date(userLocal.membershipExpiration)).getTime() < new Date().getTime()));
   
   if (ret) {
      site.apos.pages.findOne({ _id: userLocal._id }, function(err, user) {
@@ -340,6 +340,7 @@ site.init({
       }
     },
     'apostrophe-people': {
+      applyGroup: 'Members',
       addFields: [{
         name: '_blogPosts',
         type: 'joinByOneReverse',
@@ -363,7 +364,7 @@ site.init({
       },{
         name: 'membershipExpiration',
         type: 'date',
-        label: 'Membership Expiration',
+        label: 'Membership Expiration (YYYY-MM-DD)',
       }]
     },
     'apostrophe-groups': {},
@@ -621,7 +622,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['site', 'custom-styles'],
-    scripts: ['_site-compiled',/*'respond.min', ie8-media requests enabling*/ 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
+    scripts: ['_site-compiled', 'respond.min'/*<--ie8-media requests enabling*/, 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
   },
 
 
@@ -658,7 +659,7 @@ site.init({
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     if (body === 'VERIFIED') {
-                      prolongMembershipForYear(paymentUserId,req.body.txn_id,payedAmount, function(){
+                      prolongMembershipForYear(paymentUserId,req.body.txn_id, parseInt(body.mc_gross), function(){
                         res.end();
                       })
                       

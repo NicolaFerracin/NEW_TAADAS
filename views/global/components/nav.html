@@ -1,7 +1,7 @@
 {% macro nav(page, options) %}
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	  <div class="" style="text-align:center">
-		<a class="brandimage" href="/"><img src="/images/taadas-logo-white.png"></a>
+		<a class="brandimage" href="/"><img style="max-height:100px" src="/images/taadas-logo-white.png"></a>
 		<div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
@@ -24,7 +24,8 @@
 		    	<!-- if no children -->
 		    	{% if item.children.length > 0 %}
 		      	<li class="dropdown">
-					<a {% if item.target %}target="{{item.target}}" {% endif %} href="{{ item.url }}" class="dropdown-toggle nav-type-{{ item.type }}" data-toggle_disabled="dropdown">{{ item.title }} <b class="caret"></b></a>
+					<a class="dropdown-toggle nav-type-{{ item.type }} visible-xs-block" data-toggle="dropdown">{{ item.title }} <b class="caret"></b></a>
+					<a {% if item.target %}target="{{item.target}}" {% endif %} href="{{ item.url }}" class="dropdown-toggle nav-type-{{ item.type }} hidden-xs" data-toggle_disabled="dropdown">{{ item.title }} <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
 	                    	<li>
 	                    		<a {% if item.target %}target="{{item.target}}" {% endif %} class="nav-type-{{ item.type }}"  href="{{ item.url }}">{{ item.title }}</a>
@@ -49,5 +50,9 @@
 {% if page.slug != '/prolong-membership' %}
 {{ checkMembership(user) }}
 {% endif %}
+
+<!--[if lt IE 11]>
+	<div class="row"><div class="col-lg-12" style="background:#f00;color:#fff;padding:8px;font-weight:bold;text-align:center"><a style="color:#fff" href="https://www.google.com/chrome/"><i class="fa4 fa4-alert"></i> Danger! You use outdated not safe browser. We are reccomend you to download something contemporary. Click here to start.</a></div></div>
+<![endif]-->
 	</nav>
 {% endmacro %}
