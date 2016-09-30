@@ -151,9 +151,10 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         
         
         if (!user.membershipExpiration || ((new Date(user.membershipExpiration)).getTime() < new Date().getTime())) {
-          
+          console.log('expiration date was empty or expired');
           user.membershipExpiration = dateToApos(new Date((new Date()).getTime() + yearLen));
         } else {
+          console.log('expiration date increased +'+yearLen);
           user.membershipExpiration = dateToApos(new Date((new Date(userLocal.membershipExpiration)).getDate() + yearLen));
         }
         
