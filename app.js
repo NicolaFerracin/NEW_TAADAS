@@ -144,7 +144,7 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         }
         
         console.log('payment is correct');
-        console.dir(user);
+        console.log(JSON.stringify(user));
         
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
@@ -165,6 +165,8 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
           console.log('expiration date increased +'+yearLen);
           user.membershipExpiration = dateToApos(new Date((new Date(user.membershipExpiration)).getDate() + yearLen));
         }
+        
+        console.log(JSON.stringify(user));
         
         site.apos.pages.update({
           _id: user._id
