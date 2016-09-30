@@ -92,8 +92,8 @@ function membershipIsExpired(userLocal) {
         
         if (user.membershipExpiration) {
           modifed = true;
-          user.membershipExpiration = false;
-          userLocal.membershipExpiration = false;
+          user.membershipExpiration = '';
+          userLocal.membershipExpiration = '';
         }
         
         var ind = user.groupIds.indexOf('71432004817976094');
