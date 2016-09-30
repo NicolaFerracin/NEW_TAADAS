@@ -120,7 +120,7 @@ function membershipIsExpired(userLocal) {
   
   return ret;
 }
-function prolongMembershipForYear(userId, paymentId, payedAmount, callback) {
+function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
   
 
   
@@ -131,13 +131,15 @@ function prolongMembershipForYear(userId, paymentId, payedAmount, callback) {
       }
       if (user) {
         
+        var payedAmount = parseInt(paymentBody.mc_gross)+'.23';
+        
         if (user.paymentId === paymentId) {
           callback();
           return;
         }
         
         if (payedAmount != user.membershipPrice) {
-          sendEmail(process.env.DEFAULT_FORMS_EMAIL, 'Membership payment has different amount', '<h2>+Expected $'+user.membershipPrice+' but received $'+payedAmount+'</h2><br><br>Users title: <b>'+user.title+'</b><br>Paypal transaction ID: <b>'+paymentId+'</b><br>');
+          sendEmail(process.env.DEFAULT_FORMS_EMAIL, 'Membership payment has different amount', '<h2>+Expected $'+user.membershipPrice+' but received $'+payedAmount+'</h2><br><br>Users title: <b>'+user.title+'</b><br>Paypal transaction ID: <b>'+paymentId+'</b><br><br>'+objectToEmailBody(paymentBody));
           return;
         }
         
@@ -659,7 +661,7 @@ site.init({
             function (error, response, body) {
                 if (!error && response.statusCode == 200) {
                     if (body === 'VERIFIED') {
-                      prolongMembershipForYear(paymentUserId,req.body.txn_id, parseInt(body.mc_gross), function(){
+                      prolongMembershipForYear(paymentUserId, req.body.txn_id, req.body, function(){
                         res.end();
                       })
                       
