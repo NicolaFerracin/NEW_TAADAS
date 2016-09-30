@@ -131,7 +131,7 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
       }
       if (user) {
         
-        var payedAmount = parseInt(paymentBody.mc_gross)+'.23';
+        var payedAmount = parseInt(paymentBody.mc_gross);
         
         if (user.paymentId === paymentId) {
           callback();
