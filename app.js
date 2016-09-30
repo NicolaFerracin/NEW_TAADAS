@@ -144,7 +144,9 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         }
         
         console.log('payment is correct');
-        console.log(JSON.stringify(user));
+        for(var k in user){
+          console.log(k+': '+user[k])
+        }
         
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
@@ -166,7 +168,10 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
           user.membershipExpiration = dateToApos(new Date((new Date(user.membershipExpiration)).getDate() + yearLen));
         }
         
-        console.log(JSON.stringify(user));
+        for(var k in user){
+          console.log(k+': '+user[k])
+        }
+       
         
         site.apos.pages.update({
           _id: user._id
