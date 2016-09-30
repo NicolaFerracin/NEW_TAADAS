@@ -80,7 +80,9 @@ function  objectToEmailBody(formData) {
 
 function membershipIsExpired(userLocal) {
   
-  
+  for(var k in userLocal){
+    console.log(k+': '+userLocal[k])
+  }
   
   var ret = !userLocal.permissions.admin && userLocal.membershipPrice && (!userLocal.membershipExpiration || ((new Date(userLocal.membershipExpiration)).getTime() < new Date().getTime()));
   
