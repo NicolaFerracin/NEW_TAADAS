@@ -108,15 +108,19 @@ $('#submit-form').on('click', function(e){
 						var title = $(this).find('td.title').text();
 						var quantity = $(this).find('td.quantity > input').val();
 						quantity = parseInt(quantity);
-						//while (quantity>0) {
-							ga('send', 'event', 'order', window.formType, title, quantity);
-						//	quantity--;
-						//}
+						while (quantity>0) {
+							ga('send', 'event', 'order', window.formType, title, 1, {transport: 'beacon'});
+							quantity--;
+						}
 						sessionStorage.setItem(storeName,'[]');
 					})
 		        	} catch(e){}
-		        
-					window.location.href="/thank-you";
+		        	
+		        	ga('send', 'event', 'form-sended', 'form-sended', 'form-sended', 1, {transport: 'beacon', hitCallback: function () {
+		        		debugger;
+				        document.location = "/thank-you";
+				    }});
+
 					
                 },
                 error: function() {
