@@ -152,7 +152,7 @@ function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
         
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
-        var yearLen = 1000*60*60*24;//*366;
+        var yearLen = 1000*60*60*24*366;
         
         
         if (!user.membershipExpiration || ((new Date(user.membershipExpiration)).getTime() < new Date().getTime())) {
