@@ -55,7 +55,21 @@
                   {% endif %}
                {% endfor %}
   		    </div>
-</div>
-    </div>
+        </div>
+     </div>
+           <div class="row">
+            <div class="col-lg-12">
+               {{ aposArea(page, 'body2', {
+                      controls: editorFullControlls(),
+                      styles: [
+                        { value: 'p', label: 'Text' },
+                        { value: 'h1', label: 'Heading 1' },
+                        { value: 'h3', label: 'Heading 3' }
+                      ]
+                    }) }}
+               
+            </div>
+        </div>
+  	<div class="row">
 </div>
 {% endblock %}
