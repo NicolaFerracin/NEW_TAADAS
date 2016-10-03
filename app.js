@@ -334,9 +334,6 @@ site.init({
     }, {
       name: 'renew-membership',
       label: 'Renew membership'
-    }, {
-      name: 'prolong-membership',
-      label: 'Prolong membership'
     }],
     tabOptions: {
       depth: 4
