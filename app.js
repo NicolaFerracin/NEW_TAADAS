@@ -17,7 +17,7 @@ function sendEmail(to, subject, body, success, fail){
         service: 'Gmail',
         auth: {
           xoauth2: xoauth2.createXOAuth2Generator({
-            user: 'taadasorders@gmail.com',
+            user: process.env.FROM_EMAIL,
             clientId: process.env.GMAIL_CLIENT_ID,
             clientSecret: process.env.GMAIL_CLIENT_SECRET,
             refreshToken: process.env.REFRESH_TOKEN,
@@ -30,7 +30,7 @@ function sendEmail(to, subject, body, success, fail){
       var mailOpts, smtpTrans;
       //Mail options
       mailOpts = {
-        from: 'taadasorders@gmail.com',
+        from: process.env.FROM_EMAIL,
         to: to,
         subject: subject,
         html: body
