@@ -127,7 +127,7 @@ function membershipIsExpired(userLocal) {
       site.apos.pages.update({
         _id: userLocal._id
       }, {
-        $set: user
+        $set: userLocal
       }, function(err, res){
 
       })
@@ -168,8 +168,8 @@ function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
           console.log(k+': '+user[k])
         }*/
         
-        if (!userLocal.groupIds) {
-          userLocal.groupIds = [];
+        if (!user.groupIds) {
+          user.groupIds = [];
         }
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
