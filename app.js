@@ -119,6 +119,9 @@ function membershipIsExpired(userLocal) {
 
     });
   } else {
+    if (!userLocal.groupIds) {
+      userLocal.groupIds = [];
+    }
     if (userLocal.groupIds.indexOf('71432004817976094') <0) {
       userLocal.groupIds.push('71432004817976094');
       site.apos.pages.update({
@@ -165,6 +168,9 @@ function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
           console.log(k+': '+user[k])
         }*/
         
+        if (!userLocal.groupIds) {
+          userLocal.groupIds = [];
+        }
         if(user.groupIds.indexOf('71432004817976094')<0)user.groupIds.push('71432004817976094'); 
         
         var yearLen = 1000*60*60*24*366;
