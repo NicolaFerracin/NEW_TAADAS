@@ -118,6 +118,21 @@ function membershipIsExpired(userLocal) {
       }
 
     });
+  } else {
+    if (userLocal.groupIds.indexOf('71432004817976094') <0) {
+      userLocal.groupIds.push('71432004817976094');
+      site.apos.pages.update({
+        _id: userLocal._id
+      }, {
+        $set: user
+      }, function(err, res){
+
+      })
+    }
+        
+    
+    
+    
   }
   
   return ret;
@@ -319,6 +334,9 @@ site.init({
     }, {
       name: 'renew-membership',
       label: 'Renew membership'
+    }, {
+      name: 'prolong-membership',
+      label: 'Prolong membership'
     }],
     tabOptions: {
       depth: 4
