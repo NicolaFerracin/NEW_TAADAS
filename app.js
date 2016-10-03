@@ -122,7 +122,7 @@ function membershipIsExpired(userLocal) {
   
   return ret;
 }
-function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
+function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
   
 
   
@@ -229,7 +229,7 @@ site.init({
     if (membershipIsExpired(user)) {
       return '/'; //expired membership goto home instead 
     } else {
-      return '/join-taadas/membership-info/member-s-area';
+      return '/membership-info/member-s-area';
     }
    } else {
       return '/';
@@ -317,8 +317,8 @@ site.init({
       name: 'sitemap',
       label: 'Sitemap'
     }, {
-      name: 'prolong-membership',
-      label: 'Prolong membership'
+      name: 'renew-membership',
+      label: 'Renew membership'
     }],
     tabOptions: {
       depth: 4
@@ -710,8 +710,8 @@ site.init({
       '/training.htm':'/training',
       '/Redline.htm':'/our-programs-and-services/redline',
       '/clearinghouse_main.htm':'/our-programs-and-services/clearinghouse-main',
-      '/Membership Section/TAADASMembers.htm ':'/join-taadas/membership-info',
-      '/Membership%20Section/TAADASMembers.htm':'/join-taadas/membership-info'
+      '/Membership Section/TAADASMembers.htm ':'/membership-info',
+      '/Membership%20Section/TAADASMembers.htm':'/membership-info'
     }
     
     for (var k in oldSitRedirects) {
@@ -825,7 +825,7 @@ site.init({
               res.send('error');
             }
           } else {
-            res.redirect('/prolong-membership');
+            res.redirect('/renew-membership');
           }
         } else {
           res.redirect('/login');
@@ -862,7 +862,7 @@ site.init({
     site.apos.addLocal('editorFullControlls', editorFullControlls);
     site.apos.addLocal('checkMembership', function(user) {
         if (user && membershipIsExpired(user)) {
-          return '<div class="membersip-expired"><i class="fa4 fa4-alert"></i><a href="/prolong-membership">Your membership has expired. Click here to prolong it.</a></div>';
+          return '<div class="membersip-expired"><i class="fa4 fa4-alert"></i><a href="/renew-membership">Your membership has expired. Click here to renew it.</a></div>';
           
         }
     });
