@@ -17,7 +17,7 @@ function sendEmail(to, subject, body, success, fail){
         service: 'Gmail',
         auth: {
           xoauth2: xoauth2.createXOAuth2Generator({
-            user: process.env.FROM_EMAIL,
+            user: process.env.GMAIL_USERNAME,
             clientId: process.env.GMAIL_CLIENT_ID,
             clientSecret: process.env.GMAIL_CLIENT_SECRET,
             refreshToken: process.env.REFRESH_TOKEN,
