@@ -13,8 +13,24 @@ var transporter;
 
 function sendEmail(to, subject, body, success, fail){
      
-     if (!transporter) {//lazy loading
+    /* if (!transporter) {//lazy loading
       transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail', args:['tls=yes'], secureConnection: true });
+     }*/
+     
+     
+     if (!transporter) {//lazy loading
+        transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          xoauth2: xoauth2.createXOAuth2Generator({
+            user: process.env.GMAIL_USERNAME,
+            clientId: process.env.GMAIL_CLIENT_ID,
+            clientSecret: process.env.GMAIL_CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: process.env.ACCESS_TOKEN
+          })
+        }
+      });
      }
      
       var mailOpts, smtpTrans;
