@@ -14,7 +14,7 @@ var transporter;
 function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
-      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail', args=['tls=yes'], secureConnection: true });
+      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail', args:['tls=yes'], secureConnection: true });
      }
      
       var mailOpts, smtpTrans;
@@ -251,7 +251,7 @@ site.init({
     transport: 'sendmail',
     transportOptions: {
       path:'/usr/sbin/sendmail',
-      args=['tls=yes'],
+      args:['tls=yes'],
       secureConnection: true
     },
     from: {
