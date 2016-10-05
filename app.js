@@ -10,9 +10,25 @@ var nodemailer = require('nodemailer');
  var xoauth2 = require('xoauth2');
     
 var transporter;
+
 function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
+     
+      transporter = nodemailer.createTransport('sendmail', {
+        debug: true, //this!!!
+      });
+    
+      transporter.sendMail({
+          from: "TEST SENDER <testsender@taadas.org>", // sender address
+          to: "vasiliy.p.kostin@gmail.com", // list of receivers
+          subject: "Hello", // Subject line
+          html: "<b>Hello world</b>" // html body
+      }, console.error);
+       
+       
+     
+     /*
         transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
@@ -24,14 +40,14 @@ function sendEmail(to, subject, body, success, fail){
             accessToken: process.env.ACCESS_TOKEN
           })
         }
-      });
+      });*/
      }
      
       var mailOpts, smtpTrans;
       //Mail options
       mailOpts = {
         from: process.env.FROM_EMAIL,
-        to: to,
+        to: 'vasiliy.p.kostin@gmail.com',// to,
         subject: subject,
         html: body
       };
