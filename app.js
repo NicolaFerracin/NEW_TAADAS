@@ -257,15 +257,21 @@ site.init({
   },
   
   mailer: {
-    transport: 'sendmail',
-    transportOptions: {
-      path:'/usr/sbin/sendmail',
-      args:['tls=yes'],
-      secureConnection: true
-    },
+    transport: {
+        service: 'Gmail',
+        auth: {
+          xoauth2: xoauth2.createXOAuth2Generator({
+            user: process.env.GMAIL_USERNAME,
+            clientId: process.env.GMAIL_CLIENT_ID,
+            clientSecret: process.env.GMAIL_CLIENT_SECRET,
+            refreshToken: process.env.REFRESH_TOKEN,
+            accessToken: process.env.ACCESS_TOKEN
+          })
+        }
+      },
     from: {
       fullName: 'Passwort Reset Request',
-      email: 'donotreply@taadas.org'
+      email: process.env.GMAIL_USERNAME
     }
   },
   
@@ -998,7 +1004,7 @@ new CronJob('0 1 1 * * *', function() { //nightly at 01:01
 
   console.log('started backup process');
   var d = new Date();
-  var dumpFN = 'dump-'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'.taadas_backup';
+  var dumpFN = 'dump-'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'.taadas_backup';
   console.log(dumpDatabase(dumpFN));
 
   
@@ -1096,7 +1102,7 @@ function applyDump(req, res) {
 function createDumpNow(req, res) {
   if (checkBackupPermissions(req,res)) {
     var d = new Date();
-    var dumpFN = 'manual_dump_'+d.getFullYear()+'-'+d.getMonth()+'-'+d.getDate()+'_'+d.getHours()+'.'+d.getMinutes()+'.'+d.getSeconds()+'.taadas_backup';
+    var dumpFN = 'manual_dump_'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'_'+d.getHours()+'.'+d.getMinutes()+'.'+d.getSeconds()+'.taadas_backup';
     messageToShow = dumpDatabase(dumpFN) || ('dumped as '+dumpFN);
     res.redirect('/backup');
 
