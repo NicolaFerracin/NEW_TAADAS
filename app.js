@@ -249,7 +249,11 @@ site.init({
   
   mailer: {
     transport: 'sendmail',
-    transportOptions: {path:'/usr/sbin/sendmail' }
+    transportOptions: {path:'/usr/sbin/sendmail' },
+    from: {
+      fullName: 'Passwort Reset Request',
+      email: 'donotreply@taadas.org'
+    }
   },
   
   
