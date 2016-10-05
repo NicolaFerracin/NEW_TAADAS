@@ -15,7 +15,7 @@ function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
      
-      transporter = nodemailer.createTransport('sendmail', {
+      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail',
         debug: true, //this!!!
       });
     
