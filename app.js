@@ -236,7 +236,7 @@ site.init({
     
     
     
-  if (user) {
+   if (user) {
     if (membershipIsExpired(user)) {
       return '/'; //expired membership goto home instead 
     } else {
@@ -247,7 +247,10 @@ site.init({
    }
   },
   
-  
+  mailer: {
+    transport: 'sendmail',
+    transportOptions: {path:'/usr/sbin/sendmail' }
+  },
   
   
   // Force a2 to prefix all of its URLs. It still
