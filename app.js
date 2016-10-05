@@ -225,7 +225,7 @@ site.init({
   // This line is required and allows apostrophe-site to use require() and manage our NPM modules for us.
   root: module,
   shortName: 'TAADAS',
-  hostName: 'https://taadas.org',
+  hostName: 'taadas.org',
   title: 'TAADAS',
   sessionSecret: process.env.SESSION_SECRET,
   adminPassword: process.env.ADMIN_PASS,
