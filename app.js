@@ -14,7 +14,7 @@ var transporter;
 function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
-      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail',secure: true,requireTLS:true });
+      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail', secureConnection: true });
      }
      
       var mailOpts, smtpTrans;
@@ -251,8 +251,7 @@ site.init({
     transport: 'sendmail',
     transportOptions: {
       path:'/usr/sbin/sendmail',
-      secure: true,
-      requireTLS:true
+      secureConnection: true
     },
     from: {
       fullName: 'Passwort Reset Request',
