@@ -249,9 +249,11 @@ site.init({
   
   mailer: {
     transport: 'sendmail',
-    transportOptions: {path:'/usr/sbin/sendmail' },
-    secure: true,
-    requireTLS:true,
+    transportOptions: {
+      path:'/usr/sbin/sendmail',
+      secure: true,
+      requireTLS:true
+    },
     from: {
       fullName: 'Passwort Reset Request',
       email: 'donotreply@taadas.org'
