@@ -14,7 +14,7 @@ var transporter;
 function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
-      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail' });
+      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail',secure: true,requireTLS:true });
      }
      
       var mailOpts, smtpTrans;
@@ -250,6 +250,8 @@ site.init({
   mailer: {
     transport: 'sendmail',
     transportOptions: {path:'/usr/sbin/sendmail' },
+    secure: true,
+    requireTLS:true,
     from: {
       fullName: 'Passwort Reset Request',
       email: 'donotreply@taadas.org'
