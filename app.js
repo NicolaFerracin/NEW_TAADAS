@@ -4,19 +4,12 @@ var bodyParser = require('body-parser');
 
 
 
-
 var request = require('request');
 var nodemailer = require('nodemailer');
  var xoauth2 = require('xoauth2');
     
 var transporter;
-
 function sendEmail(to, subject, body, success, fail){
-     
-    /* if (!transporter) {//lazy loading
-      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail', args:['tls=yes'], secureConnection: true });
-     }*/
-     
      
      if (!transporter) {//lazy loading
         transporter = nodemailer.createTransport({
