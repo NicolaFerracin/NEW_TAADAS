@@ -14,40 +14,14 @@ var transporter;
 function sendEmail(to, subject, body, success, fail){
      
      if (!transporter) {//lazy loading
-     
-      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail',
-        debug: true, //this!!!
-      });
-    
-      transporter.sendMail({
-          from: "TEST SENDER <testsender@taadas.org>", // sender address
-          to: "vasiliy.p.kostin@gmail.com", // list of receivers
-          subject: "Hello", // Subject line
-          html: "<b>Hello world</b>" // html body
-      }, console.error);
-       
-       
-     
-     /*
-        transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          xoauth2: xoauth2.createXOAuth2Generator({
-            user: process.env.GMAIL_USERNAME,
-            clientId: process.env.GMAIL_CLIENT_ID,
-            clientSecret: process.env.GMAIL_CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
-            accessToken: process.env.ACCESS_TOKEN
-          })
-        }
-      });*/
+      transporter = nodemailer.createTransport('sendmail', {path:'/usr/sbin/sendmail' });
      }
      
       var mailOpts, smtpTrans;
       //Mail options
       mailOpts = {
         from: process.env.FROM_EMAIL,
-        to: 'vasiliy.p.kostin@gmail.com',// to,
+        to: to,
         subject: subject,
         html: body
       };
