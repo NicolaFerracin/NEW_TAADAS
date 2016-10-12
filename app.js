@@ -218,6 +218,14 @@ function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
     });
 }
 
+var UIDCOINTER=0;
+function UID(item) {
+  if (!item.hasOwnProperty('___UID')) {
+   item.___UID = (new Date()).getTime()+'_'+UIDCOINTER;
+   UIDCOINTER++;
+  }
+  return item.___UID;
+}
 
 var discourse_sso = require('discourse-sso');
 var sso = new discourse_sso(process.env.DISCOURCE_SSO_SECRET);
@@ -255,25 +263,25 @@ site.init({
       return '/';
    }
   },
-  
+/*  
   mailer: {
-    transport: {
-        service: 'Gmail',
-        auth: {
-          xoauth2: xoauth2.createXOAuth2Generator({
-            user: process.env.GMAIL_USERNAME,
-            clientId: process.env.GMAIL_CLIENT_ID,
-            clientSecret: process.env.GMAIL_CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
-            accessToken: process.env.ACCESS_TOKEN
-          })
-        }
-      },
-    from: {
-      fullName: 'Passwort Reset Request',
-      email: process.env.GMAIL_USERNAME
-    }
-  },
+   transportOptions: {
+     service: "Gmail",
+     auth: {
+        xoauth2: xoauth2.createXOAuth2Generator({
+          user: process.env.GMAIL_USERNAME,
+          clientId: process.env.GMAIL_CLIENT_ID,
+          clientSecret: process.env.GMAIL_CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN,
+          accessToken: process.env.ACCESS_TOKEN
+        })
+      }
+   },
+   transport: 'SMTP'
+  }*/
+  
+  
+  
   
   
   // Force a2 to prefix all of its URLs. It still
@@ -895,7 +903,8 @@ site.init({
     site.uploadfs.getUrl = function() {
       return 'https://taadas.s3.amazonaws.com';
     }
-
+    
+    site.apos.addLocal('UID', UID);
     site.apos.addLocal('editorFullControlls', editorFullControlls);
     site.apos.addLocal('checkMembership', function(user) {
         if (user && membershipIsExpired(user)) {
