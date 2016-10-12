@@ -1,14 +1,15 @@
-{{ aposLog(item) }}
-<div class="panel-group" id="accordion{{ UID(item) }}">
+{% set accordionid = UID() %}
+<div class="panel-group" id="{{ accordionid }}">
     
     {% for box in item.boxes %}
+    {% set boxid = UID() %}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion{{ UID(item) }}" href="#collapse{{ UID(item) }}_{{ box.id }}">{{ box.title }}</a>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#{{ accordionid }}" href="#{{ boxid }}">{{ box.title }}</a>
             </h4>
         </div>
-        <div id="collapse{{ UID(item) }}_{{ box.id }}" class="panel-collapse collapse">
+        <div id="{{ boxid }}" class="panel-collapse collapse">
             <div class="panel-body">
                 {{ aposArea({ area: box.accbody }) }}
 			</div>

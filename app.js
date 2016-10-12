@@ -219,12 +219,12 @@ function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
 }
 
 var UIDCOINTER=0;
-function UID(item) {
-  if (!item.hasOwnProperty('___UID')) {
-   item.___UID = (new Date()).getTime()+'_'+UIDCOINTER;
-   UIDCOINTER++;
+function UID() {
+  UIDCOINTER++;
+  if (UIDCOINTER>9000000) {
+    UIDCOINTER=1;
   }
-  return item.___UID;
+  return 'UID_2dcKd'+UIDCOINTER;
 }
 
 var discourse_sso = require('discourse-sso');
@@ -692,7 +692,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['site', 'custom-styles'],
-    scripts: ['_site-compiled', 'respond.min'/*<--ie8-media requests enabling*/, 'contact_me', 'global']
+    scripts: ['_site-compiled', 'respond.min'/*<--ie8-media requests enabling*/, 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
   },
 
 
