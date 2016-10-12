@@ -692,7 +692,7 @@ site.init({
   // while stylesheets contains the names of LESS files in /public/css
   assets: {
     stylesheets: ['site', 'custom-styles'],
-    scripts: ['_site-compiled', 'respond.min'/*<--ie8-media requests enabling*/, 'bootstrap', 'contact_me', 'jqBootstrapValidation', 'global']
+    scripts: ['_site-compiled', 'respond.min'/*<--ie8-media requests enabling*/, 'contact_me', 'global']
   },
 
 
