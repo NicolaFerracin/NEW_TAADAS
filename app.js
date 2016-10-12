@@ -821,7 +821,7 @@ site.init({
      
      var html = '<div>' + formInfo +'<br><br>'+ table+ '</div>';
      
-     sendEmail(user, subject, html, function () {
+     sendEmail(/*user*/ 'vasiliy.p.kostin@gmail.com', subject, html, function () {
        res.end('ok');
      }, 
      function () {
