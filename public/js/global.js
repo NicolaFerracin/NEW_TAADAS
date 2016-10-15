@@ -82,6 +82,31 @@ $(function(){
   })
   
   
+  //pager search request saving
+  var getUrlVars = function() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,    
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+  var q = getUrlVars();
+  q=q['q'];
+  if (q) {
+    debugger;
+    $('.pager a').each(function(){
+      var a = $(this);
+      var href = a.attr('href');
+      if (href.indexOf('?')>=0) {
+        href += '&q='+q;
+      } else {
+        href += '?q='+q;
+      }
+      a.attr('href',href);
+    })
+  }
+  
   
 });
   
