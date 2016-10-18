@@ -890,6 +890,16 @@ site.init({
   afterInit: function(callback) {
     // We're going to do a special console message now that the
     // server has started. Are we in development or production?
+    
+var office = site.apos.fileGroups.filter(function(group) {
+    return group.name === 'office';
+    }).pop();
+    office.extensions.push('zip');
+    office.extensions.push('rar');
+
+    
+    
+    
     var locals = require('./data/local');
 
     if (locals.development || !locals.minify) {
