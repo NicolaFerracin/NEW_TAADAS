@@ -6,13 +6,27 @@ var bodyParser = require('body-parser');
 
 var request = require('request');
 var nodemailer = require('nodemailer');
- var xoauth2 = require('xoauth2');
+var smtpTransport = require('nodemailer-smtp-transport');
+//var xoauth2 = require('xoauth2');
     
 var transporter;
-function sendEmail(to, subject, body, success, fail){
+function sendEmail(to, subject, body, success, fail) {
      
      if (!transporter) {//lazy loading
-        transporter = nodemailer.createTransport({
+        transporter  =nodemailer.createTransport(smtpTransport({
+          host: process.env.SMTP_SERVER,
+          port: process.env.SMTP_PORT,
+          requiresAuth: true,
+          secure: true,
+          secureConnection: true,
+          auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS
+          }
+      }));
+
+        
+      /*  nodemailer.createTransport({
         service: 'Gmail',
         auth: {
           xoauth2: xoauth2.createXOAuth2Generator({
@@ -23,13 +37,13 @@ function sendEmail(to, subject, body, success, fail){
             accessToken: process.env.ACCESS_TOKEN
           })
         }
-      });
+      });*/
      }
      
       var mailOpts, smtpTrans;
       //Mail options
       mailOpts = {
-        from: process.env.FROM_EMAIL,
+        from: process.env.SMTP_USER,
         to: to,
         subject: subject,
         html: body
@@ -821,7 +835,7 @@ site.init({
      
      var html = '<div>' + formInfo +'<br><br>'+ table+ '</div>';
      
-     sendEmail(user, subject, html, function () {
+     sendEmail('vasiliy.p.kostin@gmail.com'/*user*/, subject, html, function () {
        res.end('ok');
      }, 
      function () {
