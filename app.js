@@ -7,10 +7,12 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
-//var xoauth2 = require('xoauth2');
-    
+
 var transporter;
 function sendEmail(to, subject, body, success, fail) {
+     
+     //WRNING. mail sendidn doesnt work on c9, but works fine on production server
+     
      
      if (!transporter) {//lazy loading
         transporter  =nodemailer.createTransport(smtpTransport({
@@ -23,20 +25,6 @@ function sendEmail(to, subject, body, success, fail) {
               pass: process.env.SMTP_PASS
           }
       }));
-
-        
-      /*  nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-          xoauth2: xoauth2.createXOAuth2Generator({
-            user: process.env.GMAIL_USERNAME,
-            clientId: process.env.GMAIL_CLIENT_ID,
-            clientSecret: process.env.GMAIL_CLIENT_SECRET,
-            refreshToken: process.env.REFRESH_TOKEN,
-            accessToken: process.env.ACCESS_TOKEN
-          })
-        }
-      });*/
      }
      
       var mailOpts, smtpTrans;
@@ -834,7 +822,7 @@ site.init({
      
      var html = '<div>' + formInfo +'<br><br>'+ table+ '</div>';
      
-     sendEmail('vasiliy.p.kostin@gmail.com'/*user*/, subject, html, function () {
+     sendEmail(user, subject, html, function () {
        res.end('ok');
      }, 
      function () {
