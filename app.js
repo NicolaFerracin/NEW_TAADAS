@@ -16,9 +16,8 @@ function sendEmail(to, subject, body, success, fail) {
         transporter  =nodemailer.createTransport(smtpTransport({
           host: process.env.SMTP_SERVER,
           port: process.env.SMTP_PORT,
-          requiresAuth: true,
-          secure: true,
-          secureConnection: true,
+          secure: false,
+          requireTLS:true,
           auth: {
               user: process.env.SMTP_USER,
               pass: process.env.SMTP_PASS
