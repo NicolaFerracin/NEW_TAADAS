@@ -915,6 +915,12 @@ var office = site.apos.fileGroups.filter(function(group) {
       return 'https://taadas.s3.amazonaws.com';
     }
     
+    site.apos.addLocal('columnToBootstrapClass', function(a,i) {
+        i = a.indexOf(i);
+        var l = a.length;
+        if(l > 4) return 3;
+        return 12/l;
+    });
     site.apos.addLocal('UID', UID);
     site.apos.addLocal('editorFullControlls', editorFullControlls);
     site.apos.addLocal('checkMembership', function(user) {

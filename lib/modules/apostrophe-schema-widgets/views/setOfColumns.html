@@ -1,9 +1,7 @@
 <div class="row">
     {% for column in item.columns %}
-    <div class="center col-lg-{{ 12 / item.columns.length }}">
-        <div class="panel-body">
-                {{ aposArea({ area: column.content }) }}
-		</div>
+    <div class="col-lg-{{ columnToBootstrapClass(item.columns,column) }}">
+         {{ aposArea({ area: column.content }) }}
     </div>
     {% endfor %}
 </div>
