@@ -101,22 +101,20 @@ $('#submit-form').on('click', function(e){
                 success: function() {
 			        
 		        
-
+					sessionStorage.setItem(storeName,'[]');
+					
 		        	try{
 		    		//pass all data to google analytic
 					rows.each(function(index, row) {
 						var title = $(this).find('td.title').text();
 						var quantity = $(this).find('td.quantity > input').val();
 						quantity = parseInt(quantity);
-						while (quantity>0) {
-							ga('send', 'event', 'order', window.formType, title, 1, {transport: 'beacon'});
-							quantity--;
-						}
-						sessionStorage.setItem(storeName,'[]');
+						ga('send', 'event', 'order', window.formType, title, quantity);
+						
 					})
 		        	} catch(e){}
 		        	
-		        	ga('send', 'event', 'form-sended', 'form-sended', 'form-sended', 1, {transport: 'beacon', hitCallback: function () {
+		        	ga('send', 'event', 'form-sended', 'form-sended', 'form-sended', 1, {hitCallback: function () {
 		        		debugger;
 				        document.location = "/thank-you";
 				    }});
