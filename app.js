@@ -439,7 +439,7 @@ site.init({
   }*/
      mailer: {
           sendMail:function(email, callback) {
-            sendEmail(email.to, message.subject, message.text, callback);
+            sendEmail(email.to, email.subject, email.text, callback);
 
           }
     },
