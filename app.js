@@ -27,6 +27,9 @@ function sendEmail(to, subject, body, success, fail) {
       }));
      }
      
+     
+
+     
       var mailOpts, smtpTrans;
       //Mail options
       mailOpts = {
@@ -264,27 +267,7 @@ site.init({
       return '/';
    }
   },
-/*  
-  mailer: {
-   transportOptions: {
-     service: "Gmail",
-     auth: {
-        xoauth2: xoauth2.createXOAuth2Generator({
-          user: process.env.GMAIL_USERNAME,
-          clientId: process.env.GMAIL_CLIENT_ID,
-          clientSecret: process.env.GMAIL_CLIENT_SECRET,
-          refreshToken: process.env.REFRESH_TOKEN,
-          accessToken: process.env.ACCESS_TOKEN
-        })
-      }
-   },
-   transport: 'SMTP'
-  }*/
-  
-  
-  
-  
-  
+
   // Force a2 to prefix all of its URLs. It still
   // listens on its own port, but you can configure
   // your reverse proxy to send it traffic only
@@ -436,7 +419,32 @@ site.init({
         name: 'membershipExpiration',
         type: 'date',
         label: 'Membership Expiration (YYYY-MM-DD)',
-      }]
+      }],
+      
+      /*  
+  mailer: {
+   transportOptions: {
+     service: "Gmail",
+     auth: {
+        xoauth2: xoauth2.createXOAuth2Generator({
+          user: process.env.GMAIL_USERNAME,
+          clientId: process.env.GMAIL_CLIENT_ID,
+          clientSecret: process.env.GMAIL_CLIENT_SECRET,
+          refreshToken: process.env.REFRESH_TOKEN,
+          accessToken: process.env.ACCESS_TOKEN
+        })
+      }
+   },
+   transport: 'SMTP'
+  }*/
+     mailer: {
+          sendMail:function(email, callback) {
+            sendEmail(email.to, message.subject, message.text, callback);
+
+          }
+    },
+
+      
     },
     'apostrophe-groups': {},
     'apostrophe-search': {},
