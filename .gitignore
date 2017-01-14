@@ -10,7 +10,7 @@ node_modules
 public/modules
 # We don't commit CSS, only LESS
 # Don't commit masters generated on the fly at startup, these import all the rest
-public/css/master-*.css
+public/css/master-*
 .jshintrc
 public/js/_site-compiled.js
 #data/   push this folder bacaouse local.js has no more secret values, but just redirect it form .env file.
