@@ -12,7 +12,7 @@ var transporter;
 function sendEmail(to, subject, body, success, fail) {
      
      //WRNING. mail sendidn doesnt work on c9, but works fine on production server
-     
+   
      
      if (!transporter) {//lazy loading
         transporter  =nodemailer.createTransport(smtpTransport({
@@ -81,6 +81,14 @@ function  objectToEmailBody(formData) {
      return formInfo+'</div>';
 }
 
+function checkIfNeedRedirectToforum (req, res) {
+  if (req.session.hasOwnProperty('redirectToForum')) {
+    delete (req.session.redirectToForum);
+    res.redirect('https://discourse.taadas.org/');
+    return true;
+  }
+}
+
 function membershipIsExpired(userLocal) {
   
   /*for(var k in userLocal){
@@ -143,7 +151,7 @@ function membershipIsExpired(userLocal) {
   
   return ret;
 }
-function renewMembershipForYear(userId, paymentId, paymentBody, callback) {
+function prolongMembershipForYear(userId, paymentId, paymentBody, callback) {
   
 
   
@@ -261,7 +269,7 @@ site.init({
     if (membershipIsExpired(user)) {
       return '/'; //expired membership goto home instead 
     } else {
-      return '/membership-info/member-s-area';
+      return '/check-if-need-redirect-to-forum';
     }
    } else {
       return '/';
@@ -739,7 +747,9 @@ site.init({
                 if (!error && response.statusCode == 200) {
                     if (body === 'VERIFIED') {
                       prolongMembershipForYear(paymentUserId, req.body.txn_id, req.body, function(){
-                        res.end();
+                        if (!checkIfNeedRedirectToforum(req, res)) {
+                          res.end();
+                        }
                       })
                       
                     } else {
@@ -848,7 +858,7 @@ site.init({
      site.app.get('/backup/dump-now', createDumpNow);
      
      site.app.get('/discourse/sso', function(req, res) {
-
+        
         if (req.user) {
           //pass login info
           
@@ -882,6 +892,7 @@ site.init({
             res.redirect('/renew-membership');
           }
         } else {
+          req.session.redirectToForum = '1';
           res.redirect('/login');
         }
        
@@ -889,6 +900,13 @@ site.init({
         
       });
     
+    
+    site.app.get('/check-if-need-redirect-to-forum', function(req, res) {
+        if(!checkIfNeedRedirectToforum(req, res)){
+           
+          res.redirect('/membership-info/member-s-area');
+        }
+    });
     
     return callback(null);
   },
