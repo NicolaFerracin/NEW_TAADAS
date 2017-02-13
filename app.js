@@ -350,7 +350,10 @@ site.init({
     }, {
       name: 'members-area',
       label: 'Members Area'
-    }, {
+    },{
+      name: 'reports',
+      label: 'Orders reports'
+    },  {
       name: 'sitemap',
       label: 'Sitemap'
     }, {
@@ -794,6 +797,15 @@ site.init({
     }
     
     
+    site.app.get('/ordersStats', function(req, res) {
+      getOrdersHistory(function(data){
+        
+        res.end(JSON.stringify(data));
+      
+      });
+      
+    });
+    
     site.app.post('/order', function(req, res) {
       var formData = req.body;
       
@@ -811,9 +823,17 @@ site.init({
         delete(formData.quantities);
         delete(formData.identifiers);
   
+        var orderDate = new Date();
+        orderDate.setHours(0,0,0,0);
+
         titlesArray.forEach(function(title, index) {
+          
+          collectOrderLine(formData.formOrder_Type, title, quantitiesArray[index], orderDate);
+          
           tableRows += '<tr><td style="padding:4px 20px">' + title + '</td><td style="padding:4px 20px"><b>' + quantitiesArray[index] + '</b></td><td style="padding:4px 20px">' + identifiersArray[index] + '</td></tr>'
         });
+        
+        delete(formData.formOrder_Type);
         
         var tableHead = '<thead><tr><th><b>Title</b></th><th><b>Quantity</b></th><th><b>Identifier</b></th></tr></thead>';
 
@@ -1160,4 +1180,48 @@ function createDumpNow(req, res) {
 
   }
 };
+
+
+//analytics collect
+
+function getOrdersCollection(){
+  
+  var db = site.apos.db;
+  var col = db.collection("orders");
+  return col;
+
+}
+
+function collectOrderLine(type, title, count, date) {
+  
+  
+  
+  
+  getOrdersCollection().findAndModify(
+     { type: type, /*title: title,*/ created:date },
+    [],
+    { $inc: { count: parseInt(count) } },
+    { upsert: true, new: true },
+    function(err,doc) {
+       
+    }
+    );
+  
+  
+  
+}
+
+function getOrdersHistory(callback) {
+  var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+  m--;
+  if(m===0){
     
+    y--;
+    m=11;
+  }
+  var d = new Date(y, m, 1);
+  
+  getOrdersCollection().find({"created": {"$gte": d}}).toArray(function(err, docs) {
+    callback(err || docs);
+  });
+}

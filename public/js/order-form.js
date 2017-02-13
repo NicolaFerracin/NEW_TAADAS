@@ -92,6 +92,7 @@ $('#submit-form').on('click', function(e){
 	data += '&' + titles + '&';
 	data += quantities + '&';
 	data += identifiers;
+	data += '&formOrder_Type='+window.formType
 
 	$.ajax({
                 url: "/order",
@@ -102,7 +103,7 @@ $('#submit-form').on('click', function(e){
 			        
 		        
 					sessionStorage.setItem(storeName,'[]');
-					
+				 /*	
 		        	try{
 		    		//pass all data to google analytic
 					rows.each(function(index, row) {
@@ -114,10 +115,10 @@ $('#submit-form').on('click', function(e){
 					})
 		        	} catch(e){}
 		        	
-		        	ga('send', 'event', 'form-sended', 'form-sended', 'form-sended', 1, {hitCallback: function () {
-		        		debugger;
+		       	ga('send', 'event', 'form-sended', 'form-sended', 'form-sended', 1, {hitCallback: function () {
+		        		debugger;*/
 				        document.location = "/thank-you";
-				    }});
+				    /*}});*/
 
 					
                 },
