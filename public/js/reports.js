@@ -11,10 +11,6 @@
             
             
             o.created = o.created.split('T')[0];
-            var a = o.created.split('-');
-            o.year = a[0];
-            o.month = a[1];
-            
             
             var r = types[o.type];
             if (!r) {
@@ -24,8 +20,8 @@
             
             var d = r[o.created];
             if (!d) {
-                d = {count:0};
-                 r[o.created] = d;
+                d = {count:0, month:o.created.split('-')[1]};
+                r[o.created] = d;
             }
             d.count+=o.count;
             
@@ -48,7 +44,7 @@
             
             var prevMonth;
             var monthTotal = 0;
-            e.append('<h3><b>'+months[parseInt(prevMonth)]+'</b></h3>');
+            
             dkeys.some(function(dkey){
                 var day = type[dkey];
                 
