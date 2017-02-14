@@ -62,7 +62,7 @@
                 monthTotal += day.count;
                 e.append('<div class="row"><div class="col-lg-9"><b>'+dkey+':</b></div><div class="col-lg-3">'+day.count+'</div></div>');
             });
-            e.append('<div class="row"><div class="col-lg-9"><h4><b>'+months[parseInt(prevMonth)]+' temporary total:</b></div><div class="col-lg-3"><b>'+monthTotal+'</b></h4></div></div>');
+            e.append('<div class="row"><div class="col-lg-9"><h4><b>'+months[parseInt(prevMonth)]+' temporary total:</b></div><div class="col-lg-3"><b>'+monthTotal+'</b></h4></div></div><hr>');
             
             
             
