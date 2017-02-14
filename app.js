@@ -1213,11 +1213,11 @@ function collectOrderLine(type, title, count, date) {
 
 function getOrdersHistory(callback) {
   var date = new Date(), y = date.getFullYear(), m = date.getMonth();
-  m--;
-  if(m===0){
+  m-=3;
+  if (m<=0) {
     
     y--;
-    m=11;
+    m+=11;
   }
   var d = new Date(y, m, 1);
   

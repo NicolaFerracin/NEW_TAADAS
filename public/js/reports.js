@@ -1,5 +1,6 @@
 (function(){
     
+    var months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
     
     $.getJSON('/ordersStats',function(data){
         
@@ -51,14 +52,14 @@
                 var day = type[dkey];
                 
                 if (prevMonth && day.month !== prevMonth) {
-                    e.append('<div class="row"><div class="col-lg-9"><h4><b>months total:</b></div><div class="col-lg-3">'+monthTotal+'</h4></div></div><hr>');
+                    e.append('<div class="row"><div class="col-lg-9"><h4><b>'+months[prevMonth]+' total:</b></div><div class="col-lg-3">'+monthTotal+'</h4></div></div><hr>');
                     monthTotal = 0;
                 }
                 prevMonth = day.month;
                 monthTotal += day.count;
                 e.append('<div class="row"><div class="col-lg-9"><b>'+dkey+':</b></div><div class="col-lg-3">'+day.count+'</div></div>');
             });
-            e.append('<div class="row"><div class="col-lg-9"><h4><b>current month temporary total:</b></div><div class="col-lg-3"><b>'+monthTotal+'</b></h4></div></div>');
+            e.append('<div class="row"><div class="col-lg-9"><h4><b>'+months[prevMonth]+' temporary total:</b></div><div class="col-lg-3"><b>'+monthTotal+'</b></h4></div></div>');
             
             
             
