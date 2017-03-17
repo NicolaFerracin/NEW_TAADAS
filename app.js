@@ -815,9 +815,9 @@ site.init({
       if (formData['titles']) {
         
         var tableRows = '';
-        var titlesArray = formData['titles'].split('_'),
-          quantitiesArray = formData['quantities'].split('_'),
-          identifiersArray = formData['identifiers'].split('_');
+        var titlesArray = formData['titles'].split('_DIvIDE8sayR_'),
+          quantitiesArray = formData['quantities'].split('_DIvIDE8sayR_'),
+          identifiersArray = formData['identifiers'].split('_DIvIDE8sayR_');
           
         delete(formData.titles);
         delete(formData.quantities);

@@ -83,9 +83,9 @@ $('#submit-form').on('click', function(e){
 			quantities += quantity;
 			identifiers += identifier;
 		} else {
-			titles += '_' + title;
-			quantities += '_' + quantity;
-			identifiers += '_' + identifier;
+			titles += '_DIvIDE8sayR_' + title;
+			quantities += '_DIvIDE8sayR_' + quantity;
+			identifiers += '_DIvIDE8sayR_' + identifier;
 		}
 	});
 
