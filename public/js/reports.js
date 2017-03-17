@@ -6,11 +6,7 @@
         
         
         var types = {};
-        data.sort(function (a,b) {
-            if(a.created>b.created) return 1;
-            if(b.created>a.created) return-1;
-            return 0;
-        })
+        
         data.some(function(o) {
             
             
@@ -43,7 +39,9 @@
             
             var dkeys = Object.keys(type);
             dkeys.sort(function (a,b) {
-                return a-b;
+                if(a>b) return 1;
+                if(b>a) return-1;
+                return 0;
             });
             
             var prevMonth;
