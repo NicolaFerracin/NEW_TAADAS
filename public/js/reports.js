@@ -51,7 +51,7 @@
                 var day = type[dkey];
                 
                 if (prevMonth && day.month !== prevMonth) {
-                    e.append('<div class="row"><div class="col-lg-4"><h4><b>'+months[parseInt(prevMonth)]+' total:</b></div><div class="col-lg-8">'+monthTotal+'</h4></div></div><hr>');
+                    e.append('<div class="row"><div class="col-lg-4"><h4><b>'+months[parseInt(prevMonth)]+' total:</b></div><div class="col-lg-8"><b>'+monthTotal+'</b></h4></div></div><hr>');
                     monthTotal = 0;
                 }
                 if (!prevMonth || (day.month !== prevMonth)) {
